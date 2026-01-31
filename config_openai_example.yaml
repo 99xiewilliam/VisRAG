@@ -1,0 +1,68 @@
+# VisRAG 配置文件 - OpenAI API 示例
+# 使用方法:
+#   python main.py --config config_openai_example.yaml qa_build --dataset-dir ./dataset
+
+# 确保设置环境变量: export OPENAI_API_KEY=your-api-key
+
+generator:
+  # 切换到 OpenAI 模式
+  backend: "openai"
+  
+  local:
+    # 本地模型配置（当前不生效）
+    model_path: "/data/xwh/models/Qwen3-1.7B"
+    max_new_tokens: 768
+  
+  openai:
+    # API Key - 推荐通过环境变量 OPENAI_API_KEY 设置
+    # api_key: "sk-xxx"  # 或者直接写在这里（不推荐）
+    
+    # API Base URL - 如需使用代理或 Azure
+    # base_url: "https://api.openai.com/v1"
+    
+    # 模型选择
+    # 性价比推荐: gpt-4o-mini
+    # 高质量: gpt-4o
+    # 其他兼容: claude-3-haiku, gemini-pro 等（需配合 base_url）
+    model: "gpt-4o-mini"
+    
+    # 生成参数
+    max_tokens: 768
+    temperature: 0.0  # 0 表示贪婪解码，结果更确定
+    top_p: 1.0
+    
+    # 网络参数
+    timeout: 60
+    max_retries: 3
+
+vision:
+  model_path: "/data/xwh/models/DeepSeek-OCR-2"
+  device: "auto"
+
+# 嵌入模型配置 - 使用 OpenAI embedding
+embedding:
+  backend: "openai"
+  dim: 1536  # text-embedding-3-small 的默认维度
+  
+  local:
+    model_path: "/data/xwh/models/Qwen3-Embedding-0.6B"
+    device: "auto"
+    batch_size: 32
+    max_length: 512
+    use_fp16: true
+  
+  openai:
+    # API Key - 优先从环境变量 OPENAI_API_KEY 读取
+    # api_key: "sk-xxx"
+    model: "text-embedding-3-small"  # 或 text-embedding-3-large
+    # dimensions: 256  # 可选：指定输出维度（仅 text-embedding-3 支持）
+    timeout: 60
+    max_retries: 3
+
+# 日志配置
+logging:
+  level: "INFO"
+  file_output: true
+  log_dir: "./logs"
+  log_filename: null
+  show_location: false

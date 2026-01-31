@@ -1,0 +1,39 @@
+# VisRAG 批量索引配置示例
+# 
+# 这个配置优化用于批量处理 PDF，特点是：
+# - 使用本地 embedding 模型（避免 API 调用延迟）
+# - 使用 fp16 加速
+# - 开启详细日志
+
+generator:
+  backend: "local"
+  local:
+    model_path: "/data/xwh/models/Qwen3-1.7B"
+    max_new_tokens: 768
+    load_in_4bit: false
+    temperature: 0.0
+    device: "auto"
+
+embedding:
+  # 批量处理推荐使用本地模型，避免 API 延迟和限流
+  backend: "local"
+  dim: 1024  # Qwen3-Embedding-0.6B 的维度
+  
+  local:
+    model_path: "/data/xwh/models/Qwen3-Embedding-0.6B"
+    device: "auto"
+    batch_size: 64        # 增大批处理大小提高吞吐量
+    max_length: 512
+    use_fp16: true       # 开启 fp16 加速
+
+vision:
+  model_path: "/data/xwh/models/DeepSeek-OCR-2"
+  device: "auto"
+
+# 批量处理时开启详细日志
+logging:
+  level: "INFO"
+  file_output: true
+  log_dir: "./logs"
+  log_filename: "batch_index.log"
+  show_location: false

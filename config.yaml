@@ -1,0 +1,100 @@
+# VisRAG 配置文件
+# 支持本地模型和 OpenAI API 两种模式
+
+# ==================== Generator 配置 ====================
+generator:
+  # 可选: "local" | "openai"
+  backend: "local"
+  
+  # ------------------ 本地模型配置 ------------------
+  local:
+    # 模型路径或 HuggingFace 模型名称
+    model_path: "/data/xwh/models/Qwen3-1.7B"
+    # 最大生成 token 数
+    max_new_tokens: 768
+    # 是否使用 4-bit 量化（节省显存）
+    load_in_4bit: false
+    # 推理参数
+    temperature: 0.0
+    top_p: 1.0
+    # 设备选择: "auto", "cuda", "cpu"
+    device: "auto"
+  
+  # ------------------ OpenAI API 配置 ------------------
+  openai:
+    # API Key（建议通过环境变量 OPENAI_API_KEY 设置）
+    api_key: null
+    # API Base URL（如需使用代理或 Azure）
+    base_url: null
+    # 模型名称
+    model: "gpt-4o-mini"
+    # 最大生成 token 数
+    max_tokens: 768
+    # 推理参数
+    temperature: 0.0
+    top_p: 1.0
+    # 请求超时（秒）
+    timeout: 60
+    # 重试次数
+    max_retries: 3
+
+# ==================== 嵌入模型配置 ====================
+embedding:
+  # 可选: "hash" | "local" | "openai"
+  # - hash: 使用 MD5 hash（轻量级，无额外依赖）
+  # - local: 使用本地 HuggingFace embedding 模型
+  # - openai: 使用 OpenAI embedding API
+  backend: "hash"
+  
+  # 输出维度（hash 模式会忽略此配置，使用内部固定值）
+  dim: 1024
+  
+  # ------------------ 本地模型配置 ------------------
+  local:
+    # 模型路径或 HuggingFace 模型名称
+    model_path: "/data/xwh/models/Qwen3-Embedding-0.6B"
+    # 设备选择: "auto", "cuda", "cpu"
+    device: "auto"
+    # 批处理大小
+    batch_size: 32
+    # 最大序列长度
+    max_length: 512
+    # 是否使用 fp16（节省显存）
+    use_fp16: true
+  
+  # ------------------ OpenAI API 配置 ------------------
+  openai:
+    # API Key（优先从环境变量 OPENAI_API_KEY 读取）
+    api_key: null
+    # API Base URL（如需使用代理或 Azure）
+    base_url: null
+    # 模型名称: text-embedding-3-small, text-embedding-3-large, text-embedding-ada-002
+    model: "text-embedding-3-small"
+    # 输出维度（仅对 text-embedding-3 系列有效，可选: 256, 512, 1024, 3072）
+    dimensions: null  # null 表示使用模型默认维度
+    # 请求超时（秒）
+    timeout: 60
+    # 重试次数
+    max_retries: 3
+
+# 视觉编码器配置
+vision:
+  model_path: "/data/xwh/models/DeepSeek-OCR-2"
+  device: "auto"
+
+# ==================== 日志配置 ====================
+logging:
+  # 日志级别: DEBUG, INFO, WARNING, ERROR
+  level: "INFO"
+  
+  # 是否输出到文件
+  file_output: true
+  
+  # 日志文件目录
+  log_dir: "./logs"
+  
+  # 日志文件名（null 表示按日期自动生成: visrag_YYYYMMDD.log）
+  log_filename: null
+  
+  # 是否在日志中显示函数名和行号（调试用）
+  show_location: false

@@ -1,0 +1,17 @@
+chromadb
+transformers<5
+torch
+torchvision
+einops
+numpy
+Pillow
+PyMuPDF
+nltk
+pyyaml
+addict
+
+# 可选：使用 OpenAI API 时需要
+# openai
+
+# 可选：本地模型 4-bit 量化时需要
+# bitsandbytes
