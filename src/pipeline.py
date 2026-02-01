@@ -119,4 +119,6 @@ class VisRAGPipeline:
         return {"ids": [out_ids], "metadatas": [out_metas], "distances": [out_distances]}
 
     def decode_vision_tokens(self, tokens_paths: List[str], prompt: str | None = None) -> List[str]:
-        return decode_tokens_list(tokens_paths, prompt=prompt)
+        # 允许通过环境变量指定 OCR 解码所用设备，例如 "cuda:1"
+        device = os.environ.get("VISRAG_OCR_DECODER_DEVICE")
+        return decode_tokens_list(tokens_paths, prompt=prompt, device=device)

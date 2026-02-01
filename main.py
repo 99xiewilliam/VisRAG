@@ -27,20 +27,26 @@ else:
     logger.info("使用默认配置")
 
 from src.pipeline import VisRAGPipeline
-from qa_pipeline import build_qa, eval_metrics, llm_judge
+from qa_pipeline import build_qa, eval_metrics, llm_judge, rag_predict
 from src.generator import create_generator
+
+
+def _default_under_project(*parts: str) -> str:
+    project_root = os.path.dirname(os.path.abspath(__file__))
+    return os.path.join(project_root, *parts)
 
 
 def build_parser():
     p = argparse.ArgumentParser()
     p.add_argument("--config", default=None, help="配置文件路径 (默认: config.yaml)")
-    p.add_argument("--persist", default="/data/xwh/VisRAG/chroma_db")
+    # 默认改为项目目录下，避免 /data/... 的权限问题
+    p.add_argument("--persist", default=None)
     sub = p.add_subparsers(dest="cmd", required=True)
 
     sp = sub.add_parser("index_pdf")
     sp.add_argument("--id", required=True)
     sp.add_argument("--pdf", required=True)
-    sp.add_argument("--tokens-dir", default="/data/xwh/VisRAG/vision_tokens")
+    sp.add_argument("--tokens-dir", default=None)
 
     qp = sub.add_parser("query_text")
     qp.add_argument("--text", required=True)
@@ -67,6 +73,13 @@ def build_parser():
     j.add_argument("--pred", required=True)
     j.add_argument("--out", default="/data/xwh/VisRAG/qa/judge.jsonl")
     j.add_argument("--log", default=None)
+
+    # 新增：RAG 推理（同时输出 text-only 与 vision+text）
+    rp = sub.add_parser("rag_predict")
+    rp.add_argument("--qa", required=True, help="QA jsonl 路径（需包含 id/question/answer 等字段）")
+    rp.add_argument("--out", required=True, help="输出预测 jsonl 路径")
+    rp.add_argument("--top-k", type=int, default=3)
+    rp.add_argument("--max-context-chars", type=int, default=6000)
     
     # 新增：直接测试 Generator
     tg = sub.add_parser("test_generator")
@@ -83,10 +96,24 @@ def main():
     cfg = get_config()
     logger.info(f"Generator backend: {cfg.generator.backend}")
     
-    os.makedirs(args.persist, exist_ok=True)
-    pipe = VisRAGPipeline(args.persist)
+    if not args.persist:
+        args.persist = _default_under_project("output", "chroma_db")
+
+    # 兼容两种目录结构：
+    # - 直接把 ChromaDB 持久化目录传进来（包含 chroma.sqlite3）
+    # - 传入 output 根目录（其下有 chroma_db/ 与 vision_tokens/），如 batch_index_enhanced.py 的 output_dir
+    persist_dir = args.persist
+    nested = os.path.join(persist_dir, "chroma_db")
+    if os.path.isdir(nested) and os.path.exists(os.path.join(nested, "chroma.sqlite3")):
+        logger.info(f"检测到嵌套 chroma_db，使用: {nested}")
+        persist_dir = nested
+
+    os.makedirs(persist_dir, exist_ok=True)
+    pipe = VisRAGPipeline(persist_dir)
     
     if args.cmd == "index_pdf":
+        if not args.tokens_dir:
+            args.tokens_dir = _default_under_project("output", "vision_tokens")
         os.makedirs(args.tokens_dir, exist_ok=True)
         pipe.index_pdf(args.id, args.pdf, args.tokens_dir)
         logger.info(f"PDF 索引完成: {args.id}")
@@ -113,6 +140,15 @@ def main():
     elif args.cmd == "qa_judge":
         llm_judge(args.qa, args.pred, args.out, None, args.log)
         llm_judge(args.qa, args.pred, args.out)
+
+    elif args.cmd == "rag_predict":
+        rag_predict(
+            qa_path=args.qa,
+            out_path=args.out,
+            persist_dir=persist_dir,
+            top_k=args.top_k,
+            max_context_chars=args.max_context_chars,
+        )
     
     elif args.cmd == "test_generator":
         logger.info(f"测试 Generator: backend={cfg.generator.backend}")

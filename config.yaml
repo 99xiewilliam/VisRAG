@@ -3,8 +3,9 @@
 
 # ==================== Generator 配置 ====================
 generator:
-  # 可选: "local" | "openai"
-  backend: "local"
+  # 可选: "local" | "openai" | "deepseek_ocr2"
+  # - deepseek_ocr2: 使用 DeepSeek-OCR-2 的 decoder，支持 text-only vs (vision_tokens+text) A/B
+  backend: "decoder_only"
   
   # ------------------ 本地模型配置 ------------------
   local:
@@ -22,9 +23,8 @@ generator:
   
   # ------------------ OpenAI API 配置 ------------------
   openai:
-    # API Key（建议通过环境变量 OPENAI_API_KEY 设置）
+    # （当前 pipeline 不使用 OpenAI；如需启用请改 backend=openai 并用环境变量配置密钥）
     api_key: null
-    # API Base URL（如需使用代理或 Azure）
     base_url: null
     # 模型名称
     model: "gpt-4o-mini"
@@ -44,7 +44,7 @@ embedding:
   # - hash: 使用 MD5 hash（轻量级，无额外依赖）
   # - local: 使用本地 HuggingFace embedding 模型
   # - openai: 使用 OpenAI embedding API
-  backend: "hash"
+  backend: "openai"
   
   # 输出维度（hash 模式会忽略此配置，使用内部固定值）
   dim: 1024
@@ -64,10 +64,10 @@ embedding:
   
   # ------------------ OpenAI API 配置 ------------------
   openai:
-    # API Key（优先从环境变量 OPENAI_API_KEY 读取）
-    api_key: null
-    # API Base URL（如需使用代理或 Azure）
-    base_url: null
+    # （当前 pipeline 不使用 OpenAI；如需启用请改 embedding.backend=openai 并用环境变量配置密钥）
+    api_key: "sk-zk29b3dee55ac5b9f4c62a542c15cd33408697c5911a1a69"
+    # 也可用环境变量覆盖：OPENAI_BASE_URL
+    base_url: "https://api.zhizengzeng.com/v1"
     # 模型名称: text-embedding-3-small, text-embedding-3-large, text-embedding-ada-002
     model: "text-embedding-3-small"
     # 输出维度（仅对 text-embedding-3 系列有效，可选: 256, 512, 1024, 3072）
@@ -79,7 +79,7 @@ embedding:
 
 # 视觉编码器配置
 vision:
-  model_path: "/data/xwh/models/DeepSeek-OCR-2"
+  model_path: "/home/xwh/models/DeepSeek-OCR-2"
   device: "auto"
 
 # ==================== 日志配置 ====================

@@ -134,12 +134,12 @@ class QAGenerator:
     
     def generate_qa(self, context: str, qas_per_page: int = 2) -> List[Dict[str, str]]:
         """根据上下文生成 QA 对"""
-        system = "你是一个严谨的文档问答数据生成器。"
+        system = "You are a careful document QA dataset generator."
         user = (
-            "根据给定文档内容生成问题与答案，"
-            f"生成 {qas_per_page} 组，必须只基于上下文。"
-            "输出严格 JSON 数组，每个元素含 question 和 answer。\n\n"
-            f"上下文:\n{context}"
+            "Generate question-answer pairs based ONLY on the given context.\n"
+            f"Generate exactly {qas_per_page} pairs.\n"
+            'Output STRICT JSON array. Each element MUST have keys: "question", "answer".\n\n'
+            f"Context:\n{context}"
         )
         raw = self.generator.generate(system, user)
         items = extract_json_array(raw)
@@ -163,14 +163,15 @@ class LLMJudge:
     
     def judge(self, question: str, reference: str, prediction: str) -> Dict[str, Any]:
         """评估答案质量"""
-        system = "你是严格的答案评估员。"
+        system = "You are a strict answer evaluator."
         user = (
-            "给定问题、参考答案、模型答案，输出 JSON："
-            "{\"score\":0-1,\"reason\":\"\"}。"
-            "只返回 JSON。\n\n"
-            f"问题: {question}\n"
-            f"参考答案: {reference}\n"
-            f"模型答案: {prediction}"
+            "Given a question, a reference answer, and a model answer, rate the model answer.\n"
+            "Output format MUST be exactly:\n"
+            "SCORE: <a number between 0 and 1>\n"
+            "REASON: <one short sentence>\n\n"
+            f"Question: {question}\n"
+            f"Reference: {reference}\n"
+            f"Prediction: {prediction}"
         )
         raw = self.generator.generate(system, user)
         
@@ -183,7 +184,30 @@ class LLMJudge:
         arr = extract_json_array(raw)
         if isinstance(arr, list) and arr and "score" in arr[0]:
             return arr[0]
-        
+
+        # 再回退：尽量从非 JSON 输出中提取 score（decoder-only 常见不跟指令）
+        try:
+            m = re.search(r"(?i)\bscore\b\s*[:=]\s*([01](?:\.\d+)?)", raw)
+            if m:
+                score = float(m.group(1))
+                score = max(0.0, min(1.0, score))
+                return {"score": score, "reason": (raw or "").strip()[:500]}
+
+            m = re.search(r"(?i)\bscore\b\s*[:=]\s*([01](?:\.\d+)?)", raw)
+            if not m:
+                # 也支持 "0.85" / "85%" 这种
+                m = re.search(r"(?i)\b([01](?:\.\d+)?)\b", raw.strip())
+            score = None
+            if m:
+                score = float(m.group(1))
+                if score > 1.0:
+                    score = score / 100.0
+                score = max(0.0, min(1.0, score))
+            if score is not None:
+                return {"score": score, "reason": (raw or "").strip()[:500]}
+        except Exception:
+            pass
+
         return {"score": 0.0, "reason": "parse_error"}
 
 
@@ -379,7 +403,6 @@ def rag_predict(
 
     gen = generator or create_generator()
     pipe = VisRAGPipeline(persist_dir)
-    cfg = get_config()
 
     os.makedirs(os.path.dirname(out_path), exist_ok=True)
 
@@ -388,8 +411,41 @@ def rag_predict(
 
     with open(out_path, "w", encoding="utf-8") as f:
         for item in qa_items:
-            qid = item["id"]
-            question = item.get("question", "")
+            qid = item.get("id") or item.get("qid") or item.get("question_id")
+            if not qid:
+                # 跳过无 id 的行
+                continue
+
+            question = item.get("question") or item.get("query") or item.get("q") or ""
+            if not isinstance(question, str):
+                question = str(question)
+            question = question.strip()
+
+            # 兼容：有些 jsonl 不是标准 QA（比如 pred_*.jsonl），question 被嵌在 prediction_text 里
+            if not question:
+                pred_text = item.get("prediction_text") or item.get("prompt") or ""
+                if isinstance(pred_text, str) and pred_text:
+                    # CN / EN fallback parse
+                    m = re.search(r"问题:\s*\n(.*?)\n\s*材料:", pred_text, flags=re.DOTALL)
+                    if not m:
+                        m = re.search(r"Question:\s*\n(.*?)\n\s*Context:", pred_text, flags=re.DOTALL)
+                    if m:
+                        question = m.group(1).strip()
+
+            if not question:
+                # OpenAI embedding 对空 input 可能直接 400，这里直接写空结果并跳过检索
+                f.write(
+                    json.dumps(
+                        {
+                            "id": qid,
+                            "question": "",
+                            "error": "missing_question",
+                        },
+                        ensure_ascii=False,
+                    )
+                    + "\n"
+                )
+                continue
             text_res = pipe.query_text(question, top_k=top_k)
             text_metas = (text_res.get("metadatas") or [[]])[0]
 
@@ -410,12 +466,12 @@ def rag_predict(
             if max_context_chars and len(text_context) > max_context_chars:
                 text_context = text_context[:max_context_chars]
 
+            # 取“文本检索命中页”的对应 vision token（只取 1 页，避免拼接导致退化）
             vision_res = pipe.query_vision(question, top_k=top_k)
             vision_metas = (vision_res.get("metadatas") or [[]])[0]
 
-            tokens_paths = []
-            vision_headers = []
-            retrieved_vision = []
+            text_page_keys = {(md.get("doc_id", ""), md.get("page", "")) for md in text_metas if isinstance(md, dict)}
+            candidates = []
             for md in vision_metas:
                 if not isinstance(md, dict):
                     continue
@@ -424,49 +480,39 @@ def rag_predict(
                 tokens_path = md.get("tokens_path")
                 if not tokens_path:
                     continue
-                retrieved_vision.append({"doc_id": doc_id, "page": page})
-                tokens_paths.append(tokens_path)
+                priority = 0 if (doc_id, page) in text_page_keys else 1
+                candidates.append((priority, tokens_path, doc_id, page))
 
-            system = "你是一个严谨的问答助手，只能基于给定材料回答。"
+            candidates.sort(key=lambda x: x[0])
+            tokens_paths = [candidates[0][1]] if candidates else []
+            retrieved_vision = [{"doc_id": candidates[0][2], "page": candidates[0][3]}] if candidates else []
+
+            # English prompt (and a clear "Answer:" anchor)
+            system = ""
             user_text_only = (
-                "请根据材料回答问题。若材料不足以确定答案，请回答“无法从给定材料中确定”。\n\n"
-                f"问题:\n{question}\n\n"
-                f"材料:\n{text_context}\n\n"
-                "答案:"
+                'Answer the question based ONLY on the provided context. If the context is insufficient, answer: "Cannot be determined from the given context.".\n\n'
+                f"Context:\n{text_context}\n\n"
+                f"Question: {question}\n"
+                "Answer:"
             )
 
-            prediction_text = gen.generate(system, user_text_only)
-            if cfg.generator.backend == "deepseek_ocr2" and tokens_paths:
-                prediction_with_vision = gen.generate(system, user_text_only, vision_tokens=tokens_paths)
-            else:
-                vision_texts = pipe.decode_vision_tokens(tokens_paths) if tokens_paths else []
-                vision_parts = []
-                for header, text in zip([f"[{md.get('doc_id','')} p{md.get('page','')}]" for md in vision_metas if isinstance(md, dict) and md.get("tokens_path")], vision_texts):
-                    if not text:
-                        continue
-                    vision_parts.append(f"{header}\n{text}")
-                vision_context = "\n\n".join(vision_parts)
-                if max_context_chars and len(vision_context) > max_context_chars:
-                    vision_context = vision_context[:max_context_chars]
-                combined_context = "\n\n".join([c for c in [text_context, vision_context] if c])
-                if max_context_chars and len(combined_context) > max_context_chars:
-                    combined_context = combined_context[:max_context_chars]
-                user_combined = (
-                    "请根据材料回答问题。若材料不足以确定答案，请回答“无法从给定材料中确定”。\n\n"
-                    f"问题:\n{question}\n\n"
-                    f"材料:\n{combined_context}\n\n"
-                    "答案:"
-                )
-                prediction_with_vision = gen.generate(system, user_combined)
+            # A/B:
+            # (A) 纯文本材料 -> generator
+            prediction_text_only = gen.generate(system, user_text_only)
+            # (B) 纯文本材料 + vision token 注入 -> generator（decoder-only）
+            prediction_with_vision = gen.generate(system, user_text_only, vision_tokens=tokens_paths) if tokens_paths else ""
 
             f.write(
                 json.dumps(
                     {
                         "id": qid,
-                        "prediction_text": prediction_text,
+                        "question": question,
+                        "text_context": text_context,
+                        "prediction_text_only": prediction_text_only,
                         "prediction_with_vision": prediction_with_vision,
                         "retrieved_text": retrieved_text,
                         "retrieved_vision": retrieved_vision,
+                        "vision_tokens_paths": tokens_paths,
                     },
                     ensure_ascii=False,
                 )

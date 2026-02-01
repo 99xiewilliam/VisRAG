@@ -9,6 +9,7 @@ PyMuPDF
 nltk
 pyyaml
 addict
+safetensors
 
 # 可选：使用 OpenAI API 时需要
 # openai

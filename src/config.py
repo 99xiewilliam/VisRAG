@@ -29,7 +29,9 @@ class OpenAIConfig:
 
 @dataclass
 class GeneratorConfig:
-    backend: str = "local"  # "local" | "openai"
+    # "decoder_only" | "local" | "openai" | "deepseek_ocr2"
+    # - decoder_only: 只加载 DeepSeek-OCR-2 的文本 decoder（DeepSeekV2ForCausalLM），支持 vision_tokens 注入
+    backend: str = "local"
     local: LocalModelConfig = field(default_factory=LocalModelConfig)
     openai: OpenAIConfig = field(default_factory=OpenAIConfig)
 

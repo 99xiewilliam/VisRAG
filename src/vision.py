@@ -133,16 +133,28 @@ class ImageTransform:
 
 
 class DeepseekEncoder:
-    def __init__(self, model_path: str = "/data/xwh/models/DeepSeek-OCR-2", device: str | None = None):
+    def __init__(self, model_path: str | None = None, device: str | None = None):
         self.device = device or ("cuda" if torch.cuda.is_available() else "cpu")
         self.dtype = torch.float16 if self.device == "cuda" else torch.float32
-        logger.info(f"初始化 DeepseekEncoder: device={self.device}, dtype={self.dtype}")
+        if model_path is None:
+            # 延迟导入，避免循环依赖；优先使用 config.yaml 的 vision.model_path
+            try:
+                from .config import get_config
+                model_path = get_config().vision.model_path
+            except Exception:
+                model_path = "/home/xwh/models/DeepSeek-OCR-2"
+
+        logger.info(f"初始化 DeepseekEncoder: device={self.device}, dtype={self.dtype}, model_path={model_path}")
         _ensure_dynamic_cache_compat()
         model = AutoModel.from_pretrained(model_path, trust_remote_code=True)
         model.eval()
         self.sam = model.model.sam_model.to(self.device, dtype=self.dtype)
         self.qwen2 = model.model.qwen2_model.to(self.device, dtype=self.dtype)
         self.projector = model.model.projector.to(self.device, dtype=self.dtype)
+        # 与官方链路对齐：视觉 token 序列末尾的 view_seperator
+        self.view_seperator = getattr(model.model, "view_seperator", None)
+        if self.view_seperator is not None:
+            self.view_seperator = self.view_seperator.detach().to(self.device, dtype=self.dtype)
         self.image_transform = ImageTransform()
         del model
 
@@ -196,16 +208,19 @@ class DeepseekEncoder:
                 global_feat_2 = self.qwen2(global_feat_1)
                 global_features = self.projector(global_feat_2)
                 features = global_features.view(-1, global_features.shape[-1])
+        # 按官方 vLLM 实现：在末尾追加 view_seperator
+        if self.view_seperator is not None:
+            features = torch.cat([features, self.view_seperator[None, :]], dim=0)
         return features
 
 
 class DeepseekTokenDecoder:
     """使用预计算的 vision tokens（[T, 1280]）进行生成，跳过视觉编码。
 
-    依赖 /data/xwh/models/DeepSeek-OCR-2/modeling_deepseekocr2.py 已支持 image_embeds 注入。
+    通过直接构造 inputs_embeds 并将 vision tokens 注入到对应位置。
     """
 
-    def __init__(self, model_path: str = "/data/xwh/models/DeepSeek-OCR-2", device: str | None = None):
+    def __init__(self, model_path: str = "/home/xwh/models/DeepSeek-OCR-2", device: str | None = None):
         self.device = device or ("cuda" if torch.cuda.is_available() else "cpu")
         if not str(self.device).startswith("cuda"):
             raise RuntimeError("DeepseekTokenDecoder requires CUDA for generation")
@@ -221,6 +236,9 @@ class DeepseekTokenDecoder:
             self.image_token_id = getattr(self.tokenizer, "vocab", {}).get(self.image_token, None)
         if self.image_token_id is None:
             raise RuntimeError("无法获取 <image> 的 token id")
+        
+        # 获取文本 embedding 层
+        self.embed_tokens = self.model.get_input_embeddings()
 
     def _build_input_ids(self, prompt: str, num_image_tokens: int) -> torch.LongTensor:
         if self.image_token not in prompt:
@@ -243,21 +261,59 @@ class DeepseekTokenDecoder:
         prompt: str = "<image>\n<|grounding|>Convert the document to markdown. ",
         max_new_tokens: int = 2048,
     ) -> str:
+        """
+        使用预计算的 vision tokens 进行解码。
+        
+        Args:
+            feats: 预计算的 vision tokens, shape [T, D] (D=1280 for DeepSeek-OCR-2)
+            prompt: 包含 <image> 占位符的 prompt
+            max_new_tokens: 最大生成 token 数
+        """
         # feats: [T, 1280]
         if feats.ndim != 2:
             raise ValueError(f"feats must be 2D [T, D], got {tuple(feats.shape)}")
         feats = feats.to(self.device)
+        # 兼容旧 token（可能缺 view_seperator）：若末 token 不像 view_seperator，则追加
+        view_sep = getattr(self.model.model, "view_seperator", None)
+        if view_sep is not None:
+            view_sep = view_sep.detach().to(feats.device, dtype=feats.dtype)
+            if feats.shape[0] > 0:
+                # 简单相似度检查，避免重复追加
+                import torch.nn.functional as F
+                sim = F.cosine_similarity(feats[-1], view_sep, dim=0)
+                if float(sim) < 0.9:
+                    feats = torch.cat([feats, view_sep[None, :]], dim=0)
 
         input_ids = self._build_input_ids(prompt, num_image_tokens=feats.shape[0])
         images_seq_mask = (input_ids == int(self.image_token_id))
         attention_mask = torch.ones_like(input_ids, device=self.device)
 
+        # 构建 inputs_embeds: 先获取文本 embedding，然后在 image token 位置替换为 vision tokens
+        with torch.no_grad():
+            inputs_embeds = self.embed_tokens(input_ids)
+            # 将 vision tokens 注入到 image token 对应的位置
+            # feats 需要与 image token 数量匹配
+            if images_seq_mask.sum().item() != feats.shape[0]:
+                raise ValueError(
+                    f"Image token 数量 ({images_seq_mask.sum().item()}) 与 vision tokens 数量 ({feats.shape[0]}) 不匹配"
+                )
+            inputs_embeds[images_seq_mask] = feats.to(inputs_embeds.dtype)
+
+        # 构造 dummy images 参数来绕过模型内部的视觉编码
+        # 模型会检查 torch.sum(images[0][1]).item() != 0 来决定是否进行视觉编码
+        # 传入全零 tensor 可以跳过视觉编码，直接使用我们提供的 inputs_embeds
+        dummy_image = torch.zeros((1, 3, 1024, 1024), device=self.device, dtype=torch.float16)
+        dummy_patches = torch.zeros((1, 3, 768, 768), device=self.device, dtype=torch.float16)
+        # images 参数格式: list of [patches, image_ori]
+        dummy_images = [[dummy_patches, dummy_image]]
+
         with torch.no_grad(), torch.autocast("cuda", dtype=torch.bfloat16):
             out = self.model.generate(
+                # 同时传 input_ids + inputs_embeds，避免后续 step input_ids 被裁空导致 RoPE 维度错配
                 input_ids=input_ids,
+                inputs_embeds=inputs_embeds,
                 attention_mask=attention_mask,
-                images_seq_mask=images_seq_mask,
-                image_embeds=[feats.to(torch.bfloat16)],
+                images=dummy_images,  # 传入 dummy images 绕过视觉编码检查
                 temperature=0.0,
                 do_sample=False,
                 max_new_tokens=max_new_tokens,
