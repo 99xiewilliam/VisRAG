@@ -163,15 +163,15 @@ class LLMJudge:
     
     def judge(self, question: str, reference: str, prediction: str) -> Dict[str, Any]:
         """评估答案质量"""
-        system = "You are a strict answer evaluator."
+        # NOTE: decoder-only 模型往往不服从“输出 JSON/结构化”的指令，但对 “Score:” 这种非常短的续写更稳定
+        system = ""
         user = (
-            "Given a question, a reference answer, and a model answer, rate the model answer.\n"
-            "Output format MUST be exactly:\n"
-            "SCORE: <a number between 0 and 1>\n"
-            "REASON: <one short sentence>\n\n"
+            "Evaluate the prediction against the reference for the question.\n"
+            "Output ONLY a number between 0 and 1.\n\n"
             f"Question: {question}\n"
             f"Reference: {reference}\n"
-            f"Prediction: {prediction}"
+            f"Prediction: {prediction}\n\n"
+            "Score:"
         )
         raw = self.generator.generate(system, user)
         
@@ -193,14 +193,15 @@ class LLMJudge:
                 score = max(0.0, min(1.0, score))
                 return {"score": score, "reason": (raw or "").strip()[:500]}
 
-            m = re.search(r"(?i)\bscore\b\s*[:=]\s*([01](?:\.\d+)?)", raw)
-            if not m:
-                # 也支持 "0.85" / "85%" 这种
-                m = re.search(r"(?i)\b([01](?:\.\d+)?)\b", raw.strip())
+            # 也支持只返回一个数字（如 "0.5" 或 "4.0"）
+            m = re.search(r"(?i)(?<![0-9.])([0-9]+(?:\.[0-9]+)?)(?![0-9.])", (raw or "").strip())
             score = None
             if m:
                 score = float(m.group(1))
-                if score > 1.0:
+                # 常见：输出 0-1；或输出 0-10（当作 10 分制）；或输出 0-100（当作百分制）
+                if score > 1.0 and score <= 10.0:
+                    score = score / 10.0
+                elif score > 10.0:
                     score = score / 100.0
                 score = max(0.0, min(1.0, score))
             if score is not None:
