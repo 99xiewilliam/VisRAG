@@ -1,0 +1,664 @@
+2026-02-01 21:09:19 [INFO] root: 日志文件: logs/visrag_20260201.log
+2026-02-01 21:09:21 [INFO] __main__: 
+############################################################
+2026-02-01 21:09:21 [INFO] __main__: 开始增强版批量索引
+2026-02-01 21:09:21 [INFO] __main__: Dataset: /home/xwh/VisRAG/dataset
+2026-02-01 21:09:21 [INFO] __main__: Output: /home/xwh/VisRAG/output_reindex_1536
+2026-02-01 21:09:21 [INFO] __main__: ############################################################
+
+2026-02-01 21:09:21 [INFO] chromadb.telemetry.product.posthog: Anonymized telemetry enabled. See                     https://docs.trychroma.com/telemetry for more information.
+2026-02-01 21:09:29 [[32mINFO[0m] root: 日志文件: logs/visrag_20260201.log
+2026-02-01 21:09:30 [[32mINFO[0m] __main__: 
+############################################################
+2026-02-01 21:09:30 [[32mINFO[0m] __main__: 开始增强版批量索引
+2026-02-01 21:09:30 [[32mINFO[0m] __main__: Dataset: /home/xwh/VisRAG/dataset
+2026-02-01 21:09:30 [[32mINFO[0m] __main__: Output: /home/xwh/VisRAG/output_reindex_1536
+2026-02-01 21:09:30 [[32mINFO[0m] __main__: ############################################################
+
+2026-02-01 21:09:30 [[32mINFO[0m] chromadb.telemetry.product.posthog: Anonymized telemetry enabled. See                     https://docs.trychroma.com/telemetry for more information.
+2026-02-01 21:09:31 [[32mINFO[0m] src.store: ChromaStore 初始化完成: /home/xwh/VisRAG/output_reindex_1536/chroma_db
+2026-02-01 21:09:31 [[32mINFO[0m] src.embedder: 初始化 OpenAIEmbedder: model=text-embedding-3-small, dim=1536
+2026-02-01 21:09:31 [[32mINFO[0m] src.embedder: API Base: https://api.zhizengzeng.com/v1
+2026-02-01 21:09:31 [[32mINFO[0m] __main__: 找到 20 个 PDF 文件
+2026-02-01 21:09:31 [[32mINFO[0m] __main__: 
+============================================================
+2026-02-01 21:09:31 [[32mINFO[0m] __main__: 处理 PDF: /home/xwh/VisRAG/dataset/A simple discriminative training method for machine translation with large-scale features.pdf
+2026-02-01 21:09:31 [[32mINFO[0m] __main__: 文档 ID: A_simple_discriminative_training_method_for_machine_translation_with_large-scale_features
+2026-02-01 21:09:31 [[32mINFO[0m] __main__: ============================================================
+2026-02-01 21:09:31 [[32mINFO[0m] __main__: [A_simple_discriminative_training_method_for_machine_translation_with_large-scale_features] 提取了 7 页文本
+2026-02-01 21:09:31 [[32mINFO[0m] src.vision: 提取 PDF 视觉 tokens: /home/xwh/VisRAG/dataset/A simple discriminative training method for machine translation with large-scale features.pdf -> /home/xwh/VisRAG/output_reindex_1536/vision_tokens/A_simple_discriminative_training_method_for_machine_translation_with_large-scale_features
+2026-02-01 21:09:31 [[32mINFO[0m] src.vision: 初始化 DeepseekEncoder: device=cuda, dtype=torch.float16, model_path=/home/xwh/models/DeepSeek-OCR-2
+2026-02-01 21:09:40 [[32mINFO[0m] src.vision: PDF 共 7 页
+2026-02-01 21:09:44 [[32mINFO[0m] __main__: [A_simple_discriminative_training_method_for_machine_translation_with_large-scale_features] 提取了 7 页视觉 tokens
+2026-02-01 21:09:46 [[32mINFO[0m] httpx: HTTP Request: POST https://api.zhizengzeng.com/v1/embeddings "HTTP/1.1 200 OK"
+2026-02-01 21:09:48 [[32mINFO[0m] httpx: HTTP Request: POST https://api.zhizengzeng.com/v1/embeddings "HTTP/1.1 200 OK"
+2026-02-01 21:09:49 [[32mINFO[0m] httpx: HTTP Request: POST https://api.zhizengzeng.com/v1/embeddings "HTTP/1.1 200 OK"
+2026-02-01 21:09:51 [[32mINFO[0m] httpx: HTTP Request: POST https://api.zhizengzeng.com/v1/embeddings "HTTP/1.1 200 OK"
+2026-02-01 21:09:56 [[32mINFO[0m] httpx: HTTP Request: POST https://api.zhizengzeng.com/v1/embeddings "HTTP/1.1 200 OK"
+2026-02-01 21:09:59 [[32mINFO[0m] httpx: HTTP Request: POST https://api.zhizengzeng.com/v1/embeddings "HTTP/1.1 200 OK"
+2026-02-01 21:10:03 [[32mINFO[0m] httpx: HTTP Request: POST https://api.zhizengzeng.com/v1/embeddings "HTTP/1.1 200 OK"
+2026-02-01 21:10:07 [[32mINFO[0m] __main__: [A_simple_discriminative_training_method_for_machine_translation_with_large-scale_features] 文本索引完成: 7 页
+2026-02-01 21:10:08 [[32mINFO[0m] __main__: [A_simple_discriminative_training_method_for_machine_translation_with_large-scale_features] 视觉索引完成: 7 页
+2026-02-01 21:10:08 [[32mINFO[0m] __main__: [A_simple_discriminative_training_method_for_machine_translation_with_large-scale_features] 处理完成 ✓
+2026-02-01 21:10:08 [[32mINFO[0m] __main__: 
+============================================================
+2026-02-01 21:10:08 [[32mINFO[0m] __main__: 处理 PDF: /home/xwh/VisRAG/dataset/Active Learning for Chinese Word Segmentation in Medical Text.pdf
+2026-02-01 21:10:08 [[32mINFO[0m] __main__: 文档 ID: Active_Learning_for_Chinese_Word_Segmentation_in_Medical_Text
+2026-02-01 21:10:08 [[32mINFO[0m] __main__: ============================================================
+2026-02-01 21:10:08 [[32mINFO[0m] __main__: [Active_Learning_for_Chinese_Word_Segmentation_in_Medical_Text] 提取了 10 页文本
+2026-02-01 21:10:08 [[32mINFO[0m] src.vision: 提取 PDF 视觉 tokens: /home/xwh/VisRAG/dataset/Active Learning for Chinese Word Segmentation in Medical Text.pdf -> /home/xwh/VisRAG/output_reindex_1536/vision_tokens/Active_Learning_for_Chinese_Word_Segmentation_in_Medical_Text
+2026-02-01 21:10:08 [[32mINFO[0m] src.vision: 初始化 DeepseekEncoder: device=cuda, dtype=torch.float16, model_path=/home/xwh/models/DeepSeek-OCR-2
+2026-02-01 21:10:15 [[32mINFO[0m] src.vision: PDF 共 10 页
+2026-02-01 21:10:19 [[32mINFO[0m] __main__: [Active_Learning_for_Chinese_Word_Segmentation_in_Medical_Text] 提取了 10 页视觉 tokens
+2026-02-01 21:10:21 [[32mINFO[0m] httpx: HTTP Request: POST https://api.zhizengzeng.com/v1/embeddings "HTTP/1.1 200 OK"
+2026-02-01 21:10:23 [[32mINFO[0m] httpx: HTTP Request: POST https://api.zhizengzeng.com/v1/embeddings "HTTP/1.1 200 OK"
+2026-02-01 21:10:30 [[32mINFO[0m] httpx: HTTP Request: POST https://api.zhizengzeng.com/v1/embeddings "HTTP/1.1 200 OK"
+2026-02-01 21:10:43 [[32mINFO[0m] httpx: HTTP Request: POST https://api.zhizengzeng.com/v1/embeddings "HTTP/1.1 200 OK"
+2026-02-01 21:10:46 [[32mINFO[0m] httpx: HTTP Request: POST https://api.zhizengzeng.com/v1/embeddings "HTTP/1.1 200 OK"
+2026-02-01 21:10:50 [[32mINFO[0m] httpx: HTTP Request: POST https://api.zhizengzeng.com/v1/embeddings "HTTP/1.1 200 OK"
+2026-02-01 21:10:52 [[32mINFO[0m] httpx: HTTP Request: POST https://api.zhizengzeng.com/v1/embeddings "HTTP/1.1 200 OK"
+2026-02-01 21:10:54 [[32mINFO[0m] httpx: HTTP Request: POST https://api.zhizengzeng.com/v1/embeddings "HTTP/1.1 200 OK"
+2026-02-01 21:10:57 [[32mINFO[0m] httpx: HTTP Request: POST https://api.zhizengzeng.com/v1/embeddings "HTTP/1.1 200 OK"
+2026-02-01 21:11:04 [[32mINFO[0m] httpx: HTTP Request: POST https://api.zhizengzeng.com/v1/embeddings "HTTP/1.1 200 OK"
+2026-02-01 21:11:06 [[32mINFO[0m] __main__: [Active_Learning_for_Chinese_Word_Segmentation_in_Medical_Text] 文本索引完成: 10 页
+2026-02-01 21:11:06 [[32mINFO[0m] __main__: [Active_Learning_for_Chinese_Word_Segmentation_in_Medical_Text] 视觉索引完成: 10 页
+2026-02-01 21:11:06 [[32mINFO[0m] __main__: [Active_Learning_for_Chinese_Word_Segmentation_in_Medical_Text] 处理完成 ✓
+2026-02-01 21:11:06 [[32mINFO[0m] __main__: 
+============================================================
+2026-02-01 21:11:06 [[32mINFO[0m] __main__: 处理 PDF: /home/xwh/VisRAG/dataset/BERTRAM- Improved Word Embeddings Have Big Impact on Contextualized Model Performance.pdf
+2026-02-01 21:11:06 [[32mINFO[0m] __main__: 文档 ID: BERTRAM-_Improved_Word_Embeddings_Have_Big_Impact_on_Contextualized_Model_Performance
+2026-02-01 21:11:06 [[32mINFO[0m] __main__: ============================================================
+2026-02-01 21:11:06 [[32mINFO[0m] __main__: [BERTRAM-_Improved_Word_Embeddings_Have_Big_Impact_on_Contextualized_Model_Performance] 提取了 12 页文本
+2026-02-01 21:11:06 [[32mINFO[0m] src.vision: 提取 PDF 视觉 tokens: /home/xwh/VisRAG/dataset/BERTRAM- Improved Word Embeddings Have Big Impact on Contextualized Model Performance.pdf -> /home/xwh/VisRAG/output_reindex_1536/vision_tokens/BERTRAM-_Improved_Word_Embeddings_Have_Big_Impact_on_Contextualized_Model_Performance
+2026-02-01 21:11:06 [[32mINFO[0m] src.vision: 初始化 DeepseekEncoder: device=cuda, dtype=torch.float16, model_path=/home/xwh/models/DeepSeek-OCR-2
+2026-02-01 21:11:18 [[32mINFO[0m] src.vision: PDF 共 12 页
+2026-02-01 21:11:23 [[32mINFO[0m] __main__: [BERTRAM-_Improved_Word_Embeddings_Have_Big_Impact_on_Contextualized_Model_Performance] 提取了 12 页视觉 tokens
+2026-02-01 21:12:24 [[32mINFO[0m] openai._base_client: Retrying request to /embeddings in 0.423012 seconds
+2026-02-01 21:12:30 [[32mINFO[0m] httpx: HTTP Request: POST https://api.zhizengzeng.com/v1/embeddings "HTTP/1.1 200 OK"
+2026-02-01 21:12:35 [[32mINFO[0m] httpx: HTTP Request: POST https://api.zhizengzeng.com/v1/embeddings "HTTP/1.1 200 OK"
+2026-02-01 21:12:40 [[32mINFO[0m] httpx: HTTP Request: POST https://api.zhizengzeng.com/v1/embeddings "HTTP/1.1 200 OK"
+2026-02-01 21:12:45 [[32mINFO[0m] httpx: HTTP Request: POST https://api.zhizengzeng.com/v1/embeddings "HTTP/1.1 200 OK"
+2026-02-01 21:12:51 [[32mINFO[0m] httpx: HTTP Request: POST https://api.zhizengzeng.com/v1/embeddings "HTTP/1.1 200 OK"
+2026-02-01 21:12:55 [[32mINFO[0m] httpx: HTTP Request: POST https://api.zhizengzeng.com/v1/embeddings "HTTP/1.1 200 OK"
+2026-02-01 21:13:00 [[32mINFO[0m] httpx: HTTP Request: POST https://api.zhizengzeng.com/v1/embeddings "HTTP/1.1 200 OK"
+2026-02-01 21:13:04 [[32mINFO[0m] httpx: HTTP Request: POST https://api.zhizengzeng.com/v1/embeddings "HTTP/1.1 200 OK"
+2026-02-01 21:13:21 [[32mINFO[0m] httpx: HTTP Request: POST https://api.zhizengzeng.com/v1/embeddings "HTTP/1.1 200 OK"
+2026-02-01 21:13:22 [[32mINFO[0m] httpx: HTTP Request: POST https://api.zhizengzeng.com/v1/embeddings "HTTP/1.1 200 OK"
+2026-02-01 21:13:29 [[32mINFO[0m] httpx: HTTP Request: POST https://api.zhizengzeng.com/v1/embeddings "HTTP/1.1 200 OK"
+2026-02-01 21:13:30 [[32mINFO[0m] httpx: HTTP Request: POST https://api.zhizengzeng.com/v1/embeddings "HTTP/1.1 200 OK"
+2026-02-01 21:13:31 [[32mINFO[0m] __main__: [BERTRAM-_Improved_Word_Embeddings_Have_Big_Impact_on_Contextualized_Model_Performance] 文本索引完成: 12 页
+2026-02-01 21:13:31 [[32mINFO[0m] __main__: [BERTRAM-_Improved_Word_Embeddings_Have_Big_Impact_on_Contextualized_Model_Performance] 视觉索引完成: 12 页
+2026-02-01 21:13:31 [[32mINFO[0m] __main__: [BERTRAM-_Improved_Word_Embeddings_Have_Big_Impact_on_Contextualized_Model_Performance] 处理完成 ✓
+2026-02-01 21:13:31 [[32mINFO[0m] __main__: 
+============================================================
+2026-02-01 21:13:31 [[32mINFO[0m] __main__: 处理 PDF: /home/xwh/VisRAG/dataset/Classification Betters Regression in Query-based Multi-document Summarisation Techniques for Question Answering- Macquarie University at BioASQ7b.pdf
+2026-02-01 21:13:31 [[32mINFO[0m] __main__: 文档 ID: Classification_Betters_Regression_in_Query-based_Multi-document_Summarisation_Techniques_for_Questio
+2026-02-01 21:13:31 [[32mINFO[0m] __main__: ============================================================
+2026-02-01 21:13:31 [[32mINFO[0m] __main__: [Classification_Betters_Regression_in_Query-based_Multi-document_Summarisation_Techniques_for_Questio] 提取了 12 页文本
+2026-02-01 21:13:31 [[32mINFO[0m] src.vision: 提取 PDF 视觉 tokens: /home/xwh/VisRAG/dataset/Classification Betters Regression in Query-based Multi-document Summarisation Techniques for Question Answering- Macquarie University at BioASQ7b.pdf -> /home/xwh/VisRAG/output_reindex_1536/vision_tokens/Classification_Betters_Regression_in_Query-based_Multi-document_Summarisation_Techniques_for_Questio
+2026-02-01 21:13:31 [[32mINFO[0m] src.vision: 初始化 DeepseekEncoder: device=cuda, dtype=torch.float16, model_path=/home/xwh/models/DeepSeek-OCR-2
+2026-02-01 21:13:38 [[32mINFO[0m] src.vision: PDF 共 12 页
+2026-02-01 21:13:44 [[32mINFO[0m] __main__: [Classification_Betters_Regression_in_Query-based_Multi-document_Summarisation_Techniques_for_Questio] 提取了 12 页视觉 tokens
+2026-02-01 21:13:46 [[32mINFO[0m] httpx: HTTP Request: POST https://api.zhizengzeng.com/v1/embeddings "HTTP/1.1 200 OK"
+2026-02-01 21:13:46 [[32mINFO[0m] httpx: HTTP Request: POST https://api.zhizengzeng.com/v1/embeddings "HTTP/1.1 200 OK"
+2026-02-01 21:13:47 [[32mINFO[0m] httpx: HTTP Request: POST https://api.zhizengzeng.com/v1/embeddings "HTTP/1.1 200 OK"
+2026-02-01 21:13:48 [[32mINFO[0m] httpx: HTTP Request: POST https://api.zhizengzeng.com/v1/embeddings "HTTP/1.1 200 OK"
+2026-02-01 21:13:49 [[32mINFO[0m] httpx: HTTP Request: POST https://api.zhizengzeng.com/v1/embeddings "HTTP/1.1 200 OK"
+2026-02-01 21:13:50 [[32mINFO[0m] httpx: HTTP Request: POST https://api.zhizengzeng.com/v1/embeddings "HTTP/1.1 200 OK"
+2026-02-01 21:13:50 [[32mINFO[0m] httpx: HTTP Request: POST https://api.zhizengzeng.com/v1/embeddings "HTTP/1.1 200 OK"
+2026-02-01 21:13:52 [[32mINFO[0m] httpx: HTTP Request: POST https://api.zhizengzeng.com/v1/embeddings "HTTP/1.1 200 OK"
+2026-02-01 21:13:53 [[32mINFO[0m] httpx: HTTP Request: POST https://api.zhizengzeng.com/v1/embeddings "HTTP/1.1 200 OK"
+2026-02-01 21:13:53 [[32mINFO[0m] httpx: HTTP Request: POST https://api.zhizengzeng.com/v1/embeddings "HTTP/1.1 200 OK"
+2026-02-01 21:13:54 [[32mINFO[0m] httpx: HTTP Request: POST https://api.zhizengzeng.com/v1/embeddings "HTTP/1.1 200 OK"
+2026-02-01 21:13:55 [[32mINFO[0m] httpx: HTTP Request: POST https://api.zhizengzeng.com/v1/embeddings "HTTP/1.1 200 OK"
+2026-02-01 21:13:55 [[32mINFO[0m] __main__: [Classification_Betters_Regression_in_Query-based_Multi-document_Summarisation_Techniques_for_Questio] 文本索引完成: 12 页
+2026-02-01 21:13:55 [[32mINFO[0m] __main__: [Classification_Betters_Regression_in_Query-based_Multi-document_Summarisation_Techniques_for_Questio] 视觉索引完成: 12 页
+2026-02-01 21:13:55 [[32mINFO[0m] __main__: [Classification_Betters_Regression_in_Query-based_Multi-document_Summarisation_Techniques_for_Questio] 处理完成 ✓
+2026-02-01 21:13:55 [[32mINFO[0m] __main__: 
+============================================================
+2026-02-01 21:13:55 [[32mINFO[0m] __main__: 处理 PDF: /home/xwh/VisRAG/dataset/CrossWOZ- A Large-Scale Chinese Cross-Domain Task-Oriented Dialogue Dataset.pdf
+2026-02-01 21:13:55 [[32mINFO[0m] __main__: 文档 ID: CrossWOZ-_A_Large-Scale_Chinese_Cross-Domain_Task-Oriented_Dialogue_Dataset
+2026-02-01 21:13:55 [[32mINFO[0m] __main__: ============================================================
+2026-02-01 21:13:55 [[32mINFO[0m] __main__: [CrossWOZ-_A_Large-Scale_Chinese_Cross-Domain_Task-Oriented_Dialogue_Dataset] 提取了 14 页文本
+2026-02-01 21:13:55 [[32mINFO[0m] src.vision: 提取 PDF 视觉 tokens: /home/xwh/VisRAG/dataset/CrossWOZ- A Large-Scale Chinese Cross-Domain Task-Oriented Dialogue Dataset.pdf -> /home/xwh/VisRAG/output_reindex_1536/vision_tokens/CrossWOZ-_A_Large-Scale_Chinese_Cross-Domain_Task-Oriented_Dialogue_Dataset
+2026-02-01 21:13:55 [[32mINFO[0m] src.vision: 初始化 DeepseekEncoder: device=cuda, dtype=torch.float16, model_path=/home/xwh/models/DeepSeek-OCR-2
+2026-02-01 21:14:04 [[32mINFO[0m] src.vision: PDF 共 14 页
+2026-02-01 21:14:10 [[32mINFO[0m] __main__: [CrossWOZ-_A_Large-Scale_Chinese_Cross-Domain_Task-Oriented_Dialogue_Dataset] 提取了 14 页视觉 tokens
+2026-02-01 21:14:11 [[32mINFO[0m] httpx: HTTP Request: POST https://api.zhizengzeng.com/v1/embeddings "HTTP/1.1 200 OK"
+2026-02-01 21:14:13 [[32mINFO[0m] httpx: HTTP Request: POST https://api.zhizengzeng.com/v1/embeddings "HTTP/1.1 200 OK"
+2026-02-01 21:14:14 [[32mINFO[0m] httpx: HTTP Request: POST https://api.zhizengzeng.com/v1/embeddings "HTTP/1.1 200 OK"
+2026-02-01 21:14:14 [[32mINFO[0m] httpx: HTTP Request: POST https://api.zhizengzeng.com/v1/embeddings "HTTP/1.1 200 OK"
+2026-02-01 21:14:15 [[32mINFO[0m] httpx: HTTP Request: POST https://api.zhizengzeng.com/v1/embeddings "HTTP/1.1 200 OK"
+2026-02-01 21:14:15 [[32mINFO[0m] httpx: HTTP Request: POST https://api.zhizengzeng.com/v1/embeddings "HTTP/1.1 200 OK"
+2026-02-01 21:14:16 [[32mINFO[0m] httpx: HTTP Request: POST https://api.zhizengzeng.com/v1/embeddings "HTTP/1.1 200 OK"
+2026-02-01 21:14:17 [[32mINFO[0m] httpx: HTTP Request: POST https://api.zhizengzeng.com/v1/embeddings "HTTP/1.1 200 OK"
+2026-02-01 21:14:18 [[32mINFO[0m] httpx: HTTP Request: POST https://api.zhizengzeng.com/v1/embeddings "HTTP/1.1 200 OK"
+2026-02-01 21:14:19 [[32mINFO[0m] httpx: HTTP Request: POST https://api.zhizengzeng.com/v1/embeddings "HTTP/1.1 200 OK"
+2026-02-01 21:14:20 [[32mINFO[0m] httpx: HTTP Request: POST https://api.zhizengzeng.com/v1/embeddings "HTTP/1.1 200 OK"
+2026-02-01 21:14:20 [[32mINFO[0m] httpx: HTTP Request: POST https://api.zhizengzeng.com/v1/embeddings "HTTP/1.1 200 OK"
+2026-02-01 21:14:21 [[32mINFO[0m] httpx: HTTP Request: POST https://api.zhizengzeng.com/v1/embeddings "HTTP/1.1 200 OK"
+2026-02-01 21:14:22 [[32mINFO[0m] httpx: HTTP Request: POST https://api.zhizengzeng.com/v1/embeddings "HTTP/1.1 200 OK"
+2026-02-01 21:14:23 [[32mINFO[0m] __main__: [CrossWOZ-_A_Large-Scale_Chinese_Cross-Domain_Task-Oriented_Dialogue_Dataset] 文本索引完成: 14 页
+2026-02-01 21:14:23 [[32mINFO[0m] __main__: [CrossWOZ-_A_Large-Scale_Chinese_Cross-Domain_Task-Oriented_Dialogue_Dataset] 视觉索引完成: 14 页
+2026-02-01 21:14:23 [[32mINFO[0m] __main__: [CrossWOZ-_A_Large-Scale_Chinese_Cross-Domain_Task-Oriented_Dialogue_Dataset] 处理完成 ✓
+2026-02-01 21:14:23 [[32mINFO[0m] __main__: 
+============================================================
+2026-02-01 21:14:23 [[32mINFO[0m] __main__: 处理 PDF: /home/xwh/VisRAG/dataset/Diachronic Topics in New High German Poetry.pdf
+2026-02-01 21:14:23 [[32mINFO[0m] __main__: 文档 ID: Diachronic_Topics_in_New_High_German_Poetry
+2026-02-01 21:14:23 [[32mINFO[0m] __main__: ============================================================
+2026-02-01 21:14:23 [[32mINFO[0m] __main__: [Diachronic_Topics_in_New_High_German_Poetry] 提取了 7 页文本
+2026-02-01 21:14:23 [[32mINFO[0m] src.vision: 提取 PDF 视觉 tokens: /home/xwh/VisRAG/dataset/Diachronic Topics in New High German Poetry.pdf -> /home/xwh/VisRAG/output_reindex_1536/vision_tokens/Diachronic_Topics_in_New_High_German_Poetry
+2026-02-01 21:14:23 [[32mINFO[0m] src.vision: 初始化 DeepseekEncoder: device=cuda, dtype=torch.float16, model_path=/home/xwh/models/DeepSeek-OCR-2
+2026-02-01 21:14:30 [[32mINFO[0m] src.vision: PDF 共 7 页
+2026-02-01 21:14:33 [[32mINFO[0m] __main__: [Diachronic_Topics_in_New_High_German_Poetry] 提取了 7 页视觉 tokens
+2026-02-01 21:14:37 [[32mINFO[0m] httpx: HTTP Request: POST https://api.zhizengzeng.com/v1/embeddings "HTTP/1.1 200 OK"
+2026-02-01 21:14:39 [[32mINFO[0m] httpx: HTTP Request: POST https://api.zhizengzeng.com/v1/embeddings "HTTP/1.1 200 OK"
+2026-02-01 21:14:42 [[32mINFO[0m] httpx: HTTP Request: POST https://api.zhizengzeng.com/v1/embeddings "HTTP/1.1 200 OK"
+2026-02-01 21:14:45 [[32mINFO[0m] httpx: HTTP Request: POST https://api.zhizengzeng.com/v1/embeddings "HTTP/1.1 200 OK"
+2026-02-01 21:14:47 [[32mINFO[0m] httpx: HTTP Request: POST https://api.zhizengzeng.com/v1/embeddings "HTTP/1.1 200 OK"
+2026-02-01 21:14:58 [[32mINFO[0m] httpx: HTTP Request: POST https://api.zhizengzeng.com/v1/embeddings "HTTP/1.1 200 OK"
+2026-02-01 21:15:01 [[32mINFO[0m] httpx: HTTP Request: POST https://api.zhizengzeng.com/v1/embeddings "HTTP/1.1 200 OK"
+2026-02-01 21:15:02 [[32mINFO[0m] __main__: [Diachronic_Topics_in_New_High_German_Poetry] 文本索引完成: 7 页
+2026-02-01 21:15:03 [[32mINFO[0m] __main__: [Diachronic_Topics_in_New_High_German_Poetry] 视觉索引完成: 7 页
+2026-02-01 21:15:03 [[32mINFO[0m] __main__: [Diachronic_Topics_in_New_High_German_Poetry] 处理完成 ✓
+2026-02-01 21:15:03 [[32mINFO[0m] __main__: 
+============================================================
+2026-02-01 21:15:03 [[32mINFO[0m] __main__: 处理 PDF: /home/xwh/VisRAG/dataset/DisSim- A Discourse-Aware Syntactic Text Simplification Frameworkfor English and German.pdf
+2026-02-01 21:15:03 [[32mINFO[0m] __main__: 文档 ID: DisSim-_A_Discourse-Aware_Syntactic_Text_Simplification_Frameworkfor_English_and_German
+2026-02-01 21:15:03 [[32mINFO[0m] __main__: ============================================================
+2026-02-01 21:15:03 [[32mINFO[0m] __main__: [DisSim-_A_Discourse-Aware_Syntactic_Text_Simplification_Frameworkfor_English_and_German] 提取了 4 页文本
+2026-02-01 21:15:03 [[32mINFO[0m] src.vision: 提取 PDF 视觉 tokens: /home/xwh/VisRAG/dataset/DisSim- A Discourse-Aware Syntactic Text Simplification Frameworkfor English and German.pdf -> /home/xwh/VisRAG/output_reindex_1536/vision_tokens/DisSim-_A_Discourse-Aware_Syntactic_Text_Simplification_Frameworkfor_English_and_German
+2026-02-01 21:15:03 [[32mINFO[0m] src.vision: 初始化 DeepseekEncoder: device=cuda, dtype=torch.float16, model_path=/home/xwh/models/DeepSeek-OCR-2
+2026-02-01 21:15:09 [[32mINFO[0m] src.vision: PDF 共 4 页
+2026-02-01 21:15:11 [[32mINFO[0m] __main__: [DisSim-_A_Discourse-Aware_Syntactic_Text_Simplification_Frameworkfor_English_and_German] 提取了 4 页视觉 tokens
+2026-02-01 21:15:14 [[32mINFO[0m] httpx: HTTP Request: POST https://api.zhizengzeng.com/v1/embeddings "HTTP/1.1 200 OK"
+2026-02-01 21:15:15 [[32mINFO[0m] httpx: HTTP Request: POST https://api.zhizengzeng.com/v1/embeddings "HTTP/1.1 200 OK"
+2026-02-01 21:15:29 [[32mINFO[0m] httpx: HTTP Request: POST https://api.zhizengzeng.com/v1/embeddings "HTTP/1.1 200 OK"
+2026-02-01 21:15:31 [[32mINFO[0m] httpx: HTTP Request: POST https://api.zhizengzeng.com/v1/embeddings "HTTP/1.1 200 OK"
+2026-02-01 21:15:32 [[32mINFO[0m] __main__: [DisSim-_A_Discourse-Aware_Syntactic_Text_Simplification_Frameworkfor_English_and_German] 文本索引完成: 4 页
+2026-02-01 21:15:32 [[32mINFO[0m] __main__: [DisSim-_A_Discourse-Aware_Syntactic_Text_Simplification_Frameworkfor_English_and_German] 视觉索引完成: 4 页
+2026-02-01 21:15:32 [[32mINFO[0m] __main__: [DisSim-_A_Discourse-Aware_Syntactic_Text_Simplification_Frameworkfor_English_and_German] 处理完成 ✓
+2026-02-01 21:15:32 [[32mINFO[0m] __main__: 
+============================================================
+2026-02-01 21:15:32 [[32mINFO[0m] __main__: 处理 PDF: /home/xwh/VisRAG/dataset/Diversity, Density, and Homogeneity- Quantitative Characteristic Metrics for Text Collections.pdf
+2026-02-01 21:15:32 [[32mINFO[0m] __main__: 文档 ID: Diversity__Density__and_Homogeneity-_Quantitative_Characteristic_Metrics_for_Text_Collections
+2026-02-01 21:15:32 [[32mINFO[0m] __main__: ============================================================
+2026-02-01 21:15:32 [[32mINFO[0m] __main__: [Diversity__Density__and_Homogeneity-_Quantitative_Characteristic_Metrics_for_Text_Collections] 提取了 8 页文本
+2026-02-01 21:15:32 [[32mINFO[0m] src.vision: 提取 PDF 视觉 tokens: /home/xwh/VisRAG/dataset/Diversity, Density, and Homogeneity- Quantitative Characteristic Metrics for Text Collections.pdf -> /home/xwh/VisRAG/output_reindex_1536/vision_tokens/Diversity__Density__and_Homogeneity-_Quantitative_Characteristic_Metrics_for_Text_Collections
+2026-02-01 21:15:32 [[32mINFO[0m] src.vision: 初始化 DeepseekEncoder: device=cuda, dtype=torch.float16, model_path=/home/xwh/models/DeepSeek-OCR-2
+2026-02-01 21:15:39 [[32mINFO[0m] src.vision: PDF 共 8 页
+2026-02-01 21:15:43 [[32mINFO[0m] __main__: [Diversity__Density__and_Homogeneity-_Quantitative_Characteristic_Metrics_for_Text_Collections] 提取了 8 页视觉 tokens
+2026-02-01 21:15:45 [[32mINFO[0m] httpx: HTTP Request: POST https://api.zhizengzeng.com/v1/embeddings "HTTP/1.1 200 OK"
+2026-02-01 21:15:47 [[32mINFO[0m] httpx: HTTP Request: POST https://api.zhizengzeng.com/v1/embeddings "HTTP/1.1 200 OK"
+2026-02-01 21:15:49 [[32mINFO[0m] httpx: HTTP Request: POST https://api.zhizengzeng.com/v1/embeddings "HTTP/1.1 200 OK"
+2026-02-01 21:15:50 [[32mINFO[0m] httpx: HTTP Request: POST https://api.zhizengzeng.com/v1/embeddings "HTTP/1.1 200 OK"
+2026-02-01 21:15:52 [[32mINFO[0m] httpx: HTTP Request: POST https://api.zhizengzeng.com/v1/embeddings "HTTP/1.1 200 OK"
+2026-02-01 21:15:54 [[32mINFO[0m] httpx: HTTP Request: POST https://api.zhizengzeng.com/v1/embeddings "HTTP/1.1 200 OK"
+2026-02-01 21:15:58 [[32mINFO[0m] httpx: HTTP Request: POST https://api.zhizengzeng.com/v1/embeddings "HTTP/1.1 200 OK"
+2026-02-01 21:16:00 [[32mINFO[0m] httpx: HTTP Request: POST https://api.zhizengzeng.com/v1/embeddings "HTTP/1.1 200 OK"
+2026-02-01 21:16:03 [[32mINFO[0m] __main__: [Diversity__Density__and_Homogeneity-_Quantitative_Characteristic_Metrics_for_Text_Collections] 文本索引完成: 8 页
+2026-02-01 21:16:03 [[32mINFO[0m] __main__: [Diversity__Density__and_Homogeneity-_Quantitative_Characteristic_Metrics_for_Text_Collections] 视觉索引完成: 8 页
+2026-02-01 21:16:03 [[32mINFO[0m] __main__: [Diversity__Density__and_Homogeneity-_Quantitative_Characteristic_Metrics_for_Text_Collections] 处理完成 ✓
+2026-02-01 21:16:03 [[32mINFO[0m] __main__: 
+============================================================
+2026-02-01 21:16:03 [[32mINFO[0m] __main__: 处理 PDF: /home/xwh/VisRAG/dataset/Enriching BERT with Knowledge Graph Embeddings for Document Classification.pdf
+2026-02-01 21:16:03 [[32mINFO[0m] __main__: 文档 ID: Enriching_BERT_with_Knowledge_Graph_Embeddings_for_Document_Classification
+2026-02-01 21:16:03 [[32mINFO[0m] __main__: ============================================================
+2026-02-01 21:16:03 [[32mINFO[0m] __main__: [Enriching_BERT_with_Knowledge_Graph_Embeddings_for_Document_Classification] 提取了 8 页文本
+2026-02-01 21:16:03 [[32mINFO[0m] src.vision: 提取 PDF 视觉 tokens: /home/xwh/VisRAG/dataset/Enriching BERT with Knowledge Graph Embeddings for Document Classification.pdf -> /home/xwh/VisRAG/output_reindex_1536/vision_tokens/Enriching_BERT_with_Knowledge_Graph_Embeddings_for_Document_Classification
+2026-02-01 21:16:03 [[32mINFO[0m] src.vision: 初始化 DeepseekEncoder: device=cuda, dtype=torch.float16, model_path=/home/xwh/models/DeepSeek-OCR-2
+2026-02-01 21:16:11 [[32mINFO[0m] src.vision: PDF 共 8 页
+2026-02-01 21:16:15 [[32mINFO[0m] __main__: [Enriching_BERT_with_Knowledge_Graph_Embeddings_for_Document_Classification] 提取了 8 页视觉 tokens
+2026-02-01 21:17:15 [[32mINFO[0m] openai._base_client: Retrying request to /embeddings in 0.380211 seconds
+2026-02-01 21:17:18 [[32mINFO[0m] httpx: HTTP Request: POST https://api.zhizengzeng.com/v1/embeddings "HTTP/1.1 200 OK"
+2026-02-01 21:17:20 [[32mINFO[0m] httpx: HTTP Request: POST https://api.zhizengzeng.com/v1/embeddings "HTTP/1.1 200 OK"
+2026-02-01 21:17:35 [[32mINFO[0m] httpx: HTTP Request: POST https://api.zhizengzeng.com/v1/embeddings "HTTP/1.1 200 OK"
+2026-02-01 21:17:48 [[32mINFO[0m] httpx: HTTP Request: POST https://api.zhizengzeng.com/v1/embeddings "HTTP/1.1 200 OK"
+2026-02-01 21:17:52 [[32mINFO[0m] httpx: HTTP Request: POST https://api.zhizengzeng.com/v1/embeddings "HTTP/1.1 200 OK"
+2026-02-01 21:17:55 [[32mINFO[0m] httpx: HTTP Request: POST https://api.zhizengzeng.com/v1/embeddings "HTTP/1.1 200 OK"
+2026-02-01 21:17:59 [[32mINFO[0m] httpx: HTTP Request: POST https://api.zhizengzeng.com/v1/embeddings "HTTP/1.1 200 OK"
+2026-02-01 21:18:00 [[32mINFO[0m] httpx: HTTP Request: POST https://api.zhizengzeng.com/v1/embeddings "HTTP/1.1 200 OK"
+2026-02-01 21:18:02 [[32mINFO[0m] __main__: [Enriching_BERT_with_Knowledge_Graph_Embeddings_for_Document_Classification] 文本索引完成: 8 页
+2026-02-01 21:18:02 [[32mINFO[0m] __main__: [Enriching_BERT_with_Knowledge_Graph_Embeddings_for_Document_Classification] 视觉索引完成: 8 页
+2026-02-01 21:18:02 [[32mINFO[0m] __main__: [Enriching_BERT_with_Knowledge_Graph_Embeddings_for_Document_Classification] 处理完成 ✓
+2026-02-01 21:18:02 [[32mINFO[0m] __main__: 
+============================================================
+2026-02-01 21:18:02 [[32mINFO[0m] __main__: 处理 PDF: /home/xwh/VisRAG/dataset/Important Attribute Identification in Knowledge Graph.pdf
+2026-02-01 21:18:02 [[32mINFO[0m] __main__: 文档 ID: Important_Attribute_Identification_in_Knowledge_Graph
+2026-02-01 21:18:02 [[32mINFO[0m] __main__: ============================================================
+2026-02-01 21:18:02 [[32mINFO[0m] __main__: [Important_Attribute_Identification_in_Knowledge_Graph] 提取了 13 页文本
+2026-02-01 21:18:02 [[32mINFO[0m] src.vision: 提取 PDF 视觉 tokens: /home/xwh/VisRAG/dataset/Important Attribute Identification in Knowledge Graph.pdf -> /home/xwh/VisRAG/output_reindex_1536/vision_tokens/Important_Attribute_Identification_in_Knowledge_Graph
+2026-02-01 21:18:02 [[32mINFO[0m] src.vision: 初始化 DeepseekEncoder: device=cuda, dtype=torch.float16, model_path=/home/xwh/models/DeepSeek-OCR-2
+2026-02-01 21:18:10 [[32mINFO[0m] src.vision: PDF 共 13 页
+2026-02-01 21:18:16 [[32mINFO[0m] __main__: [Important_Attribute_Identification_in_Knowledge_Graph] 提取了 13 页视觉 tokens
+2026-02-01 21:18:22 [[32mINFO[0m] httpx: HTTP Request: POST https://api.zhizengzeng.com/v1/embeddings "HTTP/1.1 200 OK"
+2026-02-01 21:18:25 [[32mINFO[0m] httpx: HTTP Request: POST https://api.zhizengzeng.com/v1/embeddings "HTTP/1.1 200 OK"
+2026-02-01 21:18:29 [[32mINFO[0m] httpx: HTTP Request: POST https://api.zhizengzeng.com/v1/embeddings "HTTP/1.1 200 OK"
+2026-02-01 21:18:34 [[32mINFO[0m] httpx: HTTP Request: POST https://api.zhizengzeng.com/v1/embeddings "HTTP/1.1 200 OK"
+2026-02-01 21:18:37 [[32mINFO[0m] httpx: HTTP Request: POST https://api.zhizengzeng.com/v1/embeddings "HTTP/1.1 200 OK"
+2026-02-01 21:18:41 [[32mINFO[0m] httpx: HTTP Request: POST https://api.zhizengzeng.com/v1/embeddings "HTTP/1.1 200 OK"
+2026-02-01 21:18:43 [[32mINFO[0m] httpx: HTTP Request: POST https://api.zhizengzeng.com/v1/embeddings "HTTP/1.1 200 OK"
+2026-02-01 21:18:47 [[32mINFO[0m] httpx: HTTP Request: POST https://api.zhizengzeng.com/v1/embeddings "HTTP/1.1 200 OK"
+2026-02-01 21:18:53 [[32mINFO[0m] httpx: HTTP Request: POST https://api.zhizengzeng.com/v1/embeddings "HTTP/1.1 200 OK"
+2026-02-01 21:18:56 [[32mINFO[0m] httpx: HTTP Request: POST https://api.zhizengzeng.com/v1/embeddings "HTTP/1.1 200 OK"
+2026-02-01 21:18:57 [[32mINFO[0m] httpx: HTTP Request: POST https://api.zhizengzeng.com/v1/embeddings "HTTP/1.1 200 OK"
+2026-02-01 21:18:59 [[32mINFO[0m] httpx: HTTP Request: POST https://api.zhizengzeng.com/v1/embeddings "HTTP/1.1 200 OK"
+2026-02-01 21:19:01 [[32mINFO[0m] httpx: HTTP Request: POST https://api.zhizengzeng.com/v1/embeddings "HTTP/1.1 200 OK"
+2026-02-01 21:19:02 [[32mINFO[0m] __main__: [Important_Attribute_Identification_in_Knowledge_Graph] 文本索引完成: 13 页
+2026-02-01 21:19:02 [[32mINFO[0m] __main__: [Important_Attribute_Identification_in_Knowledge_Graph] 视觉索引完成: 13 页
+2026-02-01 21:19:02 [[32mINFO[0m] __main__: [Important_Attribute_Identification_in_Knowledge_Graph] 处理完成 ✓
+2026-02-01 21:19:02 [[32mINFO[0m] __main__: 
+============================================================
+2026-02-01 21:19:02 [[32mINFO[0m] __main__: 处理 PDF: /home/xwh/VisRAG/dataset/Improving Spoken Language Understanding By Exploiting ASR N-best Hypotheses.pdf
+2026-02-01 21:19:02 [[32mINFO[0m] __main__: 文档 ID: Improving_Spoken_Language_Understanding_By_Exploiting_ASR_N-best_Hypotheses
+2026-02-01 21:19:02 [[32mINFO[0m] __main__: ============================================================
+2026-02-01 21:19:02 [[32mINFO[0m] __main__: [Improving_Spoken_Language_Understanding_By_Exploiting_ASR_N-best_Hypotheses] 提取了 5 页文本
+2026-02-01 21:19:02 [[32mINFO[0m] src.vision: 提取 PDF 视觉 tokens: /home/xwh/VisRAG/dataset/Improving Spoken Language Understanding By Exploiting ASR N-best Hypotheses.pdf -> /home/xwh/VisRAG/output_reindex_1536/vision_tokens/Improving_Spoken_Language_Understanding_By_Exploiting_ASR_N-best_Hypotheses
+2026-02-01 21:19:02 [[32mINFO[0m] src.vision: 初始化 DeepseekEncoder: device=cuda, dtype=torch.float16, model_path=/home/xwh/models/DeepSeek-OCR-2
+2026-02-01 21:19:10 [[32mINFO[0m] src.vision: PDF 共 5 页
+2026-02-01 21:19:12 [[32mINFO[0m] __main__: [Improving_Spoken_Language_Understanding_By_Exploiting_ASR_N-best_Hypotheses] 提取了 5 页视觉 tokens
+2026-02-01 21:19:17 [[32mINFO[0m] httpx: HTTP Request: POST https://api.zhizengzeng.com/v1/embeddings "HTTP/1.1 200 OK"
+2026-02-01 21:19:18 [[32mINFO[0m] httpx: HTTP Request: POST https://api.zhizengzeng.com/v1/embeddings "HTTP/1.1 200 OK"
+2026-02-01 21:19:20 [[32mINFO[0m] httpx: HTTP Request: POST https://api.zhizengzeng.com/v1/embeddings "HTTP/1.1 200 OK"
+2026-02-01 21:19:24 [[32mINFO[0m] httpx: HTTP Request: POST https://api.zhizengzeng.com/v1/embeddings "HTTP/1.1 200 OK"
+2026-02-01 21:19:28 [[32mINFO[0m] httpx: HTTP Request: POST https://api.zhizengzeng.com/v1/embeddings "HTTP/1.1 200 OK"
+2026-02-01 21:19:29 [[32mINFO[0m] __main__: [Improving_Spoken_Language_Understanding_By_Exploiting_ASR_N-best_Hypotheses] 文本索引完成: 5 页
+2026-02-01 21:19:29 [[32mINFO[0m] __main__: [Improving_Spoken_Language_Understanding_By_Exploiting_ASR_N-best_Hypotheses] 视觉索引完成: 5 页
+2026-02-01 21:19:29 [[32mINFO[0m] __main__: [Improving_Spoken_Language_Understanding_By_Exploiting_ASR_N-best_Hypotheses] 处理完成 ✓
+2026-02-01 21:19:29 [[32mINFO[0m] __main__: 
+============================================================
+2026-02-01 21:19:29 [[32mINFO[0m] __main__: 处理 PDF: /home/xwh/VisRAG/dataset/InScript- Narrative texts annotated with script information.pdf
+2026-02-01 21:19:29 [[32mINFO[0m] __main__: 文档 ID: InScript-_Narrative_texts_annotated_with_script_information
+2026-02-01 21:19:29 [[32mINFO[0m] __main__: ============================================================
+2026-02-01 21:19:29 [[32mINFO[0m] __main__: [InScript-_Narrative_texts_annotated_with_script_information] 提取了 9 页文本
+2026-02-01 21:19:29 [[32mINFO[0m] src.vision: 提取 PDF 视觉 tokens: /home/xwh/VisRAG/dataset/InScript- Narrative texts annotated with script information.pdf -> /home/xwh/VisRAG/output_reindex_1536/vision_tokens/InScript-_Narrative_texts_annotated_with_script_information
+2026-02-01 21:19:29 [[32mINFO[0m] src.vision: 初始化 DeepseekEncoder: device=cuda, dtype=torch.float16, model_path=/home/xwh/models/DeepSeek-OCR-2
+2026-02-01 21:19:36 [[32mINFO[0m] src.vision: PDF 共 9 页
+2026-02-01 21:19:40 [[32mINFO[0m] __main__: [InScript-_Narrative_texts_annotated_with_script_information] 提取了 9 页视觉 tokens
+2026-02-01 21:19:41 [[32mINFO[0m] httpx: HTTP Request: POST https://api.zhizengzeng.com/v1/embeddings "HTTP/1.1 200 OK"
+2026-02-01 21:19:44 [[32mINFO[0m] httpx: HTTP Request: POST https://api.zhizengzeng.com/v1/embeddings "HTTP/1.1 200 OK"
+2026-02-01 21:19:46 [[32mINFO[0m] httpx: HTTP Request: POST https://api.zhizengzeng.com/v1/embeddings "HTTP/1.1 200 OK"
+2026-02-01 21:19:48 [[32mINFO[0m] httpx: HTTP Request: POST https://api.zhizengzeng.com/v1/embeddings "HTTP/1.1 200 OK"
+2026-02-01 21:19:52 [[32mINFO[0m] httpx: HTTP Request: POST https://api.zhizengzeng.com/v1/embeddings "HTTP/1.1 200 OK"
+2026-02-01 21:19:54 [[32mINFO[0m] httpx: HTTP Request: POST https://api.zhizengzeng.com/v1/embeddings "HTTP/1.1 200 OK"
+2026-02-01 21:19:57 [[32mINFO[0m] httpx: HTTP Request: POST https://api.zhizengzeng.com/v1/embeddings "HTTP/1.1 200 OK"
+2026-02-01 21:20:00 [[32mINFO[0m] httpx: HTTP Request: POST https://api.zhizengzeng.com/v1/embeddings "HTTP/1.1 200 OK"
+2026-02-01 21:20:03 [[32mINFO[0m] httpx: HTTP Request: POST https://api.zhizengzeng.com/v1/embeddings "HTTP/1.1 200 OK"
+2026-02-01 21:20:21 [[32mINFO[0m] __main__: [InScript-_Narrative_texts_annotated_with_script_information] 文本索引完成: 9 页
+2026-02-01 21:20:21 [[32mINFO[0m] __main__: [InScript-_Narrative_texts_annotated_with_script_information] 视觉索引完成: 9 页
+2026-02-01 21:20:21 [[32mINFO[0m] __main__: [InScript-_Narrative_texts_annotated_with_script_information] 处理完成 ✓
+2026-02-01 21:20:21 [[32mINFO[0m] __main__: 
+============================================================
+2026-02-01 21:20:21 [[32mINFO[0m] __main__: 处理 PDF: /home/xwh/VisRAG/dataset/Investigating Robustness and Interpretability of Link Prediction via Adversarial Modifications.pdf
+2026-02-01 21:20:21 [[32mINFO[0m] __main__: 文档 ID: Investigating_Robustness_and_Interpretability_of_Link_Prediction_via_Adversarial_Modifications
+2026-02-01 21:20:21 [[32mINFO[0m] __main__: ============================================================
+2026-02-01 21:20:21 [[32mINFO[0m] __main__: [Investigating_Robustness_and_Interpretability_of_Link_Prediction_via_Adversarial_Modifications] 提取了 12 页文本
+2026-02-01 21:20:21 [[32mINFO[0m] src.vision: 提取 PDF 视觉 tokens: /home/xwh/VisRAG/dataset/Investigating Robustness and Interpretability of Link Prediction via Adversarial Modifications.pdf -> /home/xwh/VisRAG/output_reindex_1536/vision_tokens/Investigating_Robustness_and_Interpretability_of_Link_Prediction_via_Adversarial_Modifications
+2026-02-01 21:20:21 [[32mINFO[0m] src.vision: 初始化 DeepseekEncoder: device=cuda, dtype=torch.float16, model_path=/home/xwh/models/DeepSeek-OCR-2
+2026-02-01 21:20:29 [[32mINFO[0m] src.vision: PDF 共 12 页
+2026-02-01 21:20:34 [[32mINFO[0m] __main__: [Investigating_Robustness_and_Interpretability_of_Link_Prediction_via_Adversarial_Modifications] 提取了 12 页视觉 tokens
+2026-02-01 21:20:38 [[32mINFO[0m] httpx: HTTP Request: POST https://api.zhizengzeng.com/v1/embeddings "HTTP/1.1 200 OK"
+2026-02-01 21:20:40 [[32mINFO[0m] httpx: HTTP Request: POST https://api.zhizengzeng.com/v1/embeddings "HTTP/1.1 200 OK"
+2026-02-01 21:20:43 [[32mINFO[0m] httpx: HTTP Request: POST https://api.zhizengzeng.com/v1/embeddings "HTTP/1.1 200 OK"
+2026-02-01 21:20:44 [[32mINFO[0m] httpx: HTTP Request: POST https://api.zhizengzeng.com/v1/embeddings "HTTP/1.1 200 OK"
+2026-02-01 21:20:45 [[32mINFO[0m] httpx: HTTP Request: POST https://api.zhizengzeng.com/v1/embeddings "HTTP/1.1 200 OK"
+2026-02-01 21:20:47 [[32mINFO[0m] httpx: HTTP Request: POST https://api.zhizengzeng.com/v1/embeddings "HTTP/1.1 200 OK"
+2026-02-01 21:20:51 [[32mINFO[0m] httpx: HTTP Request: POST https://api.zhizengzeng.com/v1/embeddings "HTTP/1.1 200 OK"
+2026-02-01 21:20:53 [[32mINFO[0m] httpx: HTTP Request: POST https://api.zhizengzeng.com/v1/embeddings "HTTP/1.1 200 OK"
+2026-02-01 21:20:54 [[32mINFO[0m] httpx: HTTP Request: POST https://api.zhizengzeng.com/v1/embeddings "HTTP/1.1 200 OK"
+2026-02-01 21:20:57 [[32mINFO[0m] httpx: HTTP Request: POST https://api.zhizengzeng.com/v1/embeddings "HTTP/1.1 200 OK"
+2026-02-01 21:21:00 [[32mINFO[0m] httpx: HTTP Request: POST https://api.zhizengzeng.com/v1/embeddings "HTTP/1.1 200 OK"
+2026-02-01 21:21:02 [[32mINFO[0m] httpx: HTTP Request: POST https://api.zhizengzeng.com/v1/embeddings "HTTP/1.1 200 OK"
+2026-02-01 21:21:04 [[32mINFO[0m] __main__: [Investigating_Robustness_and_Interpretability_of_Link_Prediction_via_Adversarial_Modifications] 文本索引完成: 12 页
+2026-02-01 21:21:04 [[32mINFO[0m] __main__: [Investigating_Robustness_and_Interpretability_of_Link_Prediction_via_Adversarial_Modifications] 视觉索引完成: 12 页
+2026-02-01 21:21:04 [[32mINFO[0m] __main__: [Investigating_Robustness_and_Interpretability_of_Link_Prediction_via_Adversarial_Modifications] 处理完成 ✓
+2026-02-01 21:21:04 [[32mINFO[0m] __main__: 
+============================================================
+2026-02-01 21:21:04 [[32mINFO[0m] __main__: 处理 PDF: /home/xwh/VisRAG/dataset/Joint Entity Linking with Deep Reinforcement Learning.pdf
+2026-02-01 21:21:04 [[32mINFO[0m] __main__: 文档 ID: Joint_Entity_Linking_with_Deep_Reinforcement_Learning
+2026-02-01 21:21:04 [[32mINFO[0m] __main__: ============================================================
+2026-02-01 21:21:04 [[32mINFO[0m] __main__: [Joint_Entity_Linking_with_Deep_Reinforcement_Learning] 提取了 10 页文本
+2026-02-01 21:21:04 [[32mINFO[0m] src.vision: 提取 PDF 视觉 tokens: /home/xwh/VisRAG/dataset/Joint Entity Linking with Deep Reinforcement Learning.pdf -> /home/xwh/VisRAG/output_reindex_1536/vision_tokens/Joint_Entity_Linking_with_Deep_Reinforcement_Learning
+2026-02-01 21:21:04 [[32mINFO[0m] src.vision: 初始化 DeepseekEncoder: device=cuda, dtype=torch.float16, model_path=/home/xwh/models/DeepSeek-OCR-2
+2026-02-01 21:21:11 [[32mINFO[0m] src.vision: PDF 共 10 页
+2026-02-01 21:21:16 [[32mINFO[0m] __main__: [Joint_Entity_Linking_with_Deep_Reinforcement_Learning] 提取了 10 页视觉 tokens
+2026-02-01 21:22:16 [[32mINFO[0m] openai._base_client: Retrying request to /embeddings in 0.497317 seconds
+2026-02-01 21:22:18 [[32mINFO[0m] httpx: HTTP Request: POST https://api.zhizengzeng.com/v1/embeddings "HTTP/1.1 200 OK"
+2026-02-01 21:22:20 [[32mINFO[0m] httpx: HTTP Request: POST https://api.zhizengzeng.com/v1/embeddings "HTTP/1.1 200 OK"
+2026-02-01 21:23:42 [[32mINFO[0m] openai._base_client: Retrying request to /embeddings in 0.461776 seconds
+2026-02-01 21:24:15 [[32mINFO[0m] httpx: HTTP Request: POST https://api.zhizengzeng.com/v1/embeddings "HTTP/1.1 200 OK"
+2026-02-01 21:24:24 [[32mINFO[0m] httpx: HTTP Request: POST https://api.zhizengzeng.com/v1/embeddings "HTTP/1.1 200 OK"
+2026-02-01 21:24:25 [[32mINFO[0m] httpx: HTTP Request: POST https://api.zhizengzeng.com/v1/embeddings "HTTP/1.1 200 OK"
+2026-02-01 21:24:26 [[32mINFO[0m] httpx: HTTP Request: POST https://api.zhizengzeng.com/v1/embeddings "HTTP/1.1 200 OK"
+2026-02-01 21:24:32 [[32mINFO[0m] httpx: HTTP Request: POST https://api.zhizengzeng.com/v1/embeddings "HTTP/1.1 200 OK"
+2026-02-01 21:24:36 [[32mINFO[0m] httpx: HTTP Request: POST https://api.zhizengzeng.com/v1/embeddings "HTTP/1.1 200 OK"
+2026-02-01 21:24:40 [[32mINFO[0m] httpx: HTTP Request: POST https://api.zhizengzeng.com/v1/embeddings "HTTP/1.1 200 OK"
+2026-02-01 21:24:43 [[32mINFO[0m] httpx: HTTP Request: POST https://api.zhizengzeng.com/v1/embeddings "HTTP/1.1 200 OK"
+2026-02-01 21:24:50 [[32mINFO[0m] httpx: HTTP Request: POST https://api.zhizengzeng.com/v1/embeddings "HTTP/1.1 200 OK"
+2026-02-01 21:24:51 [[32mINFO[0m] __main__: [Joint_Entity_Linking_with_Deep_Reinforcement_Learning] 文本索引完成: 10 页
+2026-02-01 21:24:52 [[32mINFO[0m] __main__: [Joint_Entity_Linking_with_Deep_Reinforcement_Learning] 视觉索引完成: 10 页
+2026-02-01 21:24:52 [[32mINFO[0m] __main__: [Joint_Entity_Linking_with_Deep_Reinforcement_Learning] 处理完成 ✓
+2026-02-01 21:24:52 [[32mINFO[0m] __main__: 
+============================================================
+2026-02-01 21:24:52 [[32mINFO[0m] __main__: 处理 PDF: /home/xwh/VisRAG/dataset/Learning Supervised Topic Models for Classification and Regression from Crowds.pdf
+2026-02-01 21:24:52 [[32mINFO[0m] __main__: 文档 ID: Learning_Supervised_Topic_Models_for_Classification_and_Regression_from_Crowds
+2026-02-01 21:24:52 [[32mINFO[0m] __main__: ============================================================
+2026-02-01 21:24:52 [[32mINFO[0m] __main__: [Learning_Supervised_Topic_Models_for_Classification_and_Regression_from_Crowds] 提取了 15 页文本
+2026-02-01 21:24:52 [[32mINFO[0m] src.vision: 提取 PDF 视觉 tokens: /home/xwh/VisRAG/dataset/Learning Supervised Topic Models for Classification and Regression from Crowds.pdf -> /home/xwh/VisRAG/output_reindex_1536/vision_tokens/Learning_Supervised_Topic_Models_for_Classification_and_Regression_from_Crowds
+2026-02-01 21:24:52 [[32mINFO[0m] src.vision: 初始化 DeepseekEncoder: device=cuda, dtype=torch.float16, model_path=/home/xwh/models/DeepSeek-OCR-2
+2026-02-01 21:25:00 [[32mINFO[0m] src.vision: PDF 共 15 页
+2026-02-01 21:25:07 [[32mINFO[0m] __main__: [Learning_Supervised_Topic_Models_for_Classification_and_Regression_from_Crowds] 提取了 15 页视觉 tokens
+2026-02-01 21:26:07 [[32mINFO[0m] openai._base_client: Retrying request to /embeddings in 0.402507 seconds
+2026-02-01 21:26:15 [[32mINFO[0m] httpx: HTTP Request: POST https://api.zhizengzeng.com/v1/embeddings "HTTP/1.1 200 OK"
+2026-02-01 21:26:16 [[32mINFO[0m] httpx: HTTP Request: POST https://api.zhizengzeng.com/v1/embeddings "HTTP/1.1 200 OK"
+2026-02-01 21:26:18 [[32mINFO[0m] httpx: HTTP Request: POST https://api.zhizengzeng.com/v1/embeddings "HTTP/1.1 200 OK"
+2026-02-01 21:26:19 [[32mINFO[0m] httpx: HTTP Request: POST https://api.zhizengzeng.com/v1/embeddings "HTTP/1.1 200 OK"
+2026-02-01 21:26:21 [[32mINFO[0m] httpx: HTTP Request: POST https://api.zhizengzeng.com/v1/embeddings "HTTP/1.1 200 OK"
+2026-02-01 21:26:22 [[32mINFO[0m] httpx: HTTP Request: POST https://api.zhizengzeng.com/v1/embeddings "HTTP/1.1 200 OK"
+2026-02-01 21:26:24 [[32mINFO[0m] httpx: HTTP Request: POST https://api.zhizengzeng.com/v1/embeddings "HTTP/1.1 200 OK"
+2026-02-01 21:26:25 [[32mINFO[0m] httpx: HTTP Request: POST https://api.zhizengzeng.com/v1/embeddings "HTTP/1.1 200 OK"
+2026-02-01 21:26:27 [[32mINFO[0m] httpx: HTTP Request: POST https://api.zhizengzeng.com/v1/embeddings "HTTP/1.1 200 OK"
+2026-02-01 21:26:29 [[32mINFO[0m] httpx: HTTP Request: POST https://api.zhizengzeng.com/v1/embeddings "HTTP/1.1 200 OK"
+2026-02-01 21:26:31 [[32mINFO[0m] httpx: HTTP Request: POST https://api.zhizengzeng.com/v1/embeddings "HTTP/1.1 200 OK"
+2026-02-01 21:26:33 [[32mINFO[0m] httpx: HTTP Request: POST https://api.zhizengzeng.com/v1/embeddings "HTTP/1.1 200 OK"
+2026-02-01 21:26:37 [[32mINFO[0m] httpx: HTTP Request: POST https://api.zhizengzeng.com/v1/embeddings "HTTP/1.1 200 OK"
+2026-02-01 21:26:39 [[32mINFO[0m] httpx: HTTP Request: POST https://api.zhizengzeng.com/v1/embeddings "HTTP/1.1 200 OK"
+2026-02-01 21:26:42 [[32mINFO[0m] httpx: HTTP Request: POST https://api.zhizengzeng.com/v1/embeddings "HTTP/1.1 200 OK"
+2026-02-01 21:26:43 [[32mINFO[0m] __main__: [Learning_Supervised_Topic_Models_for_Classification_and_Regression_from_Crowds] 文本索引完成: 15 页
+2026-02-01 21:26:43 [[32mINFO[0m] __main__: [Learning_Supervised_Topic_Models_for_Classification_and_Regression_from_Crowds] 视觉索引完成: 15 页
+2026-02-01 21:26:43 [[32mINFO[0m] __main__: [Learning_Supervised_Topic_Models_for_Classification_and_Regression_from_Crowds] 处理完成 ✓
+2026-02-01 21:26:43 [[32mINFO[0m] __main__: 
+============================================================
+2026-02-01 21:26:43 [[32mINFO[0m] __main__: 处理 PDF: /home/xwh/VisRAG/dataset/Learning Word Embeddings from the Portuguese Twitter Stream- A Study of some Practical Aspects.pdf
+2026-02-01 21:26:43 [[32mINFO[0m] __main__: 文档 ID: Learning_Word_Embeddings_from_the_Portuguese_Twitter_Stream-_A_Study_of_some_Practical_Aspects
+2026-02-01 21:26:43 [[32mINFO[0m] __main__: ============================================================
+2026-02-01 21:26:43 [[32mINFO[0m] __main__: [Learning_Word_Embeddings_from_the_Portuguese_Twitter_Stream-_A_Study_of_some_Practical_Aspects] 提取了 12 页文本
+2026-02-01 21:26:43 [[32mINFO[0m] src.vision: 提取 PDF 视觉 tokens: /home/xwh/VisRAG/dataset/Learning Word Embeddings from the Portuguese Twitter Stream- A Study of some Practical Aspects.pdf -> /home/xwh/VisRAG/output_reindex_1536/vision_tokens/Learning_Word_Embeddings_from_the_Portuguese_Twitter_Stream-_A_Study_of_some_Practical_Aspects
+2026-02-01 21:26:43 [[32mINFO[0m] src.vision: 初始化 DeepseekEncoder: device=cuda, dtype=torch.float16, model_path=/home/xwh/models/DeepSeek-OCR-2
+2026-02-01 21:26:50 [[32mINFO[0m] src.vision: PDF 共 12 页
+2026-02-01 21:26:55 [[32mINFO[0m] __main__: [Learning_Word_Embeddings_from_the_Portuguese_Twitter_Stream-_A_Study_of_some_Practical_Aspects] 提取了 12 页视觉 tokens
+2026-02-01 21:26:57 [[32mINFO[0m] httpx: HTTP Request: POST https://api.zhizengzeng.com/v1/embeddings "HTTP/1.1 200 OK"
+2026-02-01 21:26:58 [[32mINFO[0m] httpx: HTTP Request: POST https://api.zhizengzeng.com/v1/embeddings "HTTP/1.1 200 OK"
+2026-02-01 21:27:12 [[32mINFO[0m] httpx: HTTP Request: POST https://api.zhizengzeng.com/v1/embeddings "HTTP/1.1 200 OK"
+2026-02-01 21:27:14 [[32mINFO[0m] httpx: HTTP Request: POST https://api.zhizengzeng.com/v1/embeddings "HTTP/1.1 200 OK"
+2026-02-01 21:27:18 [[32mINFO[0m] httpx: HTTP Request: POST https://api.zhizengzeng.com/v1/embeddings "HTTP/1.1 200 OK"
+2026-02-01 21:27:21 [[32mINFO[0m] httpx: HTTP Request: POST https://api.zhizengzeng.com/v1/embeddings "HTTP/1.1 200 OK"
+2026-02-01 21:27:22 [[32mINFO[0m] httpx: HTTP Request: POST https://api.zhizengzeng.com/v1/embeddings "HTTP/1.1 200 OK"
+2026-02-01 21:27:25 [[32mINFO[0m] httpx: HTTP Request: POST https://api.zhizengzeng.com/v1/embeddings "HTTP/1.1 200 OK"
+2026-02-01 21:27:26 [[32mINFO[0m] httpx: HTTP Request: POST https://api.zhizengzeng.com/v1/embeddings "HTTP/1.1 200 OK"
+2026-02-01 21:27:30 [[32mINFO[0m] httpx: HTTP Request: POST https://api.zhizengzeng.com/v1/embeddings "HTTP/1.1 200 OK"
+2026-02-01 21:27:32 [[32mINFO[0m] httpx: HTTP Request: POST https://api.zhizengzeng.com/v1/embeddings "HTTP/1.1 200 OK"
+2026-02-01 21:27:42 [[32mINFO[0m] httpx: HTTP Request: POST https://api.zhizengzeng.com/v1/embeddings "HTTP/1.1 200 OK"
+2026-02-01 21:27:44 [[32mINFO[0m] __main__: [Learning_Word_Embeddings_from_the_Portuguese_Twitter_Stream-_A_Study_of_some_Practical_Aspects] 文本索引完成: 12 页
+2026-02-01 21:27:45 [[32mINFO[0m] __main__: [Learning_Word_Embeddings_from_the_Portuguese_Twitter_Stream-_A_Study_of_some_Practical_Aspects] 视觉索引完成: 12 页
+2026-02-01 21:27:45 [[32mINFO[0m] __main__: [Learning_Word_Embeddings_from_the_Portuguese_Twitter_Stream-_A_Study_of_some_Practical_Aspects] 处理完成 ✓
+2026-02-01 21:27:45 [[32mINFO[0m] __main__: 
+============================================================
+2026-02-01 21:27:45 [[32mINFO[0m] __main__: 处理 PDF: /home/xwh/VisRAG/dataset/Marrying Universal Dependencies and Universal Morphology.pdf
+2026-02-01 21:27:45 [[32mINFO[0m] __main__: 文档 ID: Marrying_Universal_Dependencies_and_Universal_Morphology
+2026-02-01 21:27:45 [[32mINFO[0m] __main__: ============================================================
+2026-02-01 21:27:45 [[32mINFO[0m] __main__: [Marrying_Universal_Dependencies_and_Universal_Morphology] 提取了 11 页文本
+2026-02-01 21:27:45 [[32mINFO[0m] src.vision: 提取 PDF 视觉 tokens: /home/xwh/VisRAG/dataset/Marrying Universal Dependencies and Universal Morphology.pdf -> /home/xwh/VisRAG/output_reindex_1536/vision_tokens/Marrying_Universal_Dependencies_and_Universal_Morphology
+2026-02-01 21:27:45 [[32mINFO[0m] src.vision: 初始化 DeepseekEncoder: device=cuda, dtype=torch.float16, model_path=/home/xwh/models/DeepSeek-OCR-2
+2026-02-01 21:27:52 [[32mINFO[0m] src.vision: PDF 共 11 页
+2026-02-01 21:27:57 [[32mINFO[0m] __main__: [Marrying_Universal_Dependencies_and_Universal_Morphology] 提取了 11 页视觉 tokens
+2026-02-01 21:27:59 [[32mINFO[0m] httpx: HTTP Request: POST https://api.zhizengzeng.com/v1/embeddings "HTTP/1.1 200 OK"
+2026-02-01 21:28:01 [[32mINFO[0m] httpx: HTTP Request: POST https://api.zhizengzeng.com/v1/embeddings "HTTP/1.1 200 OK"
+2026-02-01 21:28:32 [[32mINFO[0m] openai._base_client: Retrying request to /embeddings in 0.430883 seconds
+2026-02-01 21:28:35 [[32mINFO[0m] httpx: HTTP Request: POST https://api.zhizengzeng.com/v1/embeddings "HTTP/1.1 200 OK"
+2026-02-01 21:28:36 [[32mINFO[0m] httpx: HTTP Request: POST https://api.zhizengzeng.com/v1/embeddings "HTTP/1.1 200 OK"
+2026-02-01 21:28:37 [[32mINFO[0m] httpx: HTTP Request: POST https://api.zhizengzeng.com/v1/embeddings "HTTP/1.1 200 OK"
+2026-02-01 21:28:38 [[32mINFO[0m] httpx: HTTP Request: POST https://api.zhizengzeng.com/v1/embeddings "HTTP/1.1 200 OK"
+2026-02-01 21:28:39 [[32mINFO[0m] httpx: HTTP Request: POST https://api.zhizengzeng.com/v1/embeddings "HTTP/1.1 200 OK"
+2026-02-01 21:28:41 [[32mINFO[0m] httpx: HTTP Request: POST https://api.zhizengzeng.com/v1/embeddings "HTTP/1.1 200 OK"
+2026-02-01 21:28:42 [[32mINFO[0m] httpx: HTTP Request: POST https://api.zhizengzeng.com/v1/embeddings "HTTP/1.1 200 OK"
+2026-02-01 21:28:43 [[32mINFO[0m] httpx: HTTP Request: POST https://api.zhizengzeng.com/v1/embeddings "HTTP/1.1 200 OK"
+2026-02-01 21:28:44 [[32mINFO[0m] httpx: HTTP Request: POST https://api.zhizengzeng.com/v1/embeddings "HTTP/1.1 200 OK"
+2026-02-01 21:28:44 [[32mINFO[0m] __main__: [Marrying_Universal_Dependencies_and_Universal_Morphology] 文本索引完成: 11 页
+2026-02-01 21:28:45 [[32mINFO[0m] __main__: [Marrying_Universal_Dependencies_and_Universal_Morphology] 视觉索引完成: 11 页
+2026-02-01 21:28:45 [[32mINFO[0m] __main__: [Marrying_Universal_Dependencies_and_Universal_Morphology] 处理完成 ✓
+2026-02-01 21:28:45 [[32mINFO[0m] __main__: 
+============================================================
+2026-02-01 21:28:45 [[32mINFO[0m] __main__: 处理 PDF: /home/xwh/VisRAG/dataset/Procedural Reasoning Networks for Understanding Multimodal Procedures.pdf
+2026-02-01 21:28:45 [[32mINFO[0m] __main__: 文档 ID: Procedural_Reasoning_Networks_for_Understanding_Multimodal_Procedures
+2026-02-01 21:28:45 [[32mINFO[0m] __main__: ============================================================
+2026-02-01 21:28:45 [[32mINFO[0m] __main__: [Procedural_Reasoning_Networks_for_Understanding_Multimodal_Procedures] 提取了 11 页文本
+2026-02-01 21:28:45 [[32mINFO[0m] src.vision: 提取 PDF 视觉 tokens: /home/xwh/VisRAG/dataset/Procedural Reasoning Networks for Understanding Multimodal Procedures.pdf -> /home/xwh/VisRAG/output_reindex_1536/vision_tokens/Procedural_Reasoning_Networks_for_Understanding_Multimodal_Procedures
+2026-02-01 21:28:45 [[32mINFO[0m] src.vision: 初始化 DeepseekEncoder: device=cuda, dtype=torch.float16, model_path=/home/xwh/models/DeepSeek-OCR-2
+2026-02-01 21:28:52 [[32mINFO[0m] src.vision: PDF 共 11 页
+2026-02-01 21:28:57 [[32mINFO[0m] __main__: [Procedural_Reasoning_Networks_for_Understanding_Multimodal_Procedures] 提取了 11 页视觉 tokens
+2026-02-01 21:29:03 [[32mINFO[0m] httpx: HTTP Request: POST https://api.zhizengzeng.com/v1/embeddings "HTTP/1.1 200 OK"
+2026-02-01 21:29:07 [[32mINFO[0m] httpx: HTTP Request: POST https://api.zhizengzeng.com/v1/embeddings "HTTP/1.1 200 OK"
+2026-02-01 21:29:10 [[32mINFO[0m] httpx: HTTP Request: POST https://api.zhizengzeng.com/v1/embeddings "HTTP/1.1 200 OK"
+2026-02-01 21:29:14 [[32mINFO[0m] httpx: HTTP Request: POST https://api.zhizengzeng.com/v1/embeddings "HTTP/1.1 200 OK"
+2026-02-01 21:29:16 [[32mINFO[0m] httpx: HTTP Request: POST https://api.zhizengzeng.com/v1/embeddings "HTTP/1.1 200 OK"
+2026-02-01 21:29:18 [[32mINFO[0m] httpx: HTTP Request: POST https://api.zhizengzeng.com/v1/embeddings "HTTP/1.1 200 OK"
+2026-02-01 21:29:21 [[32mINFO[0m] httpx: HTTP Request: POST https://api.zhizengzeng.com/v1/embeddings "HTTP/1.1 200 OK"
+2026-02-01 21:29:24 [[32mINFO[0m] httpx: HTTP Request: POST https://api.zhizengzeng.com/v1/embeddings "HTTP/1.1 200 OK"
+2026-02-01 21:29:28 [[32mINFO[0m] httpx: HTTP Request: POST https://api.zhizengzeng.com/v1/embeddings "HTTP/1.1 200 OK"
+2026-02-01 21:29:30 [[32mINFO[0m] httpx: HTTP Request: POST https://api.zhizengzeng.com/v1/embeddings "HTTP/1.1 200 OK"
+2026-02-01 21:29:32 [[32mINFO[0m] httpx: HTTP Request: POST https://api.zhizengzeng.com/v1/embeddings "HTTP/1.1 200 OK"
+2026-02-01 21:29:34 [[32mINFO[0m] __main__: [Procedural_Reasoning_Networks_for_Understanding_Multimodal_Procedures] 文本索引完成: 11 页
+2026-02-01 21:29:34 [[32mINFO[0m] __main__: [Procedural_Reasoning_Networks_for_Understanding_Multimodal_Procedures] 视觉索引完成: 11 页
+2026-02-01 21:29:34 [[32mINFO[0m] __main__: [Procedural_Reasoning_Networks_for_Understanding_Multimodal_Procedures] 处理完成 ✓
+2026-02-01 21:29:34 [[32mINFO[0m] __main__: 
+============================================================
+2026-02-01 21:29:34 [[32mINFO[0m] __main__: 处理 PDF: /home/xwh/VisRAG/dataset/QnAMaker- Data to Bot in 2 Minutes.pdf
+2026-02-01 21:29:34 [[32mINFO[0m] __main__: 文档 ID: QnAMaker-_Data_to_Bot_in_2_Minutes
+2026-02-01 21:29:34 [[32mINFO[0m] __main__: ============================================================
+2026-02-01 21:29:34 [[32mINFO[0m] __main__: [QnAMaker-_Data_to_Bot_in_2_Minutes] 提取了 4 页文本
+2026-02-01 21:29:34 [[32mINFO[0m] src.vision: 提取 PDF 视觉 tokens: /home/xwh/VisRAG/dataset/QnAMaker- Data to Bot in 2 Minutes.pdf -> /home/xwh/VisRAG/output_reindex_1536/vision_tokens/QnAMaker-_Data_to_Bot_in_2_Minutes
+2026-02-01 21:29:34 [[32mINFO[0m] src.vision: 初始化 DeepseekEncoder: device=cuda, dtype=torch.float16, model_path=/home/xwh/models/DeepSeek-OCR-2
+2026-02-01 21:29:42 [[32mINFO[0m] src.vision: PDF 共 4 页
+2026-02-01 21:29:44 [[32mINFO[0m] __main__: [QnAMaker-_Data_to_Bot_in_2_Minutes] 提取了 4 页视觉 tokens
+2026-02-01 21:29:45 [[32mINFO[0m] httpx: HTTP Request: POST https://api.zhizengzeng.com/v1/embeddings "HTTP/1.1 200 OK"
+2026-02-01 21:29:47 [[32mINFO[0m] httpx: HTTP Request: POST https://api.zhizengzeng.com/v1/embeddings "HTTP/1.1 200 OK"
+2026-02-01 21:29:54 [[32mINFO[0m] httpx: HTTP Request: POST https://api.zhizengzeng.com/v1/embeddings "HTTP/1.1 200 OK"
+2026-02-01 21:29:56 [[32mINFO[0m] httpx: HTTP Request: POST https://api.zhizengzeng.com/v1/embeddings "HTTP/1.1 200 OK"
+2026-02-01 21:29:57 [[32mINFO[0m] __main__: [QnAMaker-_Data_to_Bot_in_2_Minutes] 文本索引完成: 4 页
+2026-02-01 21:29:57 [[32mINFO[0m] __main__: [QnAMaker-_Data_to_Bot_in_2_Minutes] 视觉索引完成: 4 页
+2026-02-01 21:29:57 [[32mINFO[0m] __main__: [QnAMaker-_Data_to_Bot_in_2_Minutes] 处理完成 ✓
+2026-02-01 21:29:57 [[32mINFO[0m] __main__: 
+============================================================
+2026-02-01 21:29:57 [[32mINFO[0m] __main__: 处理 PDF: /home/xwh/VisRAG/dataset/What Drives the International Development Agenda? An NLP Analysis of the United Nations General Debate 1970-2016.pdf
+2026-02-01 21:29:57 [[32mINFO[0m] __main__: 文档 ID: What_Drives_the_International_Development_Agenda__An_NLP_Analysis_of_the_United_Nations_General_Deba
+2026-02-01 21:29:57 [[32mINFO[0m] __main__: ============================================================
+2026-02-01 21:29:57 [[32mINFO[0m] __main__: [What_Drives_the_International_Development_Agenda__An_NLP_Analysis_of_the_United_Nations_General_Deba] 提取了 6 页文本
+2026-02-01 21:29:57 [[32mINFO[0m] src.vision: 提取 PDF 视觉 tokens: /home/xwh/VisRAG/dataset/What Drives the International Development Agenda? An NLP Analysis of the United Nations General Debate 1970-2016.pdf -> /home/xwh/VisRAG/output_reindex_1536/vision_tokens/What_Drives_the_International_Development_Agenda__An_NLP_Analysis_of_the_United_Nations_General_Deba
+2026-02-01 21:29:57 [[32mINFO[0m] src.vision: 初始化 DeepseekEncoder: device=cuda, dtype=torch.float16, model_path=/home/xwh/models/DeepSeek-OCR-2
+2026-02-01 21:30:04 [[32mINFO[0m] src.vision: PDF 共 6 页
+2026-02-01 21:30:07 [[32mINFO[0m] __main__: [What_Drives_the_International_Development_Agenda__An_NLP_Analysis_of_the_United_Nations_General_Deba] 提取了 6 页视觉 tokens
+2026-02-01 21:31:07 [[32mINFO[0m] openai._base_client: Retrying request to /embeddings in 0.496703 seconds
+2026-02-01 21:31:16 [[32mINFO[0m] httpx: HTTP Request: POST https://api.zhizengzeng.com/v1/embeddings "HTTP/1.1 200 OK"
+2026-02-01 21:31:17 [[32mINFO[0m] httpx: HTTP Request: POST https://api.zhizengzeng.com/v1/embeddings "HTTP/1.1 200 OK"
+2026-02-01 21:31:21 [[32mINFO[0m] httpx: HTTP Request: POST https://api.zhizengzeng.com/v1/embeddings "HTTP/1.1 200 OK"
+2026-02-01 21:31:24 [[32mINFO[0m] httpx: HTTP Request: POST https://api.zhizengzeng.com/v1/embeddings "HTTP/1.1 200 OK"
+2026-02-01 21:31:26 [[32mINFO[0m] httpx: HTTP Request: POST https://api.zhizengzeng.com/v1/embeddings "HTTP/1.1 200 OK"
+2026-02-01 21:31:30 [[32mINFO[0m] httpx: HTTP Request: POST https://api.zhizengzeng.com/v1/embeddings "HTTP/1.1 200 OK"
+2026-02-01 21:31:43 [[32mINFO[0m] __main__: [What_Drives_the_International_Development_Agenda__An_NLP_Analysis_of_the_United_Nations_General_Deba] 文本索引完成: 6 页
+2026-02-01 21:31:43 [[32mINFO[0m] __main__: [What_Drives_the_International_Development_Agenda__An_NLP_Analysis_of_the_United_Nations_General_Deba] 视觉索引完成: 6 页
+2026-02-01 21:31:43 [[32mINFO[0m] __main__: [What_Drives_the_International_Development_Agenda__An_NLP_Analysis_of_the_United_Nations_General_Deba] 处理完成 ✓
+2026-02-01 21:31:43 [[32mINFO[0m] __main__: 
+############################################################
+2026-02-01 21:31:43 [[32mINFO[0m] __main__: 批量索引完成
+2026-02-01 21:31:43 [[32mINFO[0m] __main__: 总计: 20 个 PDF
+2026-02-01 21:31:43 [[32mINFO[0m] __main__: 文本页: 190
+2026-02-01 21:31:43 [[32mINFO[0m] __main__: 视觉页: 190
+2026-02-01 21:31:43 [[32mINFO[0m] __main__: ############################################################
+
+2026-02-01 21:31:43 [[32mINFO[0m] __main__: 报告已保存: /home/xwh/VisRAG/output_reindex_1536/index_report.json
+2026-02-01 21:40:47 [[32mINFO[0m] root: 日志文件: logs/visrag_20260201.log
+2026-02-01 21:40:47 [[32mINFO[0m] __main__: 使用配置文件: /home/xwh/VisRAG/config.yaml
+2026-02-01 21:40:49 [[32mINFO[0m] __main__: Generator backend: decoder_only
+2026-02-01 21:40:49 [[32mINFO[0m] chromadb.telemetry.product.posthog: Anonymized telemetry enabled. See                     https://docs.trychroma.com/telemetry for more information.
+2026-02-01 21:40:50 [[32mINFO[0m] src.store: ChromaStore 初始化完成: /home/xwh/VisRAG/output/chroma_db
+2026-02-01 21:40:50 [[32mINFO[0m] src.embedder: 初始化 OpenAIEmbedder: model=text-embedding-3-small, dim=1536
+2026-02-01 21:40:50 [[32mINFO[0m] src.embedder: API Base: https://api.zhizengzeng.com/v1
+2026-02-01 21:40:50 [[32mINFO[0m] src.embedder: 初始化 OpenAIEmbedder: model=text-embedding-3-small, dim=1536
+2026-02-01 21:40:50 [[32mINFO[0m] src.embedder: API Base: https://api.zhizengzeng.com/v1
+2026-02-01 21:40:50 [[32mINFO[0m] src.pipeline: VisRAGPipeline 初始化完成，数据目录: /home/xwh/VisRAG/output/chroma_db, 文本维度: 1536
+2026-02-01 21:40:50 [[32mINFO[0m] __main__: qa_add_ids 完成: 64 条 -> /home/xwh/VisRAG/qa/qasper_train_rows_25_44_with_id.jsonl
+2026-02-01 21:41:30 [[32mINFO[0m] root: 日志文件: logs/visrag_20260201.log
+2026-02-01 21:41:30 [[32mINFO[0m] __main__: 使用配置文件: /home/xwh/VisRAG/config.yaml
+2026-02-01 21:41:32 [[32mINFO[0m] __main__: Generator backend: decoder_only
+2026-02-01 21:41:32 [[32mINFO[0m] __main__: 检测到嵌套 chroma_db，使用: /home/xwh/VisRAG/output_reindex_1536/chroma_db
+2026-02-01 21:41:32 [[32mINFO[0m] chromadb.telemetry.product.posthog: Anonymized telemetry enabled. See                     https://docs.trychroma.com/telemetry for more information.
+2026-02-01 21:41:32 [[32mINFO[0m] src.store: ChromaStore 初始化完成: /home/xwh/VisRAG/output_reindex_1536/chroma_db
+2026-02-01 21:41:32 [[32mINFO[0m] src.embedder: 初始化 OpenAIEmbedder: model=text-embedding-3-small, dim=1536
+2026-02-01 21:41:32 [[32mINFO[0m] src.embedder: API Base: https://api.zhizengzeng.com/v1
+2026-02-01 21:41:32 [[32mINFO[0m] src.embedder: 初始化 OpenAIEmbedder: model=text-embedding-3-small, dim=1536
+2026-02-01 21:41:32 [[32mINFO[0m] src.embedder: API Base: https://api.zhizengzeng.com/v1
+2026-02-01 21:41:32 [[32mINFO[0m] src.pipeline: VisRAGPipeline 初始化完成，数据目录: /home/xwh/VisRAG/output_reindex_1536/chroma_db, 文本维度: 1536
+2026-02-01 21:41:33 [[32mINFO[0m] src.generator: 加载 decoder-only: /home/xwh/models/DeepSeek-OCR-2
+2026-02-01 21:42:18 [[32mINFO[0m] src.store: ChromaStore 初始化完成: /home/xwh/VisRAG/output_reindex_1536/chroma_db
+2026-02-01 21:42:18 [[32mINFO[0m] src.embedder: 初始化 OpenAIEmbedder: model=text-embedding-3-small, dim=1536
+2026-02-01 21:42:18 [[32mINFO[0m] src.embedder: API Base: https://api.zhizengzeng.com/v1
+2026-02-01 21:42:18 [[32mINFO[0m] src.pipeline: VisRAGPipeline 初始化完成，数据目录: /home/xwh/VisRAG/output_reindex_1536/chroma_db, 文本维度: 1536
+2026-02-01 21:42:20 [[32mINFO[0m] httpx: HTTP Request: POST https://api.zhizengzeng.com/v1/embeddings "HTTP/1.1 200 OK"
+2026-02-01 21:42:22 [[32mINFO[0m] httpx: HTTP Request: POST https://api.zhizengzeng.com/v1/embeddings "HTTP/1.1 200 OK"
+2026-02-01 21:43:57 [[32mINFO[0m] openai._base_client: Retrying request to /embeddings in 0.481848 seconds
+2026-02-01 21:43:59 [[32mINFO[0m] httpx: HTTP Request: POST https://api.zhizengzeng.com/v1/embeddings "HTTP/1.1 200 OK"
+2026-02-01 21:44:01 [[32mINFO[0m] httpx: HTTP Request: POST https://api.zhizengzeng.com/v1/embeddings "HTTP/1.1 200 OK"
+2026-02-01 21:45:05 [[32mINFO[0m] httpx: HTTP Request: POST https://api.zhizengzeng.com/v1/embeddings "HTTP/1.1 200 OK"
+2026-02-01 21:45:06 [[32mINFO[0m] httpx: HTTP Request: POST https://api.zhizengzeng.com/v1/embeddings "HTTP/1.1 200 OK"
+2026-02-01 21:46:12 [[32mINFO[0m] httpx: HTTP Request: POST https://api.zhizengzeng.com/v1/embeddings "HTTP/1.1 200 OK"
+2026-02-01 21:46:14 [[32mINFO[0m] httpx: HTTP Request: POST https://api.zhizengzeng.com/v1/embeddings "HTTP/1.1 200 OK"
+2026-02-01 21:46:23 [[32mINFO[0m] httpx: HTTP Request: POST https://api.zhizengzeng.com/v1/embeddings "HTTP/1.1 200 OK"
+2026-02-01 21:46:25 [[32mINFO[0m] httpx: HTTP Request: POST https://api.zhizengzeng.com/v1/embeddings "HTTP/1.1 200 OK"
+2026-02-01 21:47:26 [[32mINFO[0m] httpx: HTTP Request: POST https://api.zhizengzeng.com/v1/embeddings "HTTP/1.1 200 OK"
+2026-02-01 21:47:28 [[32mINFO[0m] httpx: HTTP Request: POST https://api.zhizengzeng.com/v1/embeddings "HTTP/1.1 200 OK"
+2026-02-01 21:47:36 [[32mINFO[0m] httpx: HTTP Request: POST https://api.zhizengzeng.com/v1/embeddings "HTTP/1.1 200 OK"
+2026-02-01 21:47:40 [[32mINFO[0m] httpx: HTTP Request: POST https://api.zhizengzeng.com/v1/embeddings "HTTP/1.1 200 OK"
+2026-02-01 21:47:54 [[32mINFO[0m] httpx: HTTP Request: POST https://api.zhizengzeng.com/v1/embeddings "HTTP/1.1 200 OK"
+2026-02-01 21:47:59 [[32mINFO[0m] httpx: HTTP Request: POST https://api.zhizengzeng.com/v1/embeddings "HTTP/1.1 200 OK"
+2026-02-01 21:49:02 [[32mINFO[0m] httpx: HTTP Request: POST https://api.zhizengzeng.com/v1/embeddings "HTTP/1.1 200 OK"
+2026-02-01 21:49:03 [[32mINFO[0m] httpx: HTTP Request: POST https://api.zhizengzeng.com/v1/embeddings "HTTP/1.1 200 OK"
+2026-02-01 21:49:35 [[32mINFO[0m] httpx: HTTP Request: POST https://api.zhizengzeng.com/v1/embeddings "HTTP/1.1 200 OK"
+2026-02-01 21:49:40 [[32mINFO[0m] httpx: HTTP Request: POST https://api.zhizengzeng.com/v1/embeddings "HTTP/1.1 200 OK"
+2026-02-01 21:50:10 [[32mINFO[0m] httpx: HTTP Request: POST https://api.zhizengzeng.com/v1/embeddings "HTTP/1.1 200 OK"
+2026-02-01 21:50:11 [[32mINFO[0m] httpx: HTTP Request: POST https://api.zhizengzeng.com/v1/embeddings "HTTP/1.1 200 OK"
+2026-02-01 21:51:02 [[32mINFO[0m] httpx: HTTP Request: POST https://api.zhizengzeng.com/v1/embeddings "HTTP/1.1 200 OK"
+2026-02-01 21:51:05 [[32mINFO[0m] httpx: HTTP Request: POST https://api.zhizengzeng.com/v1/embeddings "HTTP/1.1 200 OK"
+2026-02-01 21:51:52 [[32mINFO[0m] httpx: HTTP Request: POST https://api.zhizengzeng.com/v1/embeddings "HTTP/1.1 200 OK"
+2026-02-01 21:51:53 [[32mINFO[0m] httpx: HTTP Request: POST https://api.zhizengzeng.com/v1/embeddings "HTTP/1.1 200 OK"
+2026-02-01 21:52:53 [[32mINFO[0m] httpx: HTTP Request: POST https://api.zhizengzeng.com/v1/embeddings "HTTP/1.1 200 OK"
+2026-02-01 21:52:54 [[32mINFO[0m] httpx: HTTP Request: POST https://api.zhizengzeng.com/v1/embeddings "HTTP/1.1 200 OK"
+2026-02-01 21:52:57 [[32mINFO[0m] httpx: HTTP Request: POST https://api.zhizengzeng.com/v1/embeddings "HTTP/1.1 200 OK"
+2026-02-01 21:53:01 [[32mINFO[0m] httpx: HTTP Request: POST https://api.zhizengzeng.com/v1/embeddings "HTTP/1.1 200 OK"
+2026-02-01 21:53:51 [[32mINFO[0m] httpx: HTTP Request: POST https://api.zhizengzeng.com/v1/embeddings "HTTP/1.1 200 OK"
+2026-02-01 21:53:57 [[32mINFO[0m] httpx: HTTP Request: POST https://api.zhizengzeng.com/v1/embeddings "HTTP/1.1 200 OK"
+2026-02-01 21:54:46 [[32mINFO[0m] httpx: HTTP Request: POST https://api.zhizengzeng.com/v1/embeddings "HTTP/1.1 200 OK"
+2026-02-01 21:55:38 [[32mINFO[0m] httpx: HTTP Request: POST https://api.zhizengzeng.com/v1/embeddings "HTTP/1.1 200 OK"
+2026-02-01 21:56:06 [[32mINFO[0m] httpx: HTTP Request: POST https://api.zhizengzeng.com/v1/embeddings "HTTP/1.1 200 OK"
+2026-02-01 21:56:08 [[32mINFO[0m] httpx: HTTP Request: POST https://api.zhizengzeng.com/v1/embeddings "HTTP/1.1 200 OK"
+2026-02-01 21:56:58 [[32mINFO[0m] httpx: HTTP Request: POST https://api.zhizengzeng.com/v1/embeddings "HTTP/1.1 200 OK"
+2026-02-01 21:56:59 [[32mINFO[0m] httpx: HTTP Request: POST https://api.zhizengzeng.com/v1/embeddings "HTTP/1.1 200 OK"
+2026-02-01 21:57:51 [[32mINFO[0m] httpx: HTTP Request: POST https://api.zhizengzeng.com/v1/embeddings "HTTP/1.1 200 OK"
+2026-02-01 21:57:52 [[32mINFO[0m] httpx: HTTP Request: POST https://api.zhizengzeng.com/v1/embeddings "HTTP/1.1 200 OK"
+2026-02-01 21:58:55 [[32mINFO[0m] httpx: HTTP Request: POST https://api.zhizengzeng.com/v1/embeddings "HTTP/1.1 200 OK"
+2026-02-01 21:58:56 [[32mINFO[0m] httpx: HTTP Request: POST https://api.zhizengzeng.com/v1/embeddings "HTTP/1.1 200 OK"
+2026-02-01 21:59:43 [[32mINFO[0m] httpx: HTTP Request: POST https://api.zhizengzeng.com/v1/embeddings "HTTP/1.1 200 OK"
+2026-02-01 21:59:47 [[32mINFO[0m] httpx: HTTP Request: POST https://api.zhizengzeng.com/v1/embeddings "HTTP/1.1 200 OK"
+2026-02-01 22:00:19 [[32mINFO[0m] httpx: HTTP Request: POST https://api.zhizengzeng.com/v1/embeddings "HTTP/1.1 200 OK"
+2026-02-01 22:00:24 [[32mINFO[0m] httpx: HTTP Request: POST https://api.zhizengzeng.com/v1/embeddings "HTTP/1.1 200 OK"
+2026-02-01 22:00:55 [[32mINFO[0m] httpx: HTTP Request: POST https://api.zhizengzeng.com/v1/embeddings "HTTP/1.1 200 OK"
+2026-02-01 22:00:56 [[32mINFO[0m] httpx: HTTP Request: POST https://api.zhizengzeng.com/v1/embeddings "HTTP/1.1 200 OK"
+2026-02-01 22:01:28 [[32mINFO[0m] httpx: HTTP Request: POST https://api.zhizengzeng.com/v1/embeddings "HTTP/1.1 200 OK"
+2026-02-01 22:01:35 [[32mINFO[0m] httpx: HTTP Request: POST https://api.zhizengzeng.com/v1/embeddings "HTTP/1.1 200 OK"
+2026-02-01 22:02:24 [[32mINFO[0m] httpx: HTTP Request: POST https://api.zhizengzeng.com/v1/embeddings "HTTP/1.1 200 OK"
+2026-02-01 22:02:25 [[32mINFO[0m] httpx: HTTP Request: POST https://api.zhizengzeng.com/v1/embeddings "HTTP/1.1 200 OK"
+2026-02-01 22:02:30 [[32mINFO[0m] httpx: HTTP Request: POST https://api.zhizengzeng.com/v1/embeddings "HTTP/1.1 200 OK"
+2026-02-01 22:02:34 [[32mINFO[0m] httpx: HTTP Request: POST https://api.zhizengzeng.com/v1/embeddings "HTTP/1.1 200 OK"
+2026-02-01 22:04:41 [[32mINFO[0m] openai._base_client: Retrying request to /embeddings in 0.466795 seconds
+2026-02-01 22:04:44 [[32mINFO[0m] httpx: HTTP Request: POST https://api.zhizengzeng.com/v1/embeddings "HTTP/1.1 200 OK"
+2026-02-01 22:04:45 [[32mINFO[0m] httpx: HTTP Request: POST https://api.zhizengzeng.com/v1/embeddings "HTTP/1.1 200 OK"
+2026-02-01 22:05:25 [[32mINFO[0m] httpx: HTTP Request: POST https://api.zhizengzeng.com/v1/embeddings "HTTP/1.1 200 OK"
+2026-02-01 22:05:27 [[32mINFO[0m] httpx: HTTP Request: POST https://api.zhizengzeng.com/v1/embeddings "HTTP/1.1 200 OK"
+2026-02-01 22:06:51 [[32mINFO[0m] openai._base_client: Retrying request to /embeddings in 0.465379 seconds
+2026-02-01 22:06:53 [[32mINFO[0m] httpx: HTTP Request: POST https://api.zhizengzeng.com/v1/embeddings "HTTP/1.1 200 OK"
+2026-02-01 22:06:54 [[32mINFO[0m] httpx: HTTP Request: POST https://api.zhizengzeng.com/v1/embeddings "HTTP/1.1 200 OK"
+2026-02-01 22:07:00 [[32mINFO[0m] httpx: HTTP Request: POST https://api.zhizengzeng.com/v1/embeddings "HTTP/1.1 200 OK"
+2026-02-01 22:07:04 [[32mINFO[0m] httpx: HTTP Request: POST https://api.zhizengzeng.com/v1/embeddings "HTTP/1.1 200 OK"
+2026-02-01 22:07:44 [[32mINFO[0m] httpx: HTTP Request: POST https://api.zhizengzeng.com/v1/embeddings "HTTP/1.1 200 OK"
+2026-02-01 22:07:48 [[32mINFO[0m] httpx: HTTP Request: POST https://api.zhizengzeng.com/v1/embeddings "HTTP/1.1 200 OK"
+2026-02-01 22:08:33 [[32mINFO[0m] httpx: HTTP Request: POST https://api.zhizengzeng.com/v1/embeddings "HTTP/1.1 200 OK"
+2026-02-01 22:08:40 [[32mINFO[0m] httpx: HTTP Request: POST https://api.zhizengzeng.com/v1/embeddings "HTTP/1.1 200 OK"
+2026-02-01 22:09:16 [[32mINFO[0m] httpx: HTTP Request: POST https://api.zhizengzeng.com/v1/embeddings "HTTP/1.1 200 OK"
+2026-02-01 22:09:25 [[32mINFO[0m] httpx: HTTP Request: POST https://api.zhizengzeng.com/v1/embeddings "HTTP/1.1 200 OK"
+2026-02-01 22:09:56 [[32mINFO[0m] httpx: HTTP Request: POST https://api.zhizengzeng.com/v1/embeddings "HTTP/1.1 200 OK"
+2026-02-01 22:09:59 [[32mINFO[0m] httpx: HTTP Request: POST https://api.zhizengzeng.com/v1/embeddings "HTTP/1.1 200 OK"
+2026-02-01 22:10:10 [[32mINFO[0m] httpx: HTTP Request: POST https://api.zhizengzeng.com/v1/embeddings "HTTP/1.1 200 OK"
+2026-02-01 22:10:12 [[32mINFO[0m] httpx: HTTP Request: POST https://api.zhizengzeng.com/v1/embeddings "HTTP/1.1 200 OK"
+2026-02-01 22:10:46 [[32mINFO[0m] httpx: HTTP Request: POST https://api.zhizengzeng.com/v1/embeddings "HTTP/1.1 200 OK"
+2026-02-01 22:10:49 [[32mINFO[0m] httpx: HTTP Request: POST https://api.zhizengzeng.com/v1/embeddings "HTTP/1.1 200 OK"
+2026-02-01 22:11:30 [[32mINFO[0m] httpx: HTTP Request: POST https://api.zhizengzeng.com/v1/embeddings "HTTP/1.1 200 OK"
+2026-02-01 22:11:32 [[32mINFO[0m] httpx: HTTP Request: POST https://api.zhizengzeng.com/v1/embeddings "HTTP/1.1 200 OK"
+2026-02-01 22:11:37 [[32mINFO[0m] httpx: HTTP Request: POST https://api.zhizengzeng.com/v1/embeddings "HTTP/1.1 200 OK"
+2026-02-01 22:11:38 [[32mINFO[0m] httpx: HTTP Request: POST https://api.zhizengzeng.com/v1/embeddings "HTTP/1.1 200 OK"
+2026-02-01 22:12:09 [[32mINFO[0m] httpx: HTTP Request: POST https://api.zhizengzeng.com/v1/embeddings "HTTP/1.1 200 OK"
+2026-02-01 22:12:12 [[32mINFO[0m] httpx: HTTP Request: POST https://api.zhizengzeng.com/v1/embeddings "HTTP/1.1 200 OK"
+2026-02-01 22:12:17 [[32mINFO[0m] httpx: HTTP Request: POST https://api.zhizengzeng.com/v1/embeddings "HTTP/1.1 200 OK"
+2026-02-01 22:12:20 [[32mINFO[0m] httpx: HTTP Request: POST https://api.zhizengzeng.com/v1/embeddings "HTTP/1.1 200 OK"
+2026-02-01 22:13:35 [[32mINFO[0m] openai._base_client: Retrying request to /embeddings in 0.384939 seconds
+2026-02-01 22:13:38 [[32mINFO[0m] httpx: HTTP Request: POST https://api.zhizengzeng.com/v1/embeddings "HTTP/1.1 200 OK"
+2026-02-01 22:13:40 [[32mINFO[0m] httpx: HTTP Request: POST https://api.zhizengzeng.com/v1/embeddings "HTTP/1.1 200 OK"
+2026-02-01 22:13:52 [[32mINFO[0m] httpx: HTTP Request: POST https://api.zhizengzeng.com/v1/embeddings "HTTP/1.1 200 OK"
+2026-02-01 22:13:56 [[32mINFO[0m] httpx: HTTP Request: POST https://api.zhizengzeng.com/v1/embeddings "HTTP/1.1 200 OK"
+2026-02-01 22:14:08 [[32mINFO[0m] httpx: HTTP Request: POST https://api.zhizengzeng.com/v1/embeddings "HTTP/1.1 200 OK"
+2026-02-01 22:14:10 [[32mINFO[0m] httpx: HTTP Request: POST https://api.zhizengzeng.com/v1/embeddings "HTTP/1.1 200 OK"
+2026-02-01 22:15:28 [[32mINFO[0m] httpx: HTTP Request: POST https://api.zhizengzeng.com/v1/embeddings "HTTP/1.1 200 OK"
+2026-02-01 22:15:30 [[32mINFO[0m] httpx: HTTP Request: POST https://api.zhizengzeng.com/v1/embeddings "HTTP/1.1 200 OK"
+2026-02-01 22:16:31 [[32mINFO[0m] httpx: HTTP Request: POST https://api.zhizengzeng.com/v1/embeddings "HTTP/1.1 200 OK"
+2026-02-01 22:16:34 [[32mINFO[0m] httpx: HTTP Request: POST https://api.zhizengzeng.com/v1/embeddings "HTTP/1.1 200 OK"
+2026-02-01 22:17:27 [[32mINFO[0m] httpx: HTTP Request: POST https://api.zhizengzeng.com/v1/embeddings "HTTP/1.1 200 OK"
+2026-02-01 22:17:28 [[32mINFO[0m] httpx: HTTP Request: POST https://api.zhizengzeng.com/v1/embeddings "HTTP/1.1 200 OK"
+2026-02-01 22:18:54 [[32mINFO[0m] httpx: HTTP Request: POST https://api.zhizengzeng.com/v1/embeddings "HTTP/1.1 200 OK"
+2026-02-01 22:18:59 [[32mINFO[0m] httpx: HTTP Request: POST https://api.zhizengzeng.com/v1/embeddings "HTTP/1.1 200 OK"
+2026-02-01 22:19:31 [[32mINFO[0m] httpx: HTTP Request: POST https://api.zhizengzeng.com/v1/embeddings "HTTP/1.1 200 OK"
+2026-02-01 22:19:37 [[32mINFO[0m] httpx: HTTP Request: POST https://api.zhizengzeng.com/v1/embeddings "HTTP/1.1 200 OK"
+2026-02-01 22:20:14 [[32mINFO[0m] httpx: HTTP Request: POST https://api.zhizengzeng.com/v1/embeddings "HTTP/1.1 200 OK"
+2026-02-01 22:20:17 [[32mINFO[0m] httpx: HTTP Request: POST https://api.zhizengzeng.com/v1/embeddings "HTTP/1.1 200 OK"
+2026-02-01 22:21:43 [[32mINFO[0m] openai._base_client: Retrying request to /embeddings in 0.435619 seconds
+2026-02-01 22:21:45 [[32mINFO[0m] httpx: HTTP Request: POST https://api.zhizengzeng.com/v1/embeddings "HTTP/1.1 200 OK"
+2026-02-01 22:21:46 [[32mINFO[0m] httpx: HTTP Request: POST https://api.zhizengzeng.com/v1/embeddings "HTTP/1.1 200 OK"
+2026-02-01 22:21:58 [[32mINFO[0m] httpx: HTTP Request: POST https://api.zhizengzeng.com/v1/embeddings "HTTP/1.1 200 OK"
+2026-02-01 22:22:02 [[32mINFO[0m] httpx: HTTP Request: POST https://api.zhizengzeng.com/v1/embeddings "HTTP/1.1 200 OK"
+2026-02-01 22:22:29 [[32mINFO[0m] httpx: HTTP Request: POST https://api.zhizengzeng.com/v1/embeddings "HTTP/1.1 200 OK"
+2026-02-01 22:22:31 [[32mINFO[0m] httpx: HTTP Request: POST https://api.zhizengzeng.com/v1/embeddings "HTTP/1.1 200 OK"
+2026-02-01 22:22:58 [[32mINFO[0m] httpx: HTTP Request: POST https://api.zhizengzeng.com/v1/embeddings "HTTP/1.1 200 OK"
+2026-02-01 22:23:01 [[32mINFO[0m] httpx: HTTP Request: POST https://api.zhizengzeng.com/v1/embeddings "HTTP/1.1 200 OK"
+2026-02-01 22:24:26 [[32mINFO[0m] openai._base_client: Retrying request to /embeddings in 0.409575 seconds
+2026-02-01 22:24:29 [[32mINFO[0m] httpx: HTTP Request: POST https://api.zhizengzeng.com/v1/embeddings "HTTP/1.1 200 OK"
+2026-02-01 22:24:30 [[32mINFO[0m] httpx: HTTP Request: POST https://api.zhizengzeng.com/v1/embeddings "HTTP/1.1 200 OK"
+2026-02-01 22:25:00 [[32mINFO[0m] httpx: HTTP Request: POST https://api.zhizengzeng.com/v1/embeddings "HTTP/1.1 200 OK"
+2026-02-01 22:25:02 [[32mINFO[0m] httpx: HTTP Request: POST https://api.zhizengzeng.com/v1/embeddings "HTTP/1.1 200 OK"
+2026-02-01 22:25:56 [[32mINFO[0m] httpx: HTTP Request: POST https://api.zhizengzeng.com/v1/embeddings "HTTP/1.1 200 OK"
+2026-02-01 22:26:03 [[32mINFO[0m] httpx: HTTP Request: POST https://api.zhizengzeng.com/v1/embeddings "HTTP/1.1 200 OK"
+2026-02-01 22:26:42 [[32mINFO[0m] httpx: HTTP Request: POST https://api.zhizengzeng.com/v1/embeddings "HTTP/1.1 200 OK"
+2026-02-01 22:26:45 [[32mINFO[0m] httpx: HTTP Request: POST https://api.zhizengzeng.com/v1/embeddings "HTTP/1.1 200 OK"
+2026-02-01 22:28:31 [[32mINFO[0m] openai._base_client: Retrying request to /embeddings in 0.412646 seconds
+2026-02-01 22:29:32 [[32mINFO[0m] openai._base_client: Retrying request to /embeddings in 0.807238 seconds
+2026-02-01 22:29:41 [[32mINFO[0m] httpx: HTTP Request: POST https://api.zhizengzeng.com/v1/embeddings "HTTP/1.1 200 OK"
+2026-02-01 22:29:44 [[32mINFO[0m] httpx: HTTP Request: POST https://api.zhizengzeng.com/v1/embeddings "HTTP/1.1 200 OK"
+2026-02-01 22:30:10 [[32mINFO[0m] httpx: HTTP Request: POST https://api.zhizengzeng.com/v1/embeddings "HTTP/1.1 200 OK"
+2026-02-01 22:30:12 [[32mINFO[0m] httpx: HTTP Request: POST https://api.zhizengzeng.com/v1/embeddings "HTTP/1.1 200 OK"
+2026-02-01 22:31:20 [[32mINFO[0m] httpx: HTTP Request: POST https://api.zhizengzeng.com/v1/embeddings "HTTP/1.1 200 OK"
+2026-02-01 22:31:32 [[32mINFO[0m] httpx: HTTP Request: POST https://api.zhizengzeng.com/v1/embeddings "HTTP/1.1 200 OK"
+2026-02-01 22:32:05 [[32mINFO[0m] httpx: HTTP Request: POST https://api.zhizengzeng.com/v1/embeddings "HTTP/1.1 200 OK"
+2026-02-01 22:32:23 [[32mINFO[0m] httpx: HTTP Request: POST https://api.zhizengzeng.com/v1/embeddings "HTTP/1.1 200 OK"
+2026-02-01 22:32:32 [[32mINFO[0m] httpx: HTTP Request: POST https://api.zhizengzeng.com/v1/embeddings "HTTP/1.1 200 OK"
+2026-02-01 22:32:34 [[32mINFO[0m] httpx: HTTP Request: POST https://api.zhizengzeng.com/v1/embeddings "HTTP/1.1 200 OK"
+2026-02-01 22:32:56 [[32mINFO[0m] httpx: HTTP Request: POST https://api.zhizengzeng.com/v1/embeddings "HTTP/1.1 200 OK"
+2026-02-01 22:32:58 [[32mINFO[0m] httpx: HTTP Request: POST https://api.zhizengzeng.com/v1/embeddings "HTTP/1.1 200 OK"
+2026-02-01 22:40:30 [INFO] root: 日志文件: logs/visrag_20260201.log
+2026-02-01 22:40:30 [INFO] __main__: Generator backend: decoder_only
+2026-02-01 22:40:32 [INFO] __main__: 开始评测: qa=/home/xwh/VisRAG/qa/qasper_train_rows_25_44_with_id.jsonl, pred=/home/xwh/VisRAG/qa/pred_3way_decoder_only_qasper_25_44.jsonl
+2026-02-01 22:40:35 [INFO] __main__: 评测样本数: 64, 平均 F1: 0.0995
+2026-02-01 22:40:45 [INFO] root: 日志文件: logs/visrag_20260201.log
+2026-02-01 22:40:45 [INFO] __main__: Generator backend: decoder_only
+2026-02-01 22:40:47 [INFO] __main__: 开始评测: qa=/home/xwh/VisRAG/qa/qasper_train_rows_25_44_with_id.jsonl, pred=/home/xwh/VisRAG/qa/pred_3way_decoder_only_qasper_25_44.jsonl
+2026-02-01 22:40:51 [INFO] __main__: 评测样本数: 64, 平均 F1: 0.0722
+2026-02-01 22:41:00 [INFO] root: 日志文件: logs/visrag_20260201.log
+2026-02-01 22:41:00 [INFO] __main__: Generator backend: decoder_only
+2026-02-01 22:41:02 [INFO] __main__: 开始评测: qa=/home/xwh/VisRAG/qa/qasper_train_rows_25_44_with_id.jsonl, pred=/home/xwh/VisRAG/qa/pred_3way_decoder_only_qasper_25_44.jsonl
+2026-02-01 22:41:05 [INFO] __main__: 评测样本数: 64, 平均 F1: 0.0943

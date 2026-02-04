@@ -330,6 +330,62 @@ def eval_metrics(
         log_file.close()
 
 
+def eval_metrics_3way(
+    qa_path: str,
+    pred_path: str,
+    out_path: str,
+    fields: list[str] | None = None,
+    include_text: bool = False,
+):
+    """
+    逐题对比多个 prediction 字段，并把每题各字段的 f1/em/meteor/rouge_l 写到同一个 jsonl。
+    适合做 text-only / vision-only / text+vision 三路对比。
+    """
+    ensure_nltk()
+    fields = fields or ["prediction_text_only", "prediction_vision_only", "prediction_text_plus_vision"]
+
+    qa_map: dict[str, dict] = {}
+    with open(qa_path, "r", encoding="utf-8") as f:
+        for line in f:
+            item = json.loads(line)
+            qid = item.get("id")
+            if qid:
+                qa_map[str(qid)] = item
+
+    pred_map: dict[str, dict] = {}
+    with open(pred_path, "r", encoding="utf-8") as f:
+        for line in f:
+            item = json.loads(line)
+            qid = item.get("id")
+            if qid:
+                pred_map[str(qid)] = item
+
+    os.makedirs(os.path.dirname(out_path), exist_ok=True)
+    with open(out_path, "w", encoding="utf-8") as out:
+        for qid, qa in qa_map.items():
+            ref = qa.get("answer", "") or ""
+            record: dict[str, Any] = {
+                "id": qid,
+                "question": qa.get("question", ""),
+                "answer": ref,
+            }
+            if include_text:
+                record["title"] = qa.get("title", "")
+                record["doc"] = qa.get("doc", "")
+
+            preds = pred_map.get(qid, {}) if isinstance(pred_map.get(qid, {}), dict) else {}
+
+            for field in fields:
+                pred = preds.get(field, "") or ""
+                record[field] = pred
+                record[f"{field}__f1"] = token_f1(pred, ref)
+                record[f"{field}__em"] = exact_match(pred, ref)
+                record[f"{field}__meteor"] = meteor_score(pred, ref)
+                record[f"{field}__rouge_l"] = rouge_l(pred, ref)
+
+            out.write(json.dumps(record, ensure_ascii=False) + "\n")
+
+
 def llm_judge(
     qa_path: str,
     pred_path: str,
@@ -521,6 +577,135 @@ def rag_predict(
             )
 
 
+def rag_predict_3way(
+    qa_path: str,
+    out_path: str,
+    persist_dir: str = "/data/xwh/VisRAG/chroma_db",
+    top_k: int = 3,
+    max_context_chars: int = 6000,
+    generator: BaseGenerator = None,
+):
+    """
+    三路对比：
+    - text-only：仅用检索文本作为上下文
+    - vision-only：仅注入 vision tokens（不提供文本上下文）
+    - text+vision：检索文本 + 注入 vision tokens
+    """
+    from src.pipeline import VisRAGPipeline
+
+    gen = generator or create_generator()
+    pipe = VisRAGPipeline(persist_dir)
+
+    os.makedirs(os.path.dirname(out_path), exist_ok=True)
+
+    with open(qa_path, "r", encoding="utf-8") as f:
+        qa_items = [json.loads(line) for line in f if line.strip()]
+
+    with open(out_path, "w", encoding="utf-8") as f:
+        for item in qa_items:
+            qid = item.get("id") or item.get("qid") or item.get("question_id")
+            if not qid:
+                continue
+
+            question = item.get("question") or item.get("query") or item.get("q") or ""
+            if not isinstance(question, str):
+                question = str(question)
+            question = question.strip()
+
+            if not question:
+                pred_text = item.get("prediction_text") or item.get("prompt") or ""
+                if isinstance(pred_text, str) and pred_text:
+                    m = re.search(r"问题:\s*\n(.*?)\n\s*材料:", pred_text, flags=re.DOTALL)
+                    if not m:
+                        m = re.search(r"Question:\s*\n(.*?)\n\s*Context:", pred_text, flags=re.DOTALL)
+                    if m:
+                        question = m.group(1).strip()
+
+            if not question:
+                f.write(json.dumps({"id": qid, "question": "", "error": "missing_question"}, ensure_ascii=False) + "\n")
+                continue
+
+            # ---- retrieve text ----
+            text_res = pipe.query_text(question, top_k=top_k)
+            text_metas = (text_res.get("metadatas") or [[]])[0]
+            text_parts = []
+            retrieved_text = []
+            for md in text_metas:
+                if not isinstance(md, dict):
+                    continue
+                doc_id = md.get("doc_id", "")
+                page = md.get("page", "")
+                text = (md.get("text") or "").strip()
+                if not text:
+                    continue
+                retrieved_text.append({"doc_id": doc_id, "page": page})
+                text_parts.append(f"[{doc_id} p{page}]\n{text}")
+
+            text_context = "\n\n".join(text_parts)
+            if max_context_chars and len(text_context) > max_context_chars:
+                text_context = text_context[:max_context_chars]
+
+            # ---- retrieve vision ----
+            vision_res = pipe.query_vision(question, top_k=top_k)
+            vision_metas = (vision_res.get("metadatas") or [[]])[0]
+
+            text_page_keys = {(md.get("doc_id", ""), md.get("page", "")) for md in text_metas if isinstance(md, dict)}
+            candidates = []
+            for md in vision_metas:
+                if not isinstance(md, dict):
+                    continue
+                doc_id = md.get("doc_id", "")
+                page = md.get("page", "")
+                tokens_path = md.get("tokens_path")
+                if not tokens_path:
+                    continue
+                priority = 0 if (doc_id, page) in text_page_keys else 1
+                candidates.append((priority, tokens_path, doc_id, page))
+
+            candidates.sort(key=lambda x: x[0])
+            tokens_paths = [candidates[0][1]] if candidates else []
+            retrieved_vision = [{"doc_id": candidates[0][2], "page": candidates[0][3]}] if candidates else []
+
+            # ---- prompts ----
+            system = ""
+            prompt_text_only = (
+                'Answer the question based ONLY on the provided context. If the context is insufficient, answer: "Cannot be determined from the given context.".\n\n'
+                f"Context:\n{text_context}\n\n"
+                f"Question: {question}\n"
+                "Answer:"
+            )
+            # vision-only：仍然需要“问题”，但不提供检索到的纯文本
+            # <image> 的占位符由 decoder-only generator 负责插到 Question 之前（并注入 vision tokens）
+            prompt_vision_only = (
+                'Answer the question based ONLY on the image. If the image is insufficient, answer: "Cannot be determined from the given context.".\n\n'
+                f"Question: {question}\n"
+                "Answer:"
+            )
+
+            # ---- 3 routes ----
+            prediction_text_only = gen.generate(system, prompt_text_only)
+            prediction_vision_only = gen.generate(system, prompt_vision_only, vision_tokens=tokens_paths) if tokens_paths else ""
+            prediction_text_plus_vision = gen.generate(system, prompt_text_only, vision_tokens=tokens_paths) if tokens_paths else ""
+
+            f.write(
+                json.dumps(
+                    {
+                        "id": qid,
+                        "question": question,
+                        "text_context": text_context,
+                        "prediction_text_only": prediction_text_only,
+                        "prediction_vision_only": prediction_vision_only,
+                        "prediction_text_plus_vision": prediction_text_plus_vision,
+                        "retrieved_text": retrieved_text,
+                        "retrieved_vision": retrieved_vision,
+                        "vision_tokens_paths": tokens_paths,
+                    },
+                    ensure_ascii=False,
+                )
+                + "\n"
+            )
+
+
 def build_parser():
     p = argparse.ArgumentParser()
     sub = p.add_subparsers(dest="cmd", required=True)
@@ -540,6 +725,17 @@ def build_parser():
     e.add_argument("--out", default="/data/xwh/VisRAG/qa/metrics.json")
     e.add_argument("--log", default=None)
     e.add_argument("--field", default="prediction_text")
+
+    e3 = sub.add_parser("eval_3way")
+    e3.add_argument("--qa", required=True)
+    e3.add_argument("--pred", required=True)
+    e3.add_argument("--out", required=True, help="逐题对比输出 jsonl")
+    e3.add_argument(
+        "--fields",
+        default="prediction_text_only,prediction_vision_only,prediction_text_plus_vision",
+        help="逗号分隔的 prediction 字段列表",
+    )
+    e3.add_argument("--include-text", action="store_true", help="在逐题输出里额外写入 title/doc")
 
     j = sub.add_parser("judge")
     j.add_argument("--qa", required=True)
@@ -576,6 +772,9 @@ def main():
         build_qa(args.dataset_dir, args.out, args.qas_per_page, args.max_pages)
     elif args.cmd == "eval":
         eval_metrics(args.qa, args.pred, args.out, args.log, args.field)
+    elif args.cmd == "eval_3way":
+        fields = [s.strip() for s in (args.fields or "").split(",") if s.strip()]
+        eval_metrics_3way(args.qa, args.pred, args.out, fields=fields, include_text=bool(args.include_text))
     elif args.cmd == "judge":
         llm_judge(args.qa, args.pred, args.out, None, args.log, args.field)
 

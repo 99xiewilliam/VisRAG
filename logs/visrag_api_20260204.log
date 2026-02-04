@@ -1,0 +1,228 @@
+2026-02-04 12:57:16 [INFO] __main__: GET / 404 1.6ms
+2026-02-04 12:57:16 [INFO] __main__: GET / 404 0.6ms
+2026-02-04 12:57:17 [INFO] __main__: GET /favicon.ico 404 0.5ms
+2026-02-04 12:57:17 [INFO] __main__: GET /robots.txt 404 0.6ms
+2026-02-04 13:06:46 [INFO] __main__: POST /api/v1/query/vision 422 8.8ms
+2026-02-04 13:08:43 [INFO] chromadb.telemetry.product.posthog: Anonymized telemetry enabled. See                     https://docs.trychroma.com/telemetry for more information.
+2026-02-04 13:08:43 [INFO] fastapi_app.dao.chroma_dao: ChromaDAO initialized: /home/xwh/VisRAG/output/chroma_db
+2026-02-04 13:12:05 [INFO] chromadb.telemetry.product.posthog: Anonymized telemetry enabled. See                     https://docs.trychroma.com/telemetry for more information.
+2026-02-04 13:12:05 [INFO] fastapi_app.dao.chroma_dao: ChromaDAO initialized: /home/xwh/VisRAG/output/chroma_db
+2026-02-04 13:12:05 [INFO] fastapi_app.service.query_service: Query image collection: vision_pages, top_k=1
+2026-02-04 13:12:06 [INFO] fastapi_app.service.query_service: Query text collection: pdf_bertram-_improved_word_embeddings_have_big_impact_on_contextualized_model_performance_pdf_9, top_k=3
+2026-02-04 13:12:06 [INFO] fastapi_app.service.query_service: Running OCR2 on retrieved page
+2026-02-04 13:13:59 [INFO] chromadb.telemetry.product.posthog: Anonymized telemetry enabled. See                     https://docs.trychroma.com/telemetry for more information.
+2026-02-04 13:14:00 [INFO] fastapi_app.dao.chroma_dao: ChromaDAO initialized: /home/xwh/VisRAG/output/chroma_db
+2026-02-04 13:14:00 [INFO] fastapi_app.service.query_service: Query image collection: vision_pages, top_k=1
+2026-02-04 13:14:00 [INFO] fastapi_app.service.query_service: Query text collection: pdf_bertram-_improved_word_embeddings_have_big_impact_on_contextualized_model_performance_pdf_9, top_k=3
+2026-02-04 13:14:00 [INFO] fastapi_app.service.query_service: Running OCR2 on retrieved page
+2026-02-04 13:14:16 [INFO] fastapi_app.service.ocr_service: Running OCR2 vLLM generation
+2026-02-04 13:14:22 [INFO] fastapi_app.service.query_service: Query completed
+2026-02-04 13:14:22 [INFO] __main__: POST /api/v1/query/vision 200 22492.7ms
+2026-02-04 13:26:02 [INFO] fastapi_app.service.query_service: Query image collection: vision_pages, top_k=1
+2026-02-04 13:26:02 [INFO] fastapi_app.service.query_service: Query text collection: pdf_enriching_bert_with_knowledge_graph_embeddings_for_document_classification_pdf_1, top_k=3
+2026-02-04 13:26:02 [INFO] fastapi_app.service.query_service: Running OCR2 on retrieved page
+2026-02-04 13:26:02 [INFO] fastapi_app.service.ocr_service: Running OCR2 vLLM generation
+2026-02-04 13:26:06 [INFO] fastapi_app.service.query_service: Query completed
+2026-02-04 13:26:06 [INFO] __main__: POST /api/v1/query/vision 200 4117.3ms
+2026-02-04 13:27:19 [INFO] fastapi_app.service.query_service: Query image collection: vision_pages, top_k=1
+2026-02-04 13:27:19 [INFO] fastapi_app.service.query_service: Query text collection: pdf_enriching_bert_with_knowledge_graph_embeddings_for_document_classification_pdf_1, top_k=3
+2026-02-04 13:27:19 [INFO] fastapi_app.service.query_service: Running OCR2 on retrieved page
+2026-02-04 13:27:20 [INFO] fastapi_app.service.ocr_service: Running OCR2 vLLM generation
+2026-02-04 13:27:23 [INFO] fastapi_app.service.query_service: Query completed
+2026-02-04 13:27:23 [INFO] __main__: POST /api/v1/query/vision 200 3972.4ms
+2026-02-04 13:34:54 [INFO] fastapi_app.service.query_service: Query image collection: vision_pages, top_k=1
+2026-02-04 13:34:54 [INFO] fastapi_app.service.query_service: Query text collection: pdf_enriching_bert_with_knowledge_graph_embeddings_for_document_classification_pdf_1, top_k=3
+2026-02-04 13:34:54 [INFO] fastapi_app.service.query_service: Running OCR2 on retrieved page
+2026-02-04 13:34:55 [INFO] fastapi_app.service.ocr_service: Running OCR2 vLLM generation
+2026-02-04 13:34:58 [INFO] fastapi_app.service.query_service: Query completed
+2026-02-04 13:34:58 [INFO] __main__: POST /api/v1/query/vision 200 3988.9ms
+2026-02-04 14:05:14 [INFO] chromadb.telemetry.product.posthog: Anonymized telemetry enabled. See                     https://docs.trychroma.com/telemetry for more information.
+2026-02-04 14:05:15 [INFO] fastapi_app.dao.chroma_dao: ChromaDAO initialized: /home/xwh/VisRAG/output/chroma_db
+2026-02-04 14:05:15 [INFO] fastapi_app.service.query_service: Query image collection: vision_pages, top_k=1
+2026-02-04 14:05:15 [INFO] fastapi_app.service.query_service: Query text collection: pdf_enriching_bert_with_knowledge_graph_embeddings_for_document_classification_pdf_1, top_k=3
+2026-02-04 14:05:15 [INFO] fastapi_app.service.query_service: Running decoder-only QA on retrieved page (vision_tokens)
+2026-02-04 14:05:16 [INFO] src.vision: 初始化 DeepseekEncoder: device=cuda, dtype=torch.float16, model_path=/home/xwh/models/DeepSeek-OCR-2
+2026-02-04 14:06:00 [INFO] src.generator: 加载 decoder-only: /home/xwh/models/DeepSeek-OCR-2
+2026-02-04 14:07:05 [INFO] fastapi_app.service.query_service: Query completed
+2026-02-04 14:07:05 [INFO] __main__: POST /api/v1/query/vision 200 111044.9ms
+2026-02-04 14:11:21 [INFO] fastapi_app.service.query_service: Query image collection: vision_pages, top_k=1
+2026-02-04 14:11:21 [INFO] fastapi_app.service.query_service: Query text collection: pdf_enriching_bert_with_knowledge_graph_embeddings_for_document_classification_pdf_1, top_k=3
+2026-02-04 14:11:21 [INFO] fastapi_app.service.query_service: Running decoder-only QA on retrieved page (vision_tokens)
+2026-02-04 14:11:52 [INFO] chromadb.telemetry.product.posthog: Anonymized telemetry enabled. See                     https://docs.trychroma.com/telemetry for more information.
+2026-02-04 14:11:54 [INFO] fastapi_app.dao.chroma_dao: ChromaDAO initialized: /home/xwh/VisRAG/output/chroma_db
+2026-02-04 14:11:54 [INFO] fastapi_app.service.query_service: Query image collection: vision_pages, top_k=1
+2026-02-04 14:11:54 [INFO] fastapi_app.service.query_service: Query text collection: pdf_enriching_bert_with_knowledge_graph_embeddings_for_document_classification_pdf_1, top_k=3
+2026-02-04 14:11:54 [INFO] fastapi_app.service.query_service: Running decoder-only QA on retrieved page (vision_tokens)
+2026-02-04 14:11:56 [INFO] src.generator: 加载 decoder-only: /home/xwh/models/DeepSeek-OCR-2
+2026-02-04 14:12:47 [INFO] fastapi_app.service.query_service: Query completed
+2026-02-04 14:12:47 [INFO] __main__: POST /api/v1/query/vision 200 55221.1ms
+2026-02-04 15:22:50 [INFO] chromadb.telemetry.product.posthog: Anonymized telemetry enabled. See                     https://docs.trychroma.com/telemetry for more information.
+2026-02-04 15:22:51 [INFO] fastapi_app.dao.chroma_dao: ChromaDAO initialized: /home/xwh/VisRAG/output/chroma_db
+2026-02-04 15:22:51 [INFO] fastapi_app.service.query_service: Query image collection: vision_pages, top_k=1
+2026-02-04 15:22:51 [INFO] fastapi_app.service.query_service: Query text collection: pdf_enriching_bert_with_knowledge_graph_embeddings_for_document_classification_pdf_1, top_k=3
+2026-02-04 15:22:51 [INFO] fastapi_app.service.query_service: Running decoder-only QA on retrieved page (vision_tokens)
+2026-02-04 15:22:52 [INFO] src.generator: 加载 decoder-only: /home/xwh/models/DeepSeek-OCR-2
+2026-02-04 15:23:52 [INFO] fastapi_app.service.query_service: Query completed
+2026-02-04 15:23:52 [INFO] __main__: POST /api/v1/query/vision 200 62041.6ms
+2026-02-04 15:58:05 [INFO] chromadb.telemetry.product.posthog: Anonymized telemetry enabled. See                     https://docs.trychroma.com/telemetry for more information.
+2026-02-04 15:58:05 [INFO] fastapi_app.dao.chroma_dao: ChromaDAO initialized: /home/xwh/VisRAG/output/chroma_db
+2026-02-04 15:58:05 [INFO] fastapi_app.service.query_service: Query image collection: vision_pages, top_k=1
+2026-02-04 15:58:05 [INFO] fastapi_app.service.query_service: Query text collection: pdf_enriching_bert_with_knowledge_graph_embeddings_for_document_classification_pdf_1, top_k=3
+2026-02-04 15:58:05 [INFO] fastapi_app.service.query_service: Running OCR2 on retrieved page (direct)
+2026-02-04 15:58:21 [INFO] fastapi_app.service.ocr_service: Running OCR2 vLLM generation
+2026-02-04 15:58:27 [INFO] fastapi_app.service.query_service: Query completed
+2026-02-04 15:58:27 [INFO] __main__: POST /api/v1/query/vision 200 22271.6ms
+2026-02-04 16:07:57 [INFO] chromadb.telemetry.product.posthog: Anonymized telemetry enabled. See                     https://docs.trychroma.com/telemetry for more information.
+2026-02-04 16:07:57 [INFO] fastapi_app.dao.chroma_dao: ChromaDAO initialized: /home/xwh/VisRAG/output/chroma_db
+2026-02-04 16:07:57 [INFO] fastapi_app.service.query_service: Query image collection: vision_pages, top_k=1
+2026-02-04 16:07:57 [INFO] fastapi_app.service.query_service: Query text collection: pdf_enriching_bert_with_knowledge_graph_embeddings_for_document_classification_pdf_1, top_k=3
+2026-02-04 16:07:58 [INFO] fastapi_app.service.query_service: Running OCR2 on retrieved page (direct)
+2026-02-04 16:08:12 [INFO] fastapi_app.service.ocr_service: Running OCR2 vLLM generation
+2026-02-04 16:08:17 [INFO] fastapi_app.service.query_service: Query completed
+2026-02-04 16:08:17 [INFO] fastapi_app.app: POST /api/v1/query/vision 200 20034.6ms
+2026-02-04 16:51:38 [INFO] chromadb.telemetry.product.posthog: Anonymized telemetry enabled. See                     https://docs.trychroma.com/telemetry for more information.
+2026-02-04 16:51:39 [INFO] fastapi_app.dao.chroma_dao: ChromaDAO initialized: /home/xwh/VisRAG/output/chroma_db
+2026-02-04 16:51:39 [INFO] fastapi_app.service.query_service: Query image collection: vision_pages, top_k=1
+2026-02-04 16:51:39 [INFO] fastapi_app.service.query_service: Query text collection: pdf_enriching_bert_with_knowledge_graph_embeddings_for_document_classification_pdf_1, top_k=3
+2026-02-04 16:51:39 [INFO] fastapi_app.service.query_service: Running OCR2 on retrieved page (direct)
+2026-02-04 16:51:53 [INFO] fastapi_app.service.ocr_service: <image>
+You are a helpful document QA assistant. Use the the content of image and the provided context to answer the question. If the context is insufficient, answer based on the image.
+Question: By how much do they outperform standard BERT in Enriching BERT with Knowledge Graph Embeddings for Document Classification this paper?
+Context:
+Enriching BERT with Knowledge Graph Embeddings for Document
+Classiﬁcation
+Malte Ostendorff1,2, Peter Bourgonje1, Maria Berger1,
+Juli´an Moreno-Schneider1, Georg Rehm1, Bela Gipp2
+1Speech and Language Technology, DFKI GmbH, Germany
+first.last@dfki.de
+2University of Konstanz, Germany
+first.last@uni-konstanz.de
+Abstract
+In this paper we focus on the classiﬁcation
+of books using short descriptive text
+lassiﬁcation
+of books using short descriptive texts (cover
+blurbs) and additional metadata.
+Building
+upon BERT, a deep neural language model, we
+demonstrate how to combine text representa-
+tions with metadata and knowledge graph em-
+beddings, which encode author information.
+Compared to the standard BERT approach we
+achieve considerably better results for the clas-
+siﬁcation task. For a more coars
+meta) data using a state-of-the-
+art approach for text processing. Being a transfer
+learning approach, it facilitates the task solution
+with external knowledge for a setup in which rela-
+tively little training data is available. More pre-
+cisely, we enrich BERT, as our pre-trained text
+representation model, with knowledge graph em-
+beddings that are based on Wikidata (Vrandecic
+and Kr¨otzsch, 2014
+Return the answer in markdown.
+2026-02-04 16:51:53 [INFO] fastapi_app.service.ocr_service: 11111111111
+2026-02-04 16:51:53 [INFO] fastapi_app.service.ocr_service: Running OCR2 vLLM generation
+2026-02-04 16:51:58 [INFO] fastapi_app.service.query_service: Query completed
+2026-02-04 16:51:58 [INFO] fastapi_app.app: POST /api/v1/query/vision 200 19871.3ms
+2026-02-04 17:09:40 [INFO] chromadb.telemetry.product.posthog: Anonymized telemetry enabled. See                     https://docs.trychroma.com/telemetry for more information.
+2026-02-04 17:09:41 [INFO] fastapi_app.dao.chroma_dao: ChromaDAO initialized: /home/xwh/VisRAG/output/chroma_db
+2026-02-04 17:09:41 [INFO] fastapi_app.service.query_service: Query image collection: vision_pages, top_k=1
+2026-02-04 17:09:41 [INFO] fastapi_app.service.query_service: Query text collection: pdf_enriching_bert_with_knowledge_graph_embeddings_for_document_classification_pdf_1, top_k=3
+2026-02-04 17:09:41 [INFO] fastapi_app.service.query_service: Running OCR2 on retrieved page (direct)
+2026-02-04 17:09:55 [INFO] fastapi_app.service.ocr_service: <image>
+You are a helpful document QA assistant. Use the the content of image and the provided context to answer the question. If the context is insufficient, answer based on the image.
+Question: By how much do they outperform standard BERT in Enriching BERT with Knowledge Graph Embeddings for Document Classification this paper?
+Context:
+Enriching BERT with Knowledge Graph Embeddings for Document
+Classiﬁcation
+Malte Ostendorff1,2, Peter Bourgonje1, Maria Berger1,
+Juli´an Moreno-Schneider1, Georg Rehm1, Bela Gipp2
+1Speech and Language Technology, DFKI GmbH, Germany
+first.last@dfki.de
+2University of Konstanz, Germany
+first.last@uni-konstanz.de
+Abstract
+In this paper we focus on the classiﬁcation
+of books using short descriptive text
+lassiﬁcation
+of books using short descriptive texts (cover
+blurbs) and additional metadata.
+Building
+upon BERT, a deep neural language model, we
+demonstrate how to combine text representa-
+tions with metadata and knowledge graph em-
+beddings, which encode author information.
+Compared to the standard BERT approach we
+achieve considerably better results for the clas-
+siﬁcation task. For a more coars
+meta) data using a state-of-the-
+art approach for text processing. Being a transfer
+learning approach, it facilitates the task solution
+with external knowledge for a setup in which rela-
+tively little training data is available. More pre-
+cisely, we enrich BERT, as our pre-trained text
+representation model, with knowledge graph em-
+beddings that are based on Wikidata (Vrandecic
+and Kr¨otzsch, 2014
+Return the answer in markdown.
+2026-02-04 17:09:55 [INFO] fastapi_app.service.ocr_service: 11111111111
+2026-02-04 17:09:55 [INFO] fastapi_app.service.ocr_service: Running OCR2 vLLM generation
+2026-02-04 17:09:57 [INFO] fastapi_app.service.query_service: Query completed
+2026-02-04 17:09:57 [INFO] fastapi_app.app: POST /api/v1/query/vision 200 16981.9ms
+2026-02-04 19:09:14 [INFO] chromadb.telemetry.product.posthog: Anonymized telemetry enabled. See                     https://docs.trychroma.com/telemetry for more information.
+2026-02-04 19:09:14 [INFO] fastapi_app.dao.chroma_dao: ChromaDAO initialized: /home/xwh/VisRAG/output/chroma_db
+2026-02-04 19:09:14 [INFO] fastapi_app.service.query_service: Query image collection: vision_pages, top_k=1
+2026-02-04 19:09:14 [INFO] fastapi_app.service.query_service: Query text collection: pdf_enriching_bert_with_knowledge_graph_embeddings_for_document_classification_pdf_1, top_k=3
+2026-02-04 19:09:14 [INFO] fastapi_app.service.query_service: Running OCR2 on retrieved page (direct)
+2026-02-04 19:09:29 [INFO] fastapi_app.service.ocr_service: Running OCR2 HF infer()
+2026-02-04 19:09:30 [INFO] fastapi_app.service.query_service: Query completed
+2026-02-04 19:09:30 [INFO] fastapi_app.app: POST /api/v1/query/vision 200 16359.8ms
+2026-02-04 19:13:45 [INFO] chromadb.telemetry.product.posthog: Anonymized telemetry enabled. See                     https://docs.trychroma.com/telemetry for more information.
+2026-02-04 19:13:45 [INFO] fastapi_app.dao.chroma_dao: ChromaDAO initialized: /home/xwh/VisRAG/output/chroma_db
+2026-02-04 19:13:46 [INFO] fastapi_app.service.query_service: Query image collection: vision_pages, top_k=1
+2026-02-04 19:13:46 [INFO] fastapi_app.service.query_service: Query text collection: pdf_enriching_bert_with_knowledge_graph_embeddings_for_document_classification_pdf_1, top_k=3
+2026-02-04 19:13:46 [INFO] fastapi_app.service.query_service: Running OCR2 on retrieved page (direct)
+2026-02-04 19:14:00 [INFO] fastapi_app.service.ocr_service: Running OCR2 HF infer()
+2026-02-04 19:14:01 [INFO] fastapi_app.service.query_service: Query completed
+2026-02-04 19:14:01 [INFO] fastapi_app.app: POST /api/v1/query/vision 200 16054.1ms
+2026-02-04 19:15:51 [INFO] chromadb.telemetry.product.posthog: Anonymized telemetry enabled. See                     https://docs.trychroma.com/telemetry for more information.
+2026-02-04 19:15:51 [INFO] fastapi_app.dao.chroma_dao: ChromaDAO initialized: /home/xwh/VisRAG/output/chroma_db
+2026-02-04 19:15:51 [INFO] fastapi_app.service.query_service: Query image collection: vision_pages, top_k=1
+2026-02-04 19:15:51 [INFO] fastapi_app.service.query_service: Query text collection: pdf_enriching_bert_with_knowledge_graph_embeddings_for_document_classification_pdf_1, top_k=3
+2026-02-04 19:15:51 [INFO] fastapi_app.service.query_service: Running OCR2 on retrieved page (direct)
+2026-02-04 19:16:05 [INFO] fastapi_app.service.ocr_service: Running OCR2 HF infer()
+2026-02-04 19:16:06 [INFO] fastapi_app.service.query_service: Query completed
+2026-02-04 19:16:06 [INFO] fastapi_app.app: POST /api/v1/query/vision 200 15121.7ms
+2026-02-04 19:18:52 [INFO] chromadb.telemetry.product.posthog: Anonymized telemetry enabled. See                     https://docs.trychroma.com/telemetry for more information.
+2026-02-04 19:18:52 [INFO] fastapi_app.dao.chroma_dao: ChromaDAO initialized: /home/xwh/VisRAG/output/chroma_db
+2026-02-04 19:18:53 [INFO] fastapi_app.service.query_service: Query image collection: vision_pages, top_k=1
+2026-02-04 19:18:53 [INFO] fastapi_app.service.query_service: Query text collection: pdf_enriching_bert_with_knowledge_graph_embeddings_for_document_classification_pdf_1, top_k=3
+2026-02-04 19:18:53 [INFO] fastapi_app.service.query_service: Running OCR2 on retrieved page (direct)
+2026-02-04 19:19:05 [INFO] fastapi_app.service.ocr_service: Running OCR2 HF infer()
+2026-02-04 19:19:10 [INFO] fastapi_app.service.query_service: Query completed
+2026-02-04 19:19:10 [INFO] fastapi_app.app: POST /api/v1/query/vision 200 17530.1ms
+2026-02-04 19:21:22 [INFO] chromadb.telemetry.product.posthog: Anonymized telemetry enabled. See                     https://docs.trychroma.com/telemetry for more information.
+2026-02-04 19:21:22 [INFO] fastapi_app.dao.chroma_dao: ChromaDAO initialized: /home/xwh/VisRAG/output/chroma_db
+2026-02-04 19:21:23 [INFO] fastapi_app.service.query_service: Query image collection: vision_pages, top_k=1
+2026-02-04 19:21:23 [INFO] fastapi_app.service.query_service: Query text collection: pdf_enriching_bert_with_knowledge_graph_embeddings_for_document_classification_pdf_1, top_k=3
+2026-02-04 19:21:23 [INFO] fastapi_app.service.query_service: Running OCR2 on retrieved page (direct)
+2026-02-04 19:21:37 [ERROR] fastapi_app.service.query_service: OCR2 failed
+Traceback (most recent call last):
+  File "/home/xwh/VisRAG/fastapi_app/service/query_service.py", line 240, in query
+    ocr_text = self.ocr.run(
+               ^^^^^^^^^^^^^
+  File "/home/xwh/VisRAG/fastapi_app/service/ocr_service.py", line 93, in run
+    "image": self._processor.tokenize_with_images(
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+TypeError: DeepseekOCR2Processor.tokenize_with_images() got an unexpected keyword argument 'conversation'
+2026-02-04 19:21:37 [INFO] fastapi_app.service.query_service: Query completed
+2026-02-04 19:21:37 [INFO] fastapi_app.app: POST /api/v1/query/vision 200 14602.9ms
+2026-02-04 19:24:03 [INFO] chromadb.telemetry.product.posthog: Anonymized telemetry enabled. See                     https://docs.trychroma.com/telemetry for more information.
+2026-02-04 19:24:03 [INFO] fastapi_app.dao.chroma_dao: ChromaDAO initialized: /home/xwh/VisRAG/output/chroma_db
+2026-02-04 19:24:03 [INFO] fastapi_app.service.query_service: Query image collection: vision_pages, top_k=1
+2026-02-04 19:24:04 [INFO] fastapi_app.service.query_service: Query text collection: pdf_enriching_bert_with_knowledge_graph_embeddings_for_document_classification_pdf_1, top_k=3
+2026-02-04 19:24:04 [INFO] fastapi_app.service.query_service: Running OCR2 on retrieved page (direct)
+2026-02-04 19:24:18 [INFO] fastapi_app.service.ocr_service: Running OCR2 vLLM generation
+2026-02-04 19:24:21 [INFO] fastapi_app.service.query_service: Query completed
+2026-02-04 19:24:21 [INFO] fastapi_app.app: POST /api/v1/query/vision 200 17527.2ms

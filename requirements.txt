@@ -10,6 +10,15 @@ nltk
 pyyaml
 addict
 safetensors
+fastapi
+uvicorn
+python-multipart
+img2pdf
+tqdm
+vllm
+
+# Optional (recommended for Qwen3-VL image resize parity):
+# qwen-vl-utils
 
 # 可选：使用 OpenAI API 时需要
 # openai

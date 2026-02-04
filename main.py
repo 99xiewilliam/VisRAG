@@ -1,5 +1,6 @@
 import argparse
 import os
+import re
 import sys
 
 # 加载配置
@@ -27,7 +28,7 @@ else:
     logger.info("使用默认配置")
 
 from src.pipeline import VisRAGPipeline
-from qa_pipeline import build_qa, eval_metrics, llm_judge, rag_predict
+from qa_pipeline import build_qa, eval_metrics, llm_judge, rag_predict, rag_predict_3way
 from src.generator import create_generator
 
 
@@ -74,12 +75,24 @@ def build_parser():
     j.add_argument("--out", default="/data/xwh/VisRAG/qa/judge.jsonl")
     j.add_argument("--log", default=None)
 
+    # 新增：给 QA jsonl 补齐 id 字段（用于评测对齐）
+    qa_fix = sub.add_parser("qa_add_ids")
+    qa_fix.add_argument("--in", dest="in_path", required=True, help="输入 QA jsonl（可无 id）")
+    qa_fix.add_argument("--out", dest="out_path", required=True, help="输出 QA jsonl（补齐 id）")
+
     # 新增：RAG 推理（同时输出 text-only 与 vision+text）
     rp = sub.add_parser("rag_predict")
     rp.add_argument("--qa", required=True, help="QA jsonl 路径（需包含 id/question/answer 等字段）")
     rp.add_argument("--out", required=True, help="输出预测 jsonl 路径")
     rp.add_argument("--top-k", type=int, default=3)
     rp.add_argument("--max-context-chars", type=int, default=6000)
+
+    # 新增：RAG 三路对比（vision-only / text-only / text+vision）
+    rp3 = sub.add_parser("rag_predict_3way")
+    rp3.add_argument("--qa", required=True, help="QA jsonl 路径（需包含 id/question/answer 等字段）")
+    rp3.add_argument("--out", required=True, help="输出预测 jsonl 路径")
+    rp3.add_argument("--top-k", type=int, default=3)
+    rp3.add_argument("--max-context-chars", type=int, default=6000)
     
     # 新增：直接测试 Generator
     tg = sub.add_parser("test_generator")
@@ -88,6 +101,43 @@ def build_parser():
     tg.add_argument("--max-tokens", type=int, default=512)
     
     return p
+
+
+def _slug(s: str) -> str:
+    s = (s or "").strip().lower()
+    s = re.sub(r"\s+", "_", s)
+    s = re.sub(r"[^a-z0-9_\\-]+", "_", s)
+    s = re.sub(r"_+", "_", s).strip("_")
+    return s[:80] if s else "item"
+
+
+def _qa_add_ids(in_path: str, out_path: str):
+    """
+    为没有 id 的 QA jsonl 补齐 id：
+    - 优先使用 title/doc 字段做前缀
+    - 追加行号，保证唯一性
+    """
+    os.makedirs(os.path.dirname(out_path), exist_ok=True)
+    n = 0
+    with open(in_path, "r", encoding="utf-8") as fin, open(out_path, "w", encoding="utf-8") as fout:
+        for idx, line in enumerate(fin):
+            line = line.strip()
+            if not line:
+                continue
+            item = None
+            try:
+                import json
+                item = json.loads(line)
+            except Exception:
+                continue
+            if not isinstance(item, dict):
+                continue
+            if "id" not in item or not str(item.get("id") or "").strip():
+                prefix = _slug(item.get("title") or item.get("doc") or "qa")
+                item["id"] = f"{prefix}_{idx}"
+            fout.write(__import__("json").dumps(item, ensure_ascii=False) + "\n")
+            n += 1
+    logger.info(f"qa_add_ids 完成: {n} 条 -> {out_path}")
 
 
 def main():
@@ -141,8 +191,20 @@ def main():
         llm_judge(args.qa, args.pred, args.out, None, args.log)
         llm_judge(args.qa, args.pred, args.out)
 
+    elif args.cmd == "qa_add_ids":
+        _qa_add_ids(args.in_path, args.out_path)
+
     elif args.cmd == "rag_predict":
         rag_predict(
+            qa_path=args.qa,
+            out_path=args.out,
+            persist_dir=persist_dir,
+            top_k=args.top_k,
+            max_context_chars=args.max_context_chars,
+        )
+
+    elif args.cmd == "rag_predict_3way":
+        rag_predict_3way(
             qa_path=args.qa,
             out_path=args.out,
             persist_dir=persist_dir,

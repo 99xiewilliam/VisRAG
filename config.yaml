@@ -84,6 +84,8 @@ vision:
 
 # ==================== 日志配置 ====================
 logging:
+  # 是否开启日志（API 使用）
+  enabled: true
   # 日志级别: DEBUG, INFO, WARNING, ERROR
   level: "INFO"
   
@@ -98,3 +100,63 @@ logging:
   
   # 是否在日志中显示函数名和行号（调试用）
   show_location: false
+
+# ==================== FastAPI 配置 ====================
+api:
+  host: "0.0.0.0"
+  port: 8000
+  cors_origins: ["*"]
+  log_requests: true
+
+# ==================== 检索配置 ====================
+retrieval:
+  image_top_k: 1
+  text_top_k: 3
+
+# ==================== Query 强化（可选）====================
+# 用 OpenAI 兼容接口（如智增增）把 query 关键字抽取/重复，提升检索召回。
+query_enhance:
+  enabled: true
+  max_tokens: 80
+  temperature: 0.0
+  openai:
+    api_key: null              # 或用环境变量 OPENAI_API_KEY
+    base_url: "https://api.zhizengzeng.com/v1"   # 或用环境变量 OPENAI_BASE_URL
+    model: "gpt-4o-mini"
+    timeout: 20
+
+# ==================== 索引配置 ====================
+indexing:
+  default_image_collection: "vision_pages"
+  default_text_collection: "default_texts"
+  text_collection_prefix: "pdf"
+  chunk_size: 400
+  chunk_overlap: 50
+  persist_dir: "./output/chroma_db"
+  assets_dir: "./output/api_assets"
+
+# ==================== Qwen VL Embedding 配置 ====================
+vl_embedding:
+  model_path: "/home/xwh/models/Qwen3-VL-Embedding-2B"
+  device: "auto"
+  dtype: "bfloat16"
+  batch_size: 8
+  max_length: 32768  # Qwen3-VL-Embedding-2B supports up to 32k context length
+  embedding_dim: null  # null = use model default (up to 2048), or set 64-2048 for custom dimension
+  # Optional: remote embedding service (e.g., vLLM FastAPI)
+  service_url: "http://127.0.0.1:9002"  # e.g., "http://127.0.0.1:9001"
+  service_timeout: 60
+
+# ==================== OCR 配置 ====================
+ocr:
+  model_path: "/home/xwh/models/DeepSeek-OCR-2"
+  vllm_code_dir: "/home/xwh/DeepSeek-OCR-2/DeepSeek-OCR2-master/DeepSeek-OCR2-vllm"  # 必须：deepseek_ocr2 / process 所在目录
+  # HF infer() 参数（推荐）
+  base_size: 1024
+  image_size: 768
+  crop_mode: true
+  save_results: false
+  output_dir: null  # null -> ./output/api_assets/ocr_infer
+  # Optional: Custom prompt template. Use {question} and {context} as placeholders.
+  # If not set, uses default English QA template.
+  # prompt_template: "<image>\n<|grounding|>Convert the document to markdown.\n\nQuestion: {question}\nContext: {context}"

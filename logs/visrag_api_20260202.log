@@ -1,0 +1,256 @@
+2026-02-02 21:11:54 [INFO] chromadb.telemetry.product.posthog: Anonymized telemetry enabled. See                     https://docs.trychroma.com/telemetry for more information.
+2026-02-02 21:11:54 [INFO] fastapi_app.dao.chroma_dao: ChromaDAO initialized: /home/xwh/VisRAG/output/chroma_db
+2026-02-02 21:11:56 [INFO] __main__: Found 1 PDFs under /home/xwh/VisRAG/dataset
+2026-02-02 21:11:56 [INFO] __main__: [1/1] Indexing /home/xwh/VisRAG/dataset/A simple discriminative training method for machine translation with large-scale features.pdf
+2026-02-02 21:11:56 [INFO] fastapi_app.service.index_service: Indexing PDF: a_simple_discriminative_training_method_for_machine_translation_with_large-scale_features -> /home/xwh/VisRAG/dataset/A simple discriminative training method for machine translation with large-scale features.pdf
+2026-02-02 21:11:57 [INFO] fastapi_app.service.index_service: PDF pages: 7; images: 7
+2026-02-02 21:11:57 [ERROR] __main__: Failed indexing: /home/xwh/VisRAG/dataset/A simple discriminative training method for machine translation with large-scale features.pdf
+Traceback (most recent call last):
+  File "/home/xwh/VisRAG/scripts/index_dataset_api.py", line 44, in main
+    service.index_pdf(pdf_path)
+  File "/home/xwh/VisRAG/fastapi_app/service/index_service.py", line 118, in index_pdf
+    vec = self.embedder.embed_images([image])[0]
+          ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/xwh/VisRAG/fastapi_app/service/embedding_service.py", line 256, in embed_images
+    return self._impl.embed_images(images)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/xwh/VisRAG/fastapi_app/service/embedding_service.py", line 105, in embed_images
+    out.extend(self._embed_requests(reqs))
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/xwh/VisRAG/fastapi_app/service/embedding_service.py", line 72, in _embed_requests
+    self._lazy_init()
+  File "/home/xwh/VisRAG/fastapi_app/service/embedding_service.py", line 52, in _lazy_init
+    engine_args = EngineArgs(
+                  ^^^^^^^^^^^
+TypeError: EngineArgs.__init__() got an unexpected keyword argument 'runner'
+2026-02-02 21:17:52 [INFO] chromadb.telemetry.product.posthog: Anonymized telemetry enabled. See                     https://docs.trychroma.com/telemetry for more information.
+2026-02-02 21:17:52 [INFO] fastapi_app.dao.chroma_dao: ChromaDAO initialized: /home/xwh/VisRAG/output/chroma_db
+2026-02-02 21:17:54 [INFO] __main__: Found 1 PDFs under /home/xwh/VisRAG/dataset
+2026-02-02 21:17:54 [INFO] __main__: [1/1] Indexing /home/xwh/VisRAG/dataset/A simple discriminative training method for machine translation with large-scale features.pdf
+2026-02-02 21:17:54 [INFO] fastapi_app.service.index_service: Indexing PDF: a_simple_discriminative_training_method_for_machine_translation_with_large-scale_features -> /home/xwh/VisRAG/dataset/A simple discriminative training method for machine translation with large-scale features.pdf
+2026-02-02 21:17:54 [INFO] fastapi_app.service.index_service: PDF pages: 7; images: 7
+2026-02-02 21:17:54 [ERROR] __main__: Failed indexing: /home/xwh/VisRAG/dataset/A simple discriminative training method for machine translation with large-scale features.pdf
+Traceback (most recent call last):
+  File "/home/xwh/.conda/envs/deepseek-ocr/lib/python3.12/site-packages/vllm/transformers_utils/config.py", line 275, in get_config
+    if is_gguf or file_or_path_exists(
+                  ^^^^^^^^^^^^^^^^^^^^
+  File "/home/xwh/.conda/envs/deepseek-ocr/lib/python3.12/site-packages/vllm/transformers_utils/config.py", line 169, in file_or_path_exists
+    cached_filepath = try_to_load_from_cache(repo_id=model,
+                      ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/xwh/.conda/envs/deepseek-ocr/lib/python3.12/site-packages/huggingface_hub/utils/_validators.py", line 106, in _inner_fn
+    validate_repo_id(arg_value)
+  File "/home/xwh/.conda/envs/deepseek-ocr/lib/python3.12/site-packages/huggingface_hub/utils/_validators.py", line 154, in validate_repo_id
+    raise HFValidationError(
+huggingface_hub.errors.HFValidationError: Repo id must be in the form 'repo_name' or 'namespace/repo_name': '/data/xwh/models/Qwen3-VL-Embedding-2B'. Use `repo_type` argument if needed.
+
+The above exception was the direct cause of the following exception:
+
+Traceback (most recent call last):
+  File "/home/xwh/VisRAG/scripts/index_dataset_api.py", line 44, in main
+    service.index_pdf(pdf_path)
+  File "/home/xwh/VisRAG/fastapi_app/service/index_service.py", line 118, in index_pdf
+    vec = self.embedder.embed_images([image])[0]
+          ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/xwh/VisRAG/fastapi_app/service/embedding_service.py", line 257, in embed_images
+    return self._impl.embed_images(images)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/xwh/VisRAG/fastapi_app/service/embedding_service.py", line 106, in embed_images
+    out.extend(self._embed_requests(reqs))
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/xwh/VisRAG/fastapi_app/service/embedding_service.py", line 73, in _embed_requests
+    self._lazy_init()
+  File "/home/xwh/VisRAG/fastapi_app/service/embedding_service.py", line 61, in _lazy_init
+    self._llm = LLM(**vars(engine_args))
+                ^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/xwh/.conda/envs/deepseek-ocr/lib/python3.12/site-packages/vllm/utils.py", line 1161, in inner
+    return fn(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^
+  File "/home/xwh/.conda/envs/deepseek-ocr/lib/python3.12/site-packages/vllm/entrypoints/llm.py", line 247, in __init__
+    self.llm_engine = LLMEngine.from_engine_args(
+                      ^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/xwh/.conda/envs/deepseek-ocr/lib/python3.12/site-packages/vllm/engine/llm_engine.py", line 503, in from_engine_args
+    vllm_config = engine_args.create_engine_config(usage_context)
+                  ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/xwh/.conda/envs/deepseek-ocr/lib/python3.12/site-packages/vllm/engine/arg_utils.py", line 1099, in create_engine_config
+    model_config = self.create_model_config()
+                   ^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/xwh/.conda/envs/deepseek-ocr/lib/python3.12/site-packages/vllm/engine/arg_utils.py", line 987, in create_model_config
+    return ModelConfig(
+           ^^^^^^^^^^^^
+  File "/home/xwh/.conda/envs/deepseek-ocr/lib/python3.12/site-packages/vllm/config.py", line 451, in __init__
+    hf_config = get_config(self.hf_config_path or self.model,
+                ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/xwh/.conda/envs/deepseek-ocr/lib/python3.12/site-packages/vllm/transformers_utils/config.py", line 300, in get_config
+    raise ValueError(error_message) from e
+ValueError: Invalid repository ID or local directory specified: '/data/xwh/models/Qwen3-VL-Embedding-2B'.
+Please verify the following requirements:
+1. Provide a valid Hugging Face repository ID.
+2. Specify a local directory that contains a recognized configuration file.
+   - For Hugging Face models: ensure the presence of a 'config.json'.
+   - For Mistral models: ensure the presence of a 'params.json'.
+
+2026-02-02 21:21:12 [INFO] chromadb.telemetry.product.posthog: Anonymized telemetry enabled. See                     https://docs.trychroma.com/telemetry for more information.
+2026-02-02 21:21:12 [INFO] fastapi_app.dao.chroma_dao: ChromaDAO initialized: /home/xwh/VisRAG/output/chroma_db
+2026-02-02 21:21:13 [INFO] __main__: Found 1 PDFs under /home/xwh/VisRAG/dataset
+2026-02-02 21:21:13 [INFO] __main__: [1/1] Indexing /home/xwh/VisRAG/dataset/A simple discriminative training method for machine translation with large-scale features.pdf
+2026-02-02 21:21:13 [INFO] fastapi_app.service.index_service: Indexing PDF: a_simple_discriminative_training_method_for_machine_translation_with_large-scale_features -> /home/xwh/VisRAG/dataset/A simple discriminative training method for machine translation with large-scale features.pdf
+2026-02-02 21:21:14 [INFO] fastapi_app.service.index_service: PDF pages: 7; images: 7
+2026-02-02 21:21:14 [ERROR] __main__: Failed indexing: /home/xwh/VisRAG/dataset/A simple discriminative training method for machine translation with large-scale features.pdf
+Traceback (most recent call last):
+  File "/home/xwh/.conda/envs/deepseek-ocr/lib/python3.12/site-packages/transformers/models/auto/configuration_auto.py", line 1034, in from_pretrained
+    config_class = CONFIG_MAPPING[config_dict["model_type"]]
+                   ~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/xwh/.conda/envs/deepseek-ocr/lib/python3.12/site-packages/transformers/models/auto/configuration_auto.py", line 736, in __getitem__
+    raise KeyError(key)
+KeyError: 'qwen3_vl'
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/home/xwh/VisRAG/scripts/index_dataset_api.py", line 44, in main
+    service.index_pdf(pdf_path)
+  File "/home/xwh/VisRAG/fastapi_app/service/index_service.py", line 118, in index_pdf
+    vec = self.embedder.embed_images([image])[0]
+          ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/xwh/VisRAG/fastapi_app/service/embedding_service.py", line 257, in embed_images
+    return self._impl.embed_images(images)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/xwh/VisRAG/fastapi_app/service/embedding_service.py", line 106, in embed_images
+    out.extend(self._embed_requests(reqs))
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/xwh/VisRAG/fastapi_app/service/embedding_service.py", line 73, in _embed_requests
+    self._lazy_init()
+  File "/home/xwh/VisRAG/fastapi_app/service/embedding_service.py", line 61, in _lazy_init
+    self._llm = LLM(**vars(engine_args))
+                ^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/xwh/.conda/envs/deepseek-ocr/lib/python3.12/site-packages/vllm/utils.py", line 1161, in inner
+    return fn(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^
+  File "/home/xwh/.conda/envs/deepseek-ocr/lib/python3.12/site-packages/vllm/entrypoints/llm.py", line 247, in __init__
+    self.llm_engine = LLMEngine.from_engine_args(
+                      ^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/xwh/.conda/envs/deepseek-ocr/lib/python3.12/site-packages/vllm/engine/llm_engine.py", line 503, in from_engine_args
+    vllm_config = engine_args.create_engine_config(usage_context)
+                  ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/xwh/.conda/envs/deepseek-ocr/lib/python3.12/site-packages/vllm/engine/arg_utils.py", line 1099, in create_engine_config
+    model_config = self.create_model_config()
+                   ^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/xwh/.conda/envs/deepseek-ocr/lib/python3.12/site-packages/vllm/engine/arg_utils.py", line 987, in create_model_config
+    return ModelConfig(
+           ^^^^^^^^^^^^
+  File "/home/xwh/.conda/envs/deepseek-ocr/lib/python3.12/site-packages/vllm/config.py", line 451, in __init__
+    hf_config = get_config(self.hf_config_path or self.model,
+                ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/xwh/.conda/envs/deepseek-ocr/lib/python3.12/site-packages/vllm/transformers_utils/config.py", line 344, in get_config
+    raise e
+  File "/home/xwh/.conda/envs/deepseek-ocr/lib/python3.12/site-packages/vllm/transformers_utils/config.py", line 324, in get_config
+    config = AutoConfig.from_pretrained(
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/xwh/.conda/envs/deepseek-ocr/lib/python3.12/site-packages/transformers/models/auto/configuration_auto.py", line 1036, in from_pretrained
+    raise ValueError(
+ValueError: The checkpoint you are trying to load has model type `qwen3_vl` but Transformers does not recognize this architecture. This could be because of an issue with the checkpoint, or because your version of Transformers is out of date.
+2026-02-02 21:26:05 [INFO] chromadb.telemetry.product.posthog: Anonymized telemetry enabled. See                     https://docs.trychroma.com/telemetry for more information.
+2026-02-02 21:26:05 [INFO] fastapi_app.dao.chroma_dao: ChromaDAO initialized: /home/xwh/VisRAG/output/chroma_db
+2026-02-02 21:26:07 [INFO] __main__: Found 1 PDFs under /home/xwh/VisRAG/dataset
+2026-02-02 21:26:07 [INFO] __main__: [1/1] Indexing /home/xwh/VisRAG/dataset/A simple discriminative training method for machine translation with large-scale features.pdf
+2026-02-02 21:26:07 [INFO] fastapi_app.service.index_service: Indexing PDF: a_simple_discriminative_training_method_for_machine_translation_with_large-scale_features -> /home/xwh/VisRAG/dataset/A simple discriminative training method for machine translation with large-scale features.pdf
+2026-02-02 21:26:08 [INFO] fastapi_app.service.index_service: PDF pages: 7; images: 7
+2026-02-02 21:26:08 [ERROR] __main__: Failed indexing: /home/xwh/VisRAG/dataset/A simple discriminative training method for machine translation with large-scale features.pdf
+Traceback (most recent call last):
+  File "/home/xwh/.conda/envs/deepseek-ocr/lib/python3.12/site-packages/transformers/models/auto/configuration_auto.py", line 1034, in from_pretrained
+    config_class = CONFIG_MAPPING[config_dict["model_type"]]
+                   ~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/xwh/.conda/envs/deepseek-ocr/lib/python3.12/site-packages/transformers/models/auto/configuration_auto.py", line 736, in __getitem__
+    raise KeyError(key)
+KeyError: 'qwen3_vl'
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/home/xwh/VisRAG/scripts/index_dataset_api.py", line 44, in main
+    service.index_pdf(pdf_path)
+  File "/home/xwh/VisRAG/fastapi_app/service/index_service.py", line 118, in index_pdf
+    vec = self.embedder.embed_images([image])[0]
+          ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/xwh/VisRAG/fastapi_app/service/embedding_service.py", line 257, in embed_images
+    return self._impl.embed_images(images)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/xwh/VisRAG/fastapi_app/service/embedding_service.py", line 106, in embed_images
+    out.extend(self._embed_requests(reqs))
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/xwh/VisRAG/fastapi_app/service/embedding_service.py", line 73, in _embed_requests
+    self._lazy_init()
+  File "/home/xwh/VisRAG/fastapi_app/service/embedding_service.py", line 61, in _lazy_init
+    self._llm = LLM(**vars(engine_args))
+                ^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/xwh/.conda/envs/deepseek-ocr/lib/python3.12/site-packages/vllm/utils.py", line 1161, in inner
+    return fn(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^
+  File "/home/xwh/.conda/envs/deepseek-ocr/lib/python3.12/site-packages/vllm/entrypoints/llm.py", line 247, in __init__
+    self.llm_engine = LLMEngine.from_engine_args(
+                      ^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/xwh/.conda/envs/deepseek-ocr/lib/python3.12/site-packages/vllm/engine/llm_engine.py", line 503, in from_engine_args
+    vllm_config = engine_args.create_engine_config(usage_context)
+                  ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/xwh/.conda/envs/deepseek-ocr/lib/python3.12/site-packages/vllm/engine/arg_utils.py", line 1099, in create_engine_config
+    model_config = self.create_model_config()
+                   ^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/xwh/.conda/envs/deepseek-ocr/lib/python3.12/site-packages/vllm/engine/arg_utils.py", line 987, in create_model_config
+    return ModelConfig(
+           ^^^^^^^^^^^^
+  File "/home/xwh/.conda/envs/deepseek-ocr/lib/python3.12/site-packages/vllm/config.py", line 451, in __init__
+    hf_config = get_config(self.hf_config_path or self.model,
+                ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/xwh/.conda/envs/deepseek-ocr/lib/python3.12/site-packages/vllm/transformers_utils/config.py", line 344, in get_config
+    raise e
+  File "/home/xwh/.conda/envs/deepseek-ocr/lib/python3.12/site-packages/vllm/transformers_utils/config.py", line 324, in get_config
+    config = AutoConfig.from_pretrained(
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/xwh/.conda/envs/deepseek-ocr/lib/python3.12/site-packages/transformers/models/auto/configuration_auto.py", line 1036, in from_pretrained
+    raise ValueError(
+ValueError: The checkpoint you are trying to load has model type `qwen3_vl` but Transformers does not recognize this architecture. This could be because of an issue with the checkpoint, or because your version of Transformers is out of date.
+2026-02-02 21:33:01 [INFO] chromadb.telemetry.product.posthog: Anonymized telemetry enabled. See                     https://docs.trychroma.com/telemetry for more information.
+2026-02-02 21:33:01 [INFO] fastapi_app.dao.chroma_dao: ChromaDAO initialized: /home/xwh/VisRAG/output/chroma_db
+2026-02-02 21:33:03 [INFO] __main__: Found 1 PDFs under /home/xwh/VisRAG/dataset
+2026-02-02 21:33:03 [INFO] __main__: [1/1] Indexing /home/xwh/VisRAG/dataset/A simple discriminative training method for machine translation with large-scale features.pdf
+2026-02-02 21:33:03 [INFO] fastapi_app.service.index_service: Indexing PDF: a_simple_discriminative_training_method_for_machine_translation_with_large-scale_features -> /home/xwh/VisRAG/dataset/A simple discriminative training method for machine translation with large-scale features.pdf
+2026-02-02 21:33:03 [INFO] fastapi_app.service.index_service: PDF pages: 7; images: 7
+2026-02-02 21:33:13 [ERROR] __main__: Failed indexing: /home/xwh/VisRAG/dataset/A simple discriminative training method for machine translation with large-scale features.pdf
+Traceback (most recent call last):
+  File "/home/xwh/VisRAG/scripts/index_dataset_api.py", line 44, in main
+    service.index_pdf(pdf_path)
+  File "/home/xwh/VisRAG/fastapi_app/service/index_service.py", line 118, in index_pdf
+    vec = self.embedder.embed_images([image])[0]
+          ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/xwh/VisRAG/fastapi_app/service/embedding_service.py", line 257, in embed_images
+    return self._impl.embed_images(images)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/xwh/VisRAG/fastapi_app/service/embedding_service.py", line 106, in embed_images
+    out.extend(self._embed_requests(reqs))
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/xwh/VisRAG/fastapi_app/service/embedding_service.py", line 73, in _embed_requests
+    self._lazy_init()
+  File "/home/xwh/VisRAG/fastapi_app/service/embedding_service.py", line 61, in _lazy_init
+    self._llm = LLM(**vars(engine_args))
+                ^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/xwh/.conda/envs/deepseek-ocr/lib/python3.12/site-packages/vllm/utils.py", line 1161, in inner
+    return fn(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^
+  File "/home/xwh/.conda/envs/deepseek-ocr/lib/python3.12/site-packages/vllm/entrypoints/llm.py", line 247, in __init__
+    self.llm_engine = LLMEngine.from_engine_args(
+                      ^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/xwh/.conda/envs/deepseek-ocr/lib/python3.12/site-packages/vllm/engine/llm_engine.py", line 503, in from_engine_args
+    vllm_config = engine_args.create_engine_config(usage_context)
+                  ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/xwh/.conda/envs/deepseek-ocr/lib/python3.12/site-packages/vllm/engine/arg_utils.py", line 1099, in create_engine_config
+    model_config = self.create_model_config()
+                   ^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/xwh/.conda/envs/deepseek-ocr/lib/python3.12/site-packages/vllm/engine/arg_utils.py", line 987, in create_model_config
+    return ModelConfig(
+           ^^^^^^^^^^^^
+  File "/home/xwh/.conda/envs/deepseek-ocr/lib/python3.12/site-packages/vllm/config.py", line 517, in __init__
+    self.multimodal_config = self._init_multimodal_config(
+                             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/xwh/.conda/envs/deepseek-ocr/lib/python3.12/site-packages/vllm/config.py", line 590, in _init_multimodal_config
+    raise ValueError("`limit_mm_per_prompt` is only supported for "
+ValueError: `limit_mm_per_prompt` is only supported for multimodal models.

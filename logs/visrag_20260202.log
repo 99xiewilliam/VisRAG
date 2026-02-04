@@ -1,0 +1,114 @@
+2026-02-02 10:21:08 [[32mINFO[0m] root: 日志文件: logs/visrag_20260202.log
+2026-02-02 10:21:08 [[32mINFO[0m] __main__: 使用配置文件: /home/xwh/VisRAG/config.yaml
+2026-02-02 10:21:10 [[32mINFO[0m] __main__: Generator backend: decoder_only
+2026-02-02 10:21:10 [[32mINFO[0m] __main__: 检测到嵌套 chroma_db，使用: /home/xwh/VisRAG/output_reindex_1536/chroma_db
+2026-02-02 10:21:10 [[32mINFO[0m] chromadb.telemetry.product.posthog: Anonymized telemetry enabled. See                     https://docs.trychroma.com/telemetry for more information.
+2026-02-02 10:21:11 [[32mINFO[0m] src.store: ChromaStore 初始化完成: /home/xwh/VisRAG/output_reindex_1536/chroma_db
+2026-02-02 10:21:11 [[32mINFO[0m] src.embedder: 初始化 OpenAIEmbedder: model=text-embedding-3-small, dim=1536
+2026-02-02 10:21:11 [[32mINFO[0m] src.embedder: API Base: https://api.zhizengzeng.com/v1
+2026-02-02 10:21:11 [[32mINFO[0m] src.embedder: 初始化 OpenAIEmbedder: model=text-embedding-3-small, dim=1536
+2026-02-02 10:21:11 [[32mINFO[0m] src.embedder: API Base: https://api.zhizengzeng.com/v1
+2026-02-02 10:21:11 [[32mINFO[0m] src.pipeline: VisRAGPipeline 初始化完成，数据目录: /home/xwh/VisRAG/output_reindex_1536/chroma_db, 文本维度: 1536
+2026-02-02 10:21:12 [[32mINFO[0m] src.generator: 加载 decoder-only: /home/xwh/models/DeepSeek-OCR-2
+2026-02-02 10:21:57 [[32mINFO[0m] src.store: ChromaStore 初始化完成: /home/xwh/VisRAG/output_reindex_1536/chroma_db
+2026-02-02 10:21:57 [[32mINFO[0m] src.embedder: 初始化 OpenAIEmbedder: model=text-embedding-3-small, dim=1536
+2026-02-02 10:21:57 [[32mINFO[0m] src.embedder: API Base: https://api.zhizengzeng.com/v1
+2026-02-02 10:21:57 [[32mINFO[0m] src.pipeline: VisRAGPipeline 初始化完成，数据目录: /home/xwh/VisRAG/output_reindex_1536/chroma_db, 文本维度: 1536
+2026-02-02 10:22:59 [[32mINFO[0m] openai._base_client: Retrying request to /embeddings in 0.448856 seconds
+2026-02-02 10:24:00 [[32mINFO[0m] openai._base_client: Retrying request to /embeddings in 0.975674 seconds
+2026-02-02 10:25:01 [[32mINFO[0m] openai._base_client: Retrying request to /embeddings in 1.683392 seconds
+2026-02-02 10:25:04 [[32mINFO[0m] httpx: HTTP Request: POST https://api.zhizengzeng.com/v1/embeddings "HTTP/1.1 200 OK"
+2026-02-02 10:25:05 [[32mINFO[0m] httpx: HTTP Request: POST https://api.zhizengzeng.com/v1/embeddings "HTTP/1.1 200 OK"
+2026-02-02 10:25:34 [[32mINFO[0m] httpx: HTTP Request: POST https://api.zhizengzeng.com/v1/embeddings "HTTP/1.1 200 OK"
+2026-02-02 10:25:34 [[32mINFO[0m] httpx: HTTP Request: POST https://api.zhizengzeng.com/v1/embeddings "HTTP/1.1 200 OK"
+2026-02-02 10:26:23 [[32mINFO[0m] httpx: HTTP Request: POST https://api.zhizengzeng.com/v1/embeddings "HTTP/1.1 200 OK"
+2026-02-02 10:26:24 [[32mINFO[0m] httpx: HTTP Request: POST https://api.zhizengzeng.com/v1/embeddings "HTTP/1.1 200 OK"
+2026-02-02 10:26:31 [[32mINFO[0m] httpx: HTTP Request: POST https://api.zhizengzeng.com/v1/embeddings "HTTP/1.1 200 OK"
+2026-02-02 10:26:32 [[32mINFO[0m] httpx: HTTP Request: POST https://api.zhizengzeng.com/v1/embeddings "HTTP/1.1 200 OK"
+2026-02-02 10:28:31 [[32mINFO[0m] openai._base_client: Retrying request to /embeddings in 0.497552 seconds
+2026-02-02 10:29:32 [[32mINFO[0m] openai._base_client: Retrying request to /embeddings in 0.882679 seconds
+2026-02-02 10:29:35 [[32mINFO[0m] httpx: HTTP Request: POST https://api.zhizengzeng.com/v1/embeddings "HTTP/1.1 200 OK"
+2026-02-02 10:29:36 [[32mINFO[0m] httpx: HTTP Request: POST https://api.zhizengzeng.com/v1/embeddings "HTTP/1.1 200 OK"
+2026-02-02 10:29:45 [[32mINFO[0m] httpx: HTTP Request: POST https://api.zhizengzeng.com/v1/embeddings "HTTP/1.1 200 OK"
+2026-02-02 10:29:46 [[32mINFO[0m] httpx: HTTP Request: POST https://api.zhizengzeng.com/v1/embeddings "HTTP/1.1 200 OK"
+2026-02-02 10:31:36 [[32mINFO[0m] openai._base_client: Retrying request to /embeddings in 0.494283 seconds
+2026-02-02 10:31:39 [[32mINFO[0m] httpx: HTTP Request: POST https://api.zhizengzeng.com/v1/embeddings "HTTP/1.1 200 OK"
+2026-02-02 10:31:41 [[32mINFO[0m] httpx: HTTP Request: POST https://api.zhizengzeng.com/v1/embeddings "HTTP/1.1 200 OK"
+2026-02-02 10:32:31 [[32mINFO[0m] httpx: HTTP Request: POST https://api.zhizengzeng.com/v1/embeddings "HTTP/1.1 200 OK"
+2026-02-02 10:32:33 [[32mINFO[0m] httpx: HTTP Request: POST https://api.zhizengzeng.com/v1/embeddings "HTTP/1.1 200 OK"
+2026-02-02 10:33:27 [[32mINFO[0m] httpx: HTTP Request: POST https://api.zhizengzeng.com/v1/embeddings "HTTP/1.1 200 OK"
+2026-02-02 10:33:28 [[32mINFO[0m] httpx: HTTP Request: POST https://api.zhizengzeng.com/v1/embeddings "HTTP/1.1 200 OK"
+2026-02-02 10:35:14 [[32mINFO[0m] openai._base_client: Retrying request to /embeddings in 0.491377 seconds
+2026-02-02 10:35:16 [[32mINFO[0m] httpx: HTTP Request: POST https://api.zhizengzeng.com/v1/embeddings "HTTP/1.1 200 OK"
+2026-02-02 10:35:18 [[32mINFO[0m] httpx: HTTP Request: POST https://api.zhizengzeng.com/v1/embeddings "HTTP/1.1 200 OK"
+2026-02-02 10:36:06 [[32mINFO[0m] httpx: HTTP Request: POST https://api.zhizengzeng.com/v1/embeddings "HTTP/1.1 200 OK"
+2026-02-02 10:36:07 [[32mINFO[0m] httpx: HTTP Request: POST https://api.zhizengzeng.com/v1/embeddings "HTTP/1.1 200 OK"
+2026-02-02 10:36:55 [[32mINFO[0m] httpx: HTTP Request: POST https://api.zhizengzeng.com/v1/embeddings "HTTP/1.1 200 OK"
+2026-02-02 10:36:56 [[32mINFO[0m] httpx: HTTP Request: POST https://api.zhizengzeng.com/v1/embeddings "HTTP/1.1 200 OK"
+2026-02-02 10:37:22 [[32mINFO[0m] httpx: HTTP Request: POST https://api.zhizengzeng.com/v1/embeddings "HTTP/1.1 200 OK"
+2026-02-02 10:37:23 [[32mINFO[0m] httpx: HTTP Request: POST https://api.zhizengzeng.com/v1/embeddings "HTTP/1.1 200 OK"
+2026-02-02 10:38:10 [[32mINFO[0m] httpx: HTTP Request: POST https://api.zhizengzeng.com/v1/embeddings "HTTP/1.1 200 OK"
+2026-02-02 10:38:11 [[32mINFO[0m] httpx: HTTP Request: POST https://api.zhizengzeng.com/v1/embeddings "HTTP/1.1 200 OK"
+2026-02-02 10:38:17 [[32mINFO[0m] httpx: HTTP Request: POST https://api.zhizengzeng.com/v1/embeddings "HTTP/1.1 200 OK"
+2026-02-02 10:38:19 [[32mINFO[0m] httpx: HTTP Request: POST https://api.zhizengzeng.com/v1/embeddings "HTTP/1.1 200 OK"
+2026-02-02 10:38:51 [[32mINFO[0m] httpx: HTTP Request: POST https://api.zhizengzeng.com/v1/embeddings "HTTP/1.1 200 OK"
+2026-02-02 10:38:52 [[32mINFO[0m] httpx: HTTP Request: POST https://api.zhizengzeng.com/v1/embeddings "HTTP/1.1 200 OK"
+2026-02-02 10:39:26 [[32mINFO[0m] httpx: HTTP Request: POST https://api.zhizengzeng.com/v1/embeddings "HTTP/1.1 200 OK"
+2026-02-02 10:39:26 [[32mINFO[0m] httpx: HTTP Request: POST https://api.zhizengzeng.com/v1/embeddings "HTTP/1.1 200 OK"
+2026-02-02 10:40:03 [[32mINFO[0m] httpx: HTTP Request: POST https://api.zhizengzeng.com/v1/embeddings "HTTP/1.1 200 OK"
+2026-02-02 10:40:04 [[32mINFO[0m] httpx: HTTP Request: POST https://api.zhizengzeng.com/v1/embeddings "HTTP/1.1 200 OK"
+2026-02-02 10:40:15 [[32mINFO[0m] httpx: HTTP Request: POST https://api.zhizengzeng.com/v1/embeddings "HTTP/1.1 200 OK"
+2026-02-02 10:40:16 [[32mINFO[0m] httpx: HTTP Request: POST https://api.zhizengzeng.com/v1/embeddings "HTTP/1.1 200 OK"
+2026-02-02 10:40:42 [[32mINFO[0m] httpx: HTTP Request: POST https://api.zhizengzeng.com/v1/embeddings "HTTP/1.1 200 OK"
+2026-02-02 10:40:43 [[32mINFO[0m] httpx: HTTP Request: POST https://api.zhizengzeng.com/v1/embeddings "HTTP/1.1 200 OK"
+2026-02-02 10:41:15 [[32mINFO[0m] httpx: HTTP Request: POST https://api.zhizengzeng.com/v1/embeddings "HTTP/1.1 200 OK"
+2026-02-02 10:41:16 [[32mINFO[0m] httpx: HTTP Request: POST https://api.zhizengzeng.com/v1/embeddings "HTTP/1.1 200 OK"
+2026-02-02 10:41:27 [[32mINFO[0m] httpx: HTTP Request: POST https://api.zhizengzeng.com/v1/embeddings "HTTP/1.1 200 OK"
+2026-02-02 10:41:29 [[32mINFO[0m] httpx: HTTP Request: POST https://api.zhizengzeng.com/v1/embeddings "HTTP/1.1 200 OK"
+2026-02-02 10:41:36 [[32mINFO[0m] httpx: HTTP Request: POST https://api.zhizengzeng.com/v1/embeddings "HTTP/1.1 200 OK"
+2026-02-02 10:41:37 [[32mINFO[0m] httpx: HTTP Request: POST https://api.zhizengzeng.com/v1/embeddings "HTTP/1.1 200 OK"
+2026-02-02 10:41:46 [[32mINFO[0m] httpx: HTTP Request: POST https://api.zhizengzeng.com/v1/embeddings "HTTP/1.1 200 OK"
+2026-02-02 10:41:48 [[32mINFO[0m] httpx: HTTP Request: POST https://api.zhizengzeng.com/v1/embeddings "HTTP/1.1 200 OK"
+2026-02-02 10:43:16 [[32mINFO[0m] httpx: HTTP Request: POST https://api.zhizengzeng.com/v1/embeddings "HTTP/1.1 200 OK"
+2026-02-02 10:43:17 [[32mINFO[0m] httpx: HTTP Request: POST https://api.zhizengzeng.com/v1/embeddings "HTTP/1.1 200 OK"
+2026-02-02 10:44:07 [[32mINFO[0m] httpx: HTTP Request: POST https://api.zhizengzeng.com/v1/embeddings "HTTP/1.1 200 OK"
+2026-02-02 10:44:10 [[32mINFO[0m] httpx: HTTP Request: POST https://api.zhizengzeng.com/v1/embeddings "HTTP/1.1 200 OK"
+2026-02-02 10:45:32 [[32mINFO[0m] httpx: HTTP Request: POST https://api.zhizengzeng.com/v1/embeddings "HTTP/1.1 200 OK"
+2026-02-02 10:45:34 [[32mINFO[0m] httpx: HTTP Request: POST https://api.zhizengzeng.com/v1/embeddings "HTTP/1.1 200 OK"
+2026-02-02 10:46:09 [[32mINFO[0m] httpx: HTTP Request: POST https://api.zhizengzeng.com/v1/embeddings "HTTP/1.1 200 OK"
+2026-02-02 10:46:10 [[32mINFO[0m] httpx: HTTP Request: POST https://api.zhizengzeng.com/v1/embeddings "HTTP/1.1 200 OK"
+2026-02-02 10:47:43 [[32mINFO[0m] openai._base_client: Retrying request to /embeddings in 0.403124 seconds
+2026-02-02 10:47:45 [[32mINFO[0m] httpx: HTTP Request: POST https://api.zhizengzeng.com/v1/embeddings "HTTP/1.1 200 OK"
+2026-02-02 10:47:46 [[32mINFO[0m] httpx: HTTP Request: POST https://api.zhizengzeng.com/v1/embeddings "HTTP/1.1 200 OK"
+2026-02-02 10:48:20 [[32mINFO[0m] httpx: HTTP Request: POST https://api.zhizengzeng.com/v1/embeddings "HTTP/1.1 200 OK"
+2026-02-02 10:48:21 [[32mINFO[0m] httpx: HTTP Request: POST https://api.zhizengzeng.com/v1/embeddings "HTTP/1.1 200 OK"
+2026-02-02 10:48:30 [[32mINFO[0m] httpx: HTTP Request: POST https://api.zhizengzeng.com/v1/embeddings "HTTP/1.1 200 OK"
+2026-02-02 10:48:31 [[32mINFO[0m] httpx: HTTP Request: POST https://api.zhizengzeng.com/v1/embeddings "HTTP/1.1 200 OK"
+2026-02-02 10:48:57 [[32mINFO[0m] httpx: HTTP Request: POST https://api.zhizengzeng.com/v1/embeddings "HTTP/1.1 200 OK"
+2026-02-02 10:48:58 [[32mINFO[0m] httpx: HTTP Request: POST https://api.zhizengzeng.com/v1/embeddings "HTTP/1.1 200 OK"
+2026-02-02 10:49:25 [[32mINFO[0m] httpx: HTTP Request: POST https://api.zhizengzeng.com/v1/embeddings "HTTP/1.1 200 OK"
+2026-02-02 10:49:27 [[32mINFO[0m] httpx: HTTP Request: POST https://api.zhizengzeng.com/v1/embeddings "HTTP/1.1 200 OK"
+2026-02-02 10:50:02 [[32mINFO[0m] httpx: HTTP Request: POST https://api.zhizengzeng.com/v1/embeddings "HTTP/1.1 200 OK"
+2026-02-02 10:50:05 [[32mINFO[0m] httpx: HTTP Request: POST https://api.zhizengzeng.com/v1/embeddings "HTTP/1.1 200 OK"
+2026-02-02 10:50:58 [[32mINFO[0m] httpx: HTTP Request: POST https://api.zhizengzeng.com/v1/embeddings "HTTP/1.1 200 OK"
+2026-02-02 10:51:00 [[32mINFO[0m] httpx: HTTP Request: POST https://api.zhizengzeng.com/v1/embeddings "HTTP/1.1 200 OK"
+2026-02-02 10:51:27 [[32mINFO[0m] httpx: HTTP Request: POST https://api.zhizengzeng.com/v1/embeddings "HTTP/1.1 200 OK"
+2026-02-02 10:51:29 [[32mINFO[0m] httpx: HTTP Request: POST https://api.zhizengzeng.com/v1/embeddings "HTTP/1.1 200 OK"
+2026-02-02 10:52:38 [[32mINFO[0m] httpx: HTTP Request: POST https://api.zhizengzeng.com/v1/embeddings "HTTP/1.1 200 OK"
+2026-02-02 10:52:40 [[32mINFO[0m] httpx: HTTP Request: POST https://api.zhizengzeng.com/v1/embeddings "HTTP/1.1 200 OK"
+2026-02-02 10:53:10 [[32mINFO[0m] httpx: HTTP Request: POST https://api.zhizengzeng.com/v1/embeddings "HTTP/1.1 200 OK"
+2026-02-02 10:53:12 [[32mINFO[0m] httpx: HTTP Request: POST https://api.zhizengzeng.com/v1/embeddings "HTTP/1.1 200 OK"
+2026-02-02 10:53:17 [[32mINFO[0m] httpx: HTTP Request: POST https://api.zhizengzeng.com/v1/embeddings "HTTP/1.1 200 OK"
+2026-02-02 10:53:18 [[32mINFO[0m] httpx: HTTP Request: POST https://api.zhizengzeng.com/v1/embeddings "HTTP/1.1 200 OK"
+2026-02-02 10:57:05 [[32mINFO[0m] root: 日志文件: logs/visrag_20260202.log
+2026-02-02 10:57:05 [[32mINFO[0m] __main__: Generator backend: decoder_only
+2026-02-02 10:57:07 [[32mINFO[0m] __main__: 开始评测: qa=/home/xwh/VisRAG/qa/qasper_train_rows_25_44_with_id.jsonl, pred=/home/xwh/VisRAG/qa/pred_3way_decoder_only_qasper_25_44-v2.jsonl
+2026-02-02 10:57:10 [[32mINFO[0m] __main__: 评测样本数: 39, 平均 F1: 0.1144
+2026-02-02 10:57:31 [[32mINFO[0m] root: 日志文件: logs/visrag_20260202.log
+2026-02-02 10:57:31 [[32mINFO[0m] __main__: Generator backend: decoder_only
+2026-02-02 10:57:33 [[32mINFO[0m] __main__: 开始评测: qa=/home/xwh/VisRAG/qa/qasper_train_rows_25_44_with_id.jsonl, pred=/home/xwh/VisRAG/qa/pred_3way_decoder_only_qasper_25_44-v2.jsonl
+2026-02-02 10:57:37 [[32mINFO[0m] __main__: 评测样本数: 39, 平均 F1: 0.0893
+2026-02-02 10:58:11 [[32mINFO[0m] root: 日志文件: logs/visrag_20260202.log
+2026-02-02 10:58:11 [[32mINFO[0m] __main__: Generator backend: decoder_only
+2026-02-02 10:58:12 [[32mINFO[0m] __main__: 开始评测: qa=/home/xwh/VisRAG/qa/qasper_train_rows_25_44_with_id.jsonl, pred=/home/xwh/VisRAG/qa/pred_3way_decoder_only_qasper_25_44-v2.jsonl
+2026-02-02 10:58:16 [[32mINFO[0m] __main__: 评测样本数: 39, 平均 F1: 0.1093

@@ -1,0 +1,69 @@
+2026-02-03 21:47:18 [INFO] chromadb.telemetry.product.posthog: Anonymized telemetry enabled. See                     https://docs.trychroma.com/telemetry for more information.
+2026-02-03 21:47:18 [INFO] fastapi_app.dao.chroma_dao: ChromaDAO initialized: /home/xwh/VisRAG/output/chroma_db
+2026-02-03 21:47:18 [INFO] fastapi_app.service.index_service: Indexing PDF: marrying_universal_dependencies_and_universal_morphology_pdf -> /home/xwh/VisRAG/output/api_assets/uploads/pdfs/44c625bde1094161bf8acf873393f1c5_Marrying Universal Dependencies and Universal Morphology.pdf
+2026-02-03 21:47:19 [INFO] fastapi_app.service.index_service: PDF pages: 11; images: 11
+2026-02-03 21:47:38 [INFO] __main__: POST /api/v1/index/pdf 200 20853.8ms
+2026-02-03 21:47:38 [INFO] fastapi_app.service.index_service: Indexing PDF: classification_betters_regression_in_query-based_multi-document_summarisation_techniques_for_question_answering-_macquarie_university_at_bioasq7b_pdf -> /home/xwh/VisRAG/output/api_assets/uploads/pdfs/e2f842e3297c4b8b8ae5ed8e3a2b857f_Classification Betters Regression in Query-based Multi-document Summarisation Techniques for Question Answering- Macquarie University at BioASQ7b.pdf
+2026-02-03 21:47:39 [INFO] fastapi_app.service.index_service: PDF pages: 12; images: 12
+2026-02-03 21:47:52 [INFO] __main__: POST /api/v1/index/pdf 200 13754.2ms
+2026-02-03 21:47:52 [INFO] fastapi_app.service.index_service: Indexing PDF: joint_entity_linking_with_deep_reinforcement_learning_pdf -> /home/xwh/VisRAG/output/api_assets/uploads/pdfs/07c541811076492bbf49c55d2f70eb38_Joint Entity Linking with Deep Reinforcement Learning.pdf
+2026-02-03 21:47:53 [INFO] fastapi_app.service.index_service: PDF pages: 10; images: 10
+2026-02-03 21:48:07 [INFO] __main__: POST /api/v1/index/pdf 200 14918.8ms
+2026-02-03 21:48:07 [INFO] fastapi_app.service.index_service: Indexing PDF: bertram-_improved_word_embeddings_have_big_impact_on_contextualized_model_performance_pdf -> /home/xwh/VisRAG/output/api_assets/uploads/pdfs/3412b4445fab4688a654059443411c47_BERTRAM- Improved Word Embeddings Have Big Impact on Contextualized Model Performance.pdf
+2026-02-03 21:48:08 [INFO] fastapi_app.service.index_service: PDF pages: 12; images: 12
+2026-02-03 21:48:24 [INFO] __main__: POST /api/v1/index/pdf 200 17156.9ms
+2026-02-03 21:48:24 [INFO] fastapi_app.service.index_service: Indexing PDF: crosswoz-_a_large-scale_chinese_cross-domain_task-oriented_dialogue_dataset_pdf -> /home/xwh/VisRAG/output/api_assets/uploads/pdfs/a055ef73e1ab4748b565361102188919_CrossWOZ- A Large-Scale Chinese Cross-Domain Task-Oriented Dialogue Dataset.pdf
+2026-02-03 21:48:26 [INFO] fastapi_app.service.index_service: PDF pages: 14; images: 14
+2026-02-03 21:48:44 [INFO] __main__: POST /api/v1/index/pdf 200 20176.1ms
+2026-02-03 21:48:44 [INFO] fastapi_app.service.index_service: Indexing PDF: learning_supervised_topic_models_for_classification_and_regression_from_crowds_pdf -> /home/xwh/VisRAG/output/api_assets/uploads/pdfs/535b975977884b5c86f327845782690d_Learning Supervised Topic Models for Classification and Regression from Crowds.pdf
+2026-02-03 21:48:46 [INFO] fastapi_app.service.index_service: PDF pages: 15; images: 15
+2026-02-03 21:49:06 [INFO] __main__: POST /api/v1/index/pdf 200 21970.0ms
+2026-02-03 21:49:06 [INFO] fastapi_app.service.index_service: Indexing PDF: investigating_robustness_and_interpretability_of_link_prediction_via_adversarial_modifications_pdf -> /home/xwh/VisRAG/output/api_assets/uploads/pdfs/112ddb82347a44c289c3cc0cd41d50ce_Investigating Robustness and Interpretability of Link Prediction via Adversarial Modifications.pdf
+2026-02-03 21:49:08 [INFO] fastapi_app.service.index_service: PDF pages: 12; images: 12
+2026-02-03 21:49:24 [INFO] __main__: POST /api/v1/index/pdf 200 17772.1ms
+2026-02-03 21:49:24 [INFO] fastapi_app.service.index_service: Indexing PDF: inscript-_narrative_texts_annotated_with_script_information_pdf -> /home/xwh/VisRAG/output/api_assets/uploads/pdfs/485a78fc6a56405d9058d6be59bb8e55_InScript- Narrative texts annotated with script information.pdf
+2026-02-03 21:49:25 [INFO] fastapi_app.service.index_service: PDF pages: 9; images: 9
+2026-02-03 21:49:37 [INFO] __main__: POST /api/v1/index/pdf 200 13034.7ms
+2026-02-03 21:49:37 [INFO] fastapi_app.service.index_service: Indexing PDF: active_learning_for_chinese_word_segmentation_in_medical_text_pdf -> /home/xwh/VisRAG/output/api_assets/uploads/pdfs/75f23c0bcdcc4df281e32d8ec638e56b_Active Learning for Chinese Word Segmentation in Medical Text.pdf
+2026-02-03 21:49:38 [INFO] fastapi_app.service.index_service: PDF pages: 10; images: 10
+2026-02-03 21:49:48 [INFO] __main__: POST /api/v1/index/pdf 200 11009.1ms
+2026-02-03 21:49:48 [INFO] fastapi_app.service.index_service: Indexing PDF: procedural_reasoning_networks_for_understanding_multimodal_procedures_pdf -> /home/xwh/VisRAG/output/api_assets/uploads/pdfs/8ba56cbe3f0447dbb071c3ab6a6a8c02_Procedural Reasoning Networks for Understanding Multimodal Procedures.pdf
+2026-02-03 21:49:50 [INFO] fastapi_app.service.index_service: PDF pages: 11; images: 11
+2026-02-03 21:50:06 [INFO] __main__: POST /api/v1/index/pdf 200 17523.6ms
+2026-02-03 21:50:06 [INFO] fastapi_app.service.index_service: Indexing PDF: learning_word_embeddings_from_the_portuguese_twitter_stream-_a_study_of_some_practical_aspects_pdf -> /home/xwh/VisRAG/output/api_assets/uploads/pdfs/581a46b5fb2b4762b93194d362ac3c9b_Learning Word Embeddings from the Portuguese Twitter Stream- A Study of some Practical Aspects.pdf
+2026-02-03 21:50:07 [INFO] fastapi_app.service.index_service: PDF pages: 12; images: 12
+2026-02-03 21:50:21 [INFO] __main__: POST /api/v1/index/pdf 200 15023.8ms
+2026-02-03 21:50:21 [INFO] fastapi_app.service.index_service: Indexing PDF: dissim-_a_discourse-aware_syntactic_text_simplification_frameworkfor_english_and_german_pdf -> /home/xwh/VisRAG/output/api_assets/uploads/pdfs/a1b137aa8e1f4b848a725a4b9689b5a4_DisSim- A Discourse-Aware Syntactic Text Simplification Frameworkfor English and German.pdf
+2026-02-03 21:50:21 [INFO] fastapi_app.service.index_service: PDF pages: 4; images: 4
+2026-02-03 21:50:27 [INFO] __main__: POST /api/v1/index/pdf 200 5788.9ms
+2026-02-03 21:50:27 [INFO] fastapi_app.service.index_service: Indexing PDF: improving_spoken_language_understanding_by_exploiting_asr_n-best_hypotheses_pdf -> /home/xwh/VisRAG/output/api_assets/uploads/pdfs/90bb368685f34075957883cad3df17c7_Improving Spoken Language Understanding By Exploiting ASR N-best Hypotheses.pdf
+2026-02-03 21:50:27 [INFO] fastapi_app.service.index_service: PDF pages: 5; images: 5
+2026-02-03 21:50:34 [INFO] __main__: POST /api/v1/index/pdf 200 7463.3ms
+2026-02-03 21:50:34 [INFO] fastapi_app.service.index_service: Indexing PDF: a_simple_discriminative_training_method_for_machine_translation_with_large-scale_features_pdf -> /home/xwh/VisRAG/output/api_assets/uploads/pdfs/b2ccc0ded04b468c9eb7d83990de6fac_A simple discriminative training method for machine translation with large-scale features.pdf
+2026-02-03 21:50:35 [INFO] fastapi_app.service.index_service: PDF pages: 7; images: 7
+2026-02-03 21:50:43 [INFO] __main__: POST /api/v1/index/pdf 200 9215.7ms
+2026-02-03 21:50:43 [INFO] fastapi_app.service.index_service: Indexing PDF: qnamaker-_data_to_bot_in_2_minutes_pdf -> /home/xwh/VisRAG/output/api_assets/uploads/pdfs/de425f0eea334e47832fdad405d9b6db_QnAMaker- Data to Bot in 2 Minutes.pdf
+2026-02-03 21:50:44 [INFO] fastapi_app.service.index_service: PDF pages: 4; images: 4
+2026-02-03 21:50:49 [INFO] __main__: POST /api/v1/index/pdf 200 6131.1ms
+2026-02-03 21:50:49 [INFO] fastapi_app.service.index_service: Indexing PDF: what_drives_the_international_development_agenda_an_nlp_analysis_of_the_united_nations_general_debate_1970-2016_pdf -> /home/xwh/VisRAG/output/api_assets/uploads/pdfs/00207c3beeb94a2f8d0f1f2c9446cb70_What Drives the International Development Agenda? An NLP Analysis of the United Nations General Debate 1970-2016.pdf
+2026-02-03 21:50:50 [INFO] fastapi_app.service.index_service: PDF pages: 6; images: 6
+2026-02-03 21:50:58 [INFO] __main__: POST /api/v1/index/pdf 200 8421.7ms
+2026-02-03 21:50:58 [INFO] fastapi_app.service.index_service: Indexing PDF: diversity_density_and_homogeneity-_quantitative_characteristic_metrics_for_text_collections_pdf -> /home/xwh/VisRAG/output/api_assets/uploads/pdfs/a317b558ff264be1936a927289070309_Diversity, Density, and Homogeneity- Quantitative Characteristic Metrics for Text Collections.pdf
+2026-02-03 21:50:59 [INFO] fastapi_app.service.index_service: PDF pages: 8; images: 8
+2026-02-03 21:51:10 [INFO] __main__: POST /api/v1/index/pdf 200 11818.3ms
+2026-02-03 21:51:10 [INFO] fastapi_app.service.index_service: Indexing PDF: important_attribute_identification_in_knowledge_graph_pdf -> /home/xwh/VisRAG/output/api_assets/uploads/pdfs/427cc64f253543089acfa81a0722f1ef_Important Attribute Identification in Knowledge Graph.pdf
+2026-02-03 21:51:11 [INFO] fastapi_app.service.index_service: PDF pages: 13; images: 13
+2026-02-03 21:51:26 [INFO] __main__: POST /api/v1/index/pdf 200 15890.2ms
+2026-02-03 21:51:26 [INFO] fastapi_app.service.index_service: Indexing PDF: diachronic_topics_in_new_high_german_poetry_pdf -> /home/xwh/VisRAG/output/api_assets/uploads/pdfs/53133b7ef1784cb2a9dd9c97788c52cc_Diachronic Topics in New High German Poetry.pdf
+2026-02-03 21:51:26 [INFO] fastapi_app.service.index_service: PDF pages: 7; images: 7
+2026-02-03 21:51:34 [INFO] __main__: POST /api/v1/index/pdf 200 8359.5ms
+2026-02-03 21:51:34 [INFO] fastapi_app.service.index_service: Indexing PDF: enriching_bert_with_knowledge_graph_embeddings_for_document_classification_pdf -> /home/xwh/VisRAG/output/api_assets/uploads/pdfs/607674612d4b4b25811326ad1165e5ac_Enriching BERT with Knowledge Graph Embeddings for Document Classification.pdf
+2026-02-03 21:51:35 [INFO] fastapi_app.service.index_service: PDF pages: 8; images: 8
+2026-02-03 21:51:46 [INFO] __main__: POST /api/v1/index/pdf 200 12033.3ms
+2026-02-04 01:15:44 [INFO] __main__: GET / 404 15.3ms
+2026-02-04 01:15:44 [INFO] __main__: GET / 404 5.7ms
+2026-02-04 01:15:44 [INFO] __main__: GET /favicon.ico 404 0.6ms
+2026-02-04 01:15:44 [INFO] __main__: GET /robots.txt 404 0.6ms
+2026-02-04 02:41:55 [INFO] __main__: GET / 404 1.3ms
+2026-02-04 02:42:06 [INFO] __main__: GET / 404 0.5ms
+2026-02-04 02:42:12 [INFO] __main__: GET /wiki 404 0.8ms
