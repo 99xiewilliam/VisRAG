@@ -68,3 +68,19 @@ def index_pdf(
     pdf_path = save_upload_file(pdf, pdf_dir, filename)
     service = get_index_service()
     return service.index_pdf(pdf_path, pdf_name=pdf_name)
+
+
+@router.post("/pdf_text_global")
+def index_pdf_text_global(
+    pdf: UploadFile = File(...),
+    pdf_name: Optional[str] = Form(default=None),
+):
+    """
+    仅构建全量文本 chunk collection（A: text-only baseline）。
+    """
+    cfg = get_app_config()
+    pdf_dir = ensure_dir(os.path.join(cfg.indexing.assets_dir, "uploads", "pdfs"))
+    filename = f"{uuid.uuid4().hex}_{pdf.filename}"
+    pdf_path = save_upload_file(pdf, pdf_dir, filename)
+    service = get_index_service()
+    return service.index_pdf_text_global(pdf_path, pdf_name=pdf_name)

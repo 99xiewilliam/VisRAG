@@ -112,6 +112,11 @@ class IndexService:
         image_metas: List[Dict[str, Any]] = []
         text_collections: List[str] = []
         total_text_chunks = 0
+        global_text_ids: List[str] = []
+        global_text_vecs: List[List[float]] = []
+        global_text_metas: List[Dict[str, Any]] = []
+        use_global_text = bool(getattr(self.cfg.indexing, "enable_global_text_collection", True))
+        global_text_collection = getattr(self.cfg.indexing, "global_text_collection", "global_text_chunks")
 
         for idx, (page, image) in enumerate(zip(pages, images)):
             page_num = int(page["page"])
@@ -151,9 +156,19 @@ class IndexService:
                 self.chroma.add(text_collection, text_ids, text_vecs, text_metas, dim=self.embedder.dim)
                 text_collections.append(text_collection)
                 total_text_chunks += len(chunks)
+                if use_global_text:
+                    # Reuse same vectors for global text collection (A: text-only baseline)
+                    for gid, gvec, gmd in zip(text_ids, text_vecs, text_metas):
+                        global_text_ids.append(gid)
+                        global_text_vecs.append(gvec)
+                        md = dict(gmd)
+                        md["text_collection"] = text_collection
+                        global_text_metas.append(md)
 
         if image_ids:
             self.chroma.add(image_collection, image_ids, image_vecs, image_metas, dim=self.embedder.dim)
+        if use_global_text and global_text_ids:
+            self.chroma.add(global_text_collection, global_text_ids, global_text_vecs, global_text_metas, dim=self.embedder.dim)
 
         return {
             "pdf_name": pdf_base,
@@ -161,5 +176,56 @@ class IndexService:
             "images_indexed": len(image_ids),
             "text_collections": text_collections,
             "text_chunks_indexed": total_text_chunks,
+            "global_text_collection": global_text_collection if use_global_text else None,
+            "global_text_chunks_indexed": len(global_text_ids) if use_global_text else 0,
+            "pages": len(pages),
+        }
+
+    def index_pdf_text_global(self, pdf_path: str, pdf_name: Optional[str] = None) -> Dict[str, Any]:
+        """
+        仅构建全量文本 chunk collection（A: text-only baseline）。
+        不写入 page-level text collection，也不写入图片 collection。
+        """
+        pdf_base = slugify(pdf_name or os.path.splitext(os.path.basename(pdf_path))[0])
+        logger.info(f"Indexing PDF text-only (global): {pdf_base} -> {pdf_path}")
+
+        if not bool(getattr(self.cfg.indexing, "enable_global_text_collection", True)):
+            return {"pdf_name": pdf_base, "global_text_collection": None, "global_text_chunks_indexed": 0, "pages": 0}
+
+        global_text_collection = getattr(self.cfg.indexing, "global_text_collection", "global_text_chunks")
+        pages = extract_pdf_text_by_page(pdf_path)
+        logger.info(f"PDF pages: {len(pages)} (text-only global)")
+
+        global_text_ids: List[str] = []
+        global_text_vecs: List[List[float]] = []
+        global_text_metas: List[Dict[str, Any]] = []
+        total_text_chunks = 0
+
+        for idx, page in enumerate(pages):
+            page_num = int(page.get("page", idx + 1))
+            chunks = _chunk_text(page.get("text", ""), self.cfg.indexing.chunk_size, self.cfg.indexing.chunk_overlap)
+            if not chunks:
+                continue
+            text_vecs = self.embedder.embed_texts(chunks)
+            for c_idx, (chunk, vec) in enumerate(zip(chunks, text_vecs)):
+                chunk_id = f"{pdf_base}_p{page_num}_c{c_idx}"
+                md = {
+                    "pdf_name": pdf_base,
+                    "page": page_num,
+                    "chunk_id": c_idx,
+                    "text": chunk,
+                }
+                global_text_ids.append(chunk_id)
+                global_text_vecs.append(vec)
+                global_text_metas.append(md)
+            total_text_chunks += len(chunks)
+
+        if global_text_ids:
+            self.chroma.add(global_text_collection, global_text_ids, global_text_vecs, global_text_metas, dim=self.embedder.dim)
+
+        return {
+            "pdf_name": pdf_base,
+            "global_text_collection": global_text_collection,
+            "global_text_chunks_indexed": total_text_chunks,
             "pages": len(pages),
         }

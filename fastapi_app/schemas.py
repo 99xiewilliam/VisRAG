@@ -9,11 +9,16 @@ class TextQueryRequest(BaseModel):
     text_top_k: Optional[int] = None
 
 
+class TextOnlyQueryRequest(BaseModel):
+    query: str = Field(..., description="User query text")
+    text_collection: Optional[str] = None
+    text_top_k: Optional[int] = None
+
+
 class QueryResponse(BaseModel):
     image_results: List[Dict[str, Any]]
     text_results: List[Dict[str, Any]]
     answer: Optional[str] = None
-    ocr_text: str
 
 
 class IndexTextRequest(BaseModel):

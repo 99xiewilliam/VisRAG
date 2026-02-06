@@ -11,6 +11,9 @@ from ..dao import ChromaDAO
 from ..utils import ensure_dir, get_logger
 from .embedding_service import QwenVLEmbedder
 from .ocr_service import OCRService
+from .answer_service import AnswerService
+from ..prompts import get_prompts
+from .reranker_service import get_reranker
 
 # Split encoder/decoder QA (vision_tokens -> decoder-only)
 _ds_encoder = None
@@ -51,23 +54,84 @@ def _answer_with_decoder_only(*, question: str, context_text: str, vision_tokens
     from src.generator import get_generator
 
     gen = get_generator()
-    system = (
-        "You are a document QA assistant.\n"
-        "Rules:\n"
-        "- Output ONLY the final answer.\n"
-        "- Be concise: 1 sentence (or a single number + unit).\n"
-        "- No headings, no markdown, no citations, no extra context.\n"
-    )
-    user = "Answer the question using the given context and the image.\n"
-    if context_text:
-        user += f"Context:\n{context_text}\n\n"
-    user += f"Question: {question}\nFinal answer (short):"
+    prompts = get_prompts().get("query", {}).get("vision", {})
+    system = prompts.get("system", "")
+    tmpl = prompts.get("user", "Question: {question}\nAnswer:")
+    user = tmpl.format(context=context_text or "", question=question or "")
     raw = (gen.generate(system, user, vision_tokens=[vision_tokens_pt]) or "").strip()
     if not raw:
         return ""
     # keep it short even if the model starts dumping page text
     first = raw.splitlines()[0].strip()
     return first or raw[:200].strip()
+
+
+def _answer_with_text_only(*, question: str, context_text: str) -> str:
+    """
+    用纯文本 LLM 基于 context 做答案抽取/归纳（比让 OCR 模型“读整页”稳定）。
+    """
+    if not question or not context_text:
+        return ""
+    from src.generator import get_generator
+
+    gen = get_generator()
+    prompts = get_prompts().get("query", {}).get("text_only", {})
+    system = prompts.get("system", "")
+    tmpl = prompts.get("user", "Question: {question}\nAnswer:")
+    user = tmpl.format(context=context_text or "", question=question or "")
+    raw = (gen.generate(system, user) or "").strip()
+    if not raw:
+        return ""
+    first = raw.splitlines()[0].strip()
+    return first or raw[:200].strip()
+
+def _render_text_to_image(text: str, *, width: int = 512, font_size: int = 24) -> Image.Image:
+    """把纯文本渲染成一张 PIL 图（白底黑字），用于「问题转图片」检索。"""
+    from PIL import ImageDraw, ImageFont
+
+    if not text or not text.strip():
+        # 返回一张小空白图，避免 embed 报错
+        return Image.new("RGB", (max(width, 64), 64), (255, 255, 255))
+
+    try:
+        font = ImageFont.truetype("/usr/share/fonts/truetype/dejavu/DejaVuSans.ttf", font_size)
+    except (OSError, IOError):
+        try:
+            font = ImageFont.truetype("/usr/share/fonts/truetype/liberation/LiberationSans-Regular.ttf", font_size)
+        except (OSError, IOError):
+            font = ImageFont.load_default()
+
+    # 先估算行高与换行
+    margin = 20
+    max_line_w = width - 2 * margin
+    words = text.strip().split()
+    lines: List[str] = []
+    current = []
+    current_w = 0
+    for w in words:
+        if hasattr(font, "getbbox"):
+            b = font.getbbox(w)
+            w_w = b[2] - b[0]
+        else:
+            w_w = (font.getsize(w)[0] if hasattr(font, "getsize") else len(w) * font_size // 2)
+        if current and current_w + w_w > max_line_w:
+            lines.append(" ".join(current))
+            current = [w]
+            current_w = w_w
+        else:
+            current.append(w)
+            current_w += w_w + (font_size // 4)
+    if current:
+        lines.append(" ".join(current))
+
+    line_height = int(font_size * 1.4)
+    img_h = 2 * margin + len(lines) * line_height
+    img = Image.new("RGB", (width, max(img_h, 64)), (255, 255, 255))
+    draw = ImageDraw.Draw(img)
+    for i, line in enumerate(lines):
+        y = margin + i * line_height
+        draw.text((margin, y), line, fill=(0, 0, 0), font=font)
+    return img
 
 
 def _maybe_enhance_query(query_text: Optional[str]) -> Optional[str]:
@@ -86,16 +150,16 @@ def _maybe_enhance_query(query_text: Optional[str]) -> Optional[str]:
 
     url = base_url.rstrip("/") + "/chat/completions"
     system = (
-        "You rewrite user questions for semantic retrieval.\n"
-        "Return ONE single-line enhanced query. Do NOT answer the question.\n"
+        "You rewrite the user's question into a single line optimized for finding the right paragraph/page in documents (e.g. PDFs).\n"
+        "Do NOT answer the question. Output ONLY the enhanced query line.\n\n"
         "Rules:\n"
-        "- Keep <= 30 words.\n"
-        "- Extract the most discriminative keywords/phrases and repeat them 3 times.\n"
-        "- Preserve any paper title if present.\n"
-        "- Preserve numbers/units if present.\n"
-        "- No markdown, no quotes, no bullets."
+        "- Expand with synonyms and phrases that actually appear in papers: e.g. 'how much better' -> 'improvement over, gain, margin, percentage, accuracy, F1'.\n"
+        "- Include the exact paper title or method name if the user mentioned it (e.g. 'Enriching BERT with Knowledge Graph Embeddings').\n"
+        "- Add related terms a document would use: model names (BERT, baseline), task names (document classification), and metrics (%, accuracy, improvement).\n"
+        "- Rephrase the question as key phrases that might appear in a section heading or results sentence (e.g. 'improvement over standard BERT in document classification').\n"
+        "- Keep 1 line, 25–50 words. No markdown, no quotes, no bullets."
     )
-    user = f"Original query:\n{query_text}\n\nEnhanced query:"
+    user = f"Original query:\n{query_text}\n\nEnhanced query (one line for retrieval):"
 
     payload = {
         "model": oai.model,
@@ -121,7 +185,7 @@ def _maybe_enhance_query(query_text: Optional[str]) -> Optional[str]:
             },
             method="POST",
         )
-        with urllib.request.urlopen(req, timeout=int(getattr(oai, "timeout", 20))) as resp:
+        with urllib.request.urlopen(req, timeout=int(getattr(oai, "timeout", 60))) as resp:
             raw = resp.read().decode("utf-8", errors="ignore")
         data = json.loads(raw)
         content = (((data.get("choices") or [])[0] or {}).get("message") or {}).get("content")
@@ -137,10 +201,11 @@ logger = get_logger(__name__)
 
 
 class QueryService:
-    def __init__(self, chroma: ChromaDAO, embedder: QwenVLEmbedder, ocr: OCRService):
+    def __init__(self, chroma: ChromaDAO, embedder: QwenVLEmbedder, ocr: OCRService, answer_service: AnswerService):
         self.chroma = chroma
         self.embedder = embedder
         self.ocr = ocr
+        self.answer_service = answer_service
         self.cfg = get_app_config()
 
     def query(
@@ -165,14 +230,19 @@ class QueryService:
         # Enhance query (retrieval only); keep original question for QA
         original_query_text = query_text
         retrieval_query_text = _maybe_enhance_query(query_text)
+        logger.info(retrieval_query_text)
 
         if query_image_path:
             image = Image.open(query_image_path).convert("RGB")
         else:
             image = None
 
-        # 多模态 embedding：仅文本 / 仅图像 / 文本+图像 都会得到同一空间下的一个向量
-        query_vec = self.embedder.embed_query(text=retrieval_query_text, image=image)
+        # 可选：将纯文本问题转成图片再做检索（由 config retrieval.query_render_to_image 控制）
+        if image is None and self.cfg.retrieval.query_render_to_image and retrieval_query_text:
+            image = _render_text_to_image(retrieval_query_text)
+            query_vec = self.embedder.embed_query(text=None, image=image)
+        else:
+            query_vec = self.embedder.embed_query(text=retrieval_query_text, image=image)
         image_collection = image_collection or self.cfg.indexing.default_image_collection
         image_top_k = image_top_k or self.cfg.retrieval.image_top_k
         text_top_k = text_top_k or self.cfg.retrieval.text_top_k
@@ -184,7 +254,48 @@ class QueryService:
         image_metas = (image_res.get("metadatas") or [[]])[0] or []
 
         if not image_ids:
-            return {"image_results": [], "text_results": [], "ocr_text": ""}
+            return {"image_results": [], "text_results": [], "answer": ""}
+
+        # Optional: rerank retrieved page images with Qwen3-VL-Reranker
+        try:
+            reranker = get_reranker()
+            if reranker.enabled and retrieval_query_text:
+                # Only rerank candidates that have image_path
+                candidate_imgs: List[Image.Image] = []
+                candidate_indices: List[int] = []
+                for i, md in enumerate(image_metas):
+                    if isinstance(md, dict) and md.get("image_path") and os.path.exists(md["image_path"]):
+                        try:
+                            candidate_imgs.append(Image.open(md["image_path"]).convert("RGB"))
+                            candidate_indices.append(i)
+                        except Exception:
+                            logger.exception("Failed to open candidate image for rerank")
+
+                if candidate_imgs:
+                    scores = reranker.score_images(query_text=retrieval_query_text, images=candidate_imgs)
+                    if scores and len(scores) == len(candidate_indices):
+                        ranked = sorted(zip(candidate_indices, scores), key=lambda x: x[1], reverse=True)
+                        new_ids: List[str] = []
+                        new_metas: List[Dict[str, Any]] = []
+                        used = set()
+                        for idx, sc in ranked:
+                            used.add(idx)
+                            new_ids.append(image_ids[idx])
+                            md = image_metas[idx] if idx < len(image_metas) else {}
+                            md2 = dict(md) if isinstance(md, dict) else {"_raw": md}
+                            md2["rerank_score"] = float(sc)
+                            new_metas.append(md2)
+                        # Append any non-reranked items (no image_path) in original order
+                        for i, pid in enumerate(image_ids):
+                            if i in used:
+                                continue
+                            new_ids.append(pid)
+                            md = image_metas[i] if i < len(image_metas) else {}
+                            new_metas.append(dict(md) if isinstance(md, dict) else {"_raw": md})
+                        image_ids, image_metas = new_ids, new_metas
+                        logger.info("Rerank applied to image candidates")
+        except Exception:
+            logger.exception("Image rerank failed; using original order")
 
         # 2) 根据命中图像元数据定位到该页对应的 text collection（某 PDF 某页）
         top_image_meta = image_metas[0] if image_metas else {}
@@ -211,7 +322,6 @@ class QueryService:
         # 4) 命中页图像 + 问题 + 检索到的文字上下文 -> DeepSeek-OCR2（直接回答 / OCR）
         image_path = top_image_meta.get("image_path")
         ocr_text = ""
-        answer = ""
         if image_path:
             # NOTE: 先改回“直接用 OCR2 模型”方便你 debug（定位 prompt/processor 问题）。
             # 如果后续要恢复 decoder-only QA，把下面这段注释解除即可。
@@ -236,23 +346,169 @@ class QueryService:
             #         logger.exception("OCR fallback failed")
 
             try:
-                logger.info("Running OCR2 on retrieved page (direct)")
-                ocr_text = self.ocr.run(
-                    image_path,
+                backend = getattr(getattr(self.answer_service, "cfg", None), "backend", "ocr2")
+                logger.info(f"Running answer_generator on retrieved page (backend={backend})")
+                ocr_text = self.answer_service.generate_from_image(
+                    image_path=image_path,
                     question=original_query_text or retrieval_query_text,
                     context_text="\n".join(context_texts),
                 )
             except Exception:
-                logger.exception("OCR2 failed")
+                logger.exception("answer_generator failed")
 
         logger.info("Query completed")
         image_results = [
             {"id": pid, "metadata": md}
             for pid, md in zip(image_ids, image_metas)
         ]
+        answer = ocr_text or ""
         return {
             "image_results": image_results,
             "text_results": text_results,
             "answer": answer,
-            "ocr_text": ocr_text,
+        }
+
+    def query_text_only(
+        self,
+        *,
+        query_text: str,
+        text_collection: Optional[str] = None,
+        text_top_k: Optional[int] = None,
+    ) -> Dict[str, Any]:
+        """
+        A: Text-only baseline. Search over global text chunk collection.
+        """
+        if not query_text:
+            raise ValueError("Query requires text")
+
+        original_query_text = query_text
+        retrieval_query_text = _maybe_enhance_query(query_text)
+        query_vec = self.embedder.embed_query(text=retrieval_query_text, image=None)
+
+        cfg = self.cfg.indexing
+        text_collection = text_collection or getattr(cfg, "global_text_collection", None) or cfg.default_text_collection
+        text_top_k = text_top_k or self.cfg.retrieval.text_top_k
+
+        text_results: List[Dict[str, Any]] = []
+        context_texts: List[str] = []
+        logger.info(f"Query text-only collection: {text_collection}, top_k={text_top_k}")
+        text_res = self.chroma.query(text_collection, query_vec, text_top_k, dim=self.embedder.dim)
+        text_ids = (text_res.get("ids") or [[]])[0] or []
+        text_metas = (text_res.get("metadatas") or [[]])[0] or []
+        for tid, md in zip(text_ids, text_metas):
+            text_results.append({"id": tid, "metadata": md})
+            if isinstance(md, dict) and md.get("text"):
+                context_texts.append(md["text"])
+
+        answer = ""
+        if original_query_text and context_texts:
+            try:
+                answer = _answer_with_text_only(
+                    question=original_query_text,
+                    context_text="\n".join(context_texts),
+                )
+            except Exception:
+                logger.exception("text-only answering failed")
+
+        return {
+            "image_results": [],
+            "text_results": text_results,
+            "answer": answer,
+        }
+
+    def query_vision_only(
+        self,
+        *,
+        query_text: Optional[str] = None,
+        query_image_path: Optional[str] = None,
+        image_collection: Optional[str] = None,
+        image_top_k: Optional[int] = None,
+    ) -> Dict[str, Any]:
+        """
+        B: Vision-only baseline. Search images only, no text chunk retrieval.
+        """
+        if not query_text and not query_image_path:
+            raise ValueError("Query requires text and/or image")
+
+        original_query_text = query_text
+        retrieval_query_text = _maybe_enhance_query(query_text)
+
+        image = Image.open(query_image_path).convert("RGB") if query_image_path else None
+        if image is None and self.cfg.retrieval.query_render_to_image and retrieval_query_text:
+            image = _render_text_to_image(retrieval_query_text)
+            query_vec = self.embedder.embed_query(text=None, image=image)
+        else:
+            query_vec = self.embedder.embed_query(text=retrieval_query_text, image=image)
+
+        image_collection = image_collection or self.cfg.indexing.default_image_collection
+        image_top_k = image_top_k or self.cfg.retrieval.image_top_k
+        logger.info(f"Query image collection (vision-only): {image_collection}, top_k={image_top_k}")
+        image_res = self.chroma.query(image_collection, query_vec, image_top_k, dim=self.embedder.dim)
+        image_ids = (image_res.get("ids") or [[]])[0] or []
+        image_metas = (image_res.get("metadatas") or [[]])[0] or []
+
+        if not image_ids:
+            return {"image_results": [], "text_results": [], "answer": ""}
+
+        # Optional rerank
+        try:
+            reranker = get_reranker()
+            if reranker.enabled and retrieval_query_text:
+                candidate_imgs: List[Image.Image] = []
+                candidate_indices: List[int] = []
+                for i, md in enumerate(image_metas):
+                    if isinstance(md, dict) and md.get("image_path") and os.path.exists(md["image_path"]):
+                        try:
+                            candidate_imgs.append(Image.open(md["image_path"]).convert("RGB"))
+                            candidate_indices.append(i)
+                        except Exception:
+                            logger.exception("Failed to open candidate image for rerank")
+
+                if candidate_imgs:
+                    scores = reranker.score_images(query_text=retrieval_query_text, images=candidate_imgs)
+                    if scores and len(scores) == len(candidate_indices):
+                        ranked = sorted(zip(candidate_indices, scores), key=lambda x: x[1], reverse=True)
+                        new_ids: List[str] = []
+                        new_metas: List[Dict[str, Any]] = []
+                        used = set()
+                        for idx, sc in ranked:
+                            used.add(idx)
+                            new_ids.append(image_ids[idx])
+                            md = image_metas[idx] if idx < len(image_metas) else {}
+                            md2 = dict(md) if isinstance(md, dict) else {"_raw": md}
+                            md2["rerank_score"] = float(sc)
+                            new_metas.append(md2)
+                        for i, pid in enumerate(image_ids):
+                            if i in used:
+                                continue
+                            new_ids.append(pid)
+                            md = image_metas[i] if i < len(image_metas) else {}
+                            new_metas.append(dict(md) if isinstance(md, dict) else {"_raw": md})
+                        image_ids, image_metas = new_ids, new_metas
+        except Exception:
+            logger.exception("Image rerank failed; using original order")
+
+        # Use OCR QA on top image only (vision-only)
+        top_image_meta = image_metas[0] if image_metas else {}
+        image_path = top_image_meta.get("image_path")
+        ocr_text = ""
+        answer = ""
+        if image_path:
+            try:
+                backend = getattr(getattr(self.answer_service, "cfg", None), "backend", "ocr2")
+                logger.info(f"Running answer_generator on retrieved page (backend={backend})")
+                ocr_text = self.answer_service.generate_from_image(
+                    image_path=image_path,
+                    question=original_query_text or retrieval_query_text,
+                    context_text=None,
+                )
+                answer = ocr_text or ""
+            except Exception:
+                logger.exception("answer_generator failed")
+
+        image_results = [{"id": pid, "metadata": md} for pid, md in zip(image_ids, image_metas)]
+        return {
+            "image_results": image_results,
+            "text_results": [],
+            "answer": answer,
         }

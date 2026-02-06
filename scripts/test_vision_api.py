@@ -101,8 +101,21 @@ def main():
     print()
     print("=" * 60)
     print("image_results (命中页面数):", len(out.get("image_results", [])))
-    for i, im in enumerate(out.get("image_results", [])[:3]):
-        print(f"  [{i}] id={im.get('id')}, metadata={json.dumps(im.get('metadata', {}), ensure_ascii=False)}...")
+    image_results = out.get("image_results", []) or []
+    has_rerank = any((im.get("metadata") or {}).get("rerank_score") is not None for im in image_results)
+    if has_rerank:
+        print("  (已按 rerank_score 重排，分数越大越相关)")
+    for i, im in enumerate(image_results):
+        md = im.get("metadata", {}) or {}
+        rid = im.get("id")
+        pdf = md.get("pdf_name")
+        page = md.get("page")
+        score = md.get("rerank_score")
+        img_path = md.get("image_path")
+        score_str = f"{score:.4f}" if isinstance(score, (int, float)) else "N/A"
+        print(f"  [{i}] score={score_str} pdf={pdf} page={page} id={rid}")
+        if img_path:
+            print(f"       image_path={img_path}")
     print()
     print("text_results (命中文本块数):", len(out.get("text_results", [])))
     for i, tx in enumerate(out.get("text_results", [])[:3]):
@@ -110,14 +123,10 @@ def main():
         text_preview = (meta.get("text") or "")[:100]
         print(f"  [{i}] {text_preview}...")
     print()
-    if out.get("answer") is not None:
-        print("answer (decoder-only QA 输出):")
-        print("-" * 40)
-        print(out.get("answer", "") or "(empty)")
-        print()
-    print("ocr_text (DeepSeek-OCR 输出):")
+    ans = out.get("answer", "") or ""
+    print("answer:")
     print("-" * 40)
-    print(out.get("ocr_text", "") or "(empty)")
+    print(ans or "(empty)")
     print("=" * 60)
 
 

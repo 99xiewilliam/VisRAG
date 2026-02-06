@@ -226,3 +226,541 @@ TypeError: DeepseekOCR2Processor.tokenize_with_images() got an unexpected keywor
 2026-02-04 19:24:18 [INFO] fastapi_app.service.ocr_service: Running OCR2 vLLM generation
 2026-02-04 19:24:21 [INFO] fastapi_app.service.query_service: Query completed
 2026-02-04 19:24:21 [INFO] fastapi_app.app: POST /api/v1/query/vision 200 17527.2ms
+2026-02-04 19:30:39 [INFO] chromadb.telemetry.product.posthog: Anonymized telemetry enabled. See                     https://docs.trychroma.com/telemetry for more information.
+2026-02-04 19:30:39 [INFO] fastapi_app.dao.chroma_dao: ChromaDAO initialized: /home/xwh/VisRAG/output/chroma_db
+2026-02-04 19:30:43 [INFO] fastapi_app.service.query_service: Query image collection: vision_pages, top_k=1
+2026-02-04 19:30:43 [INFO] fastapi_app.service.query_service: Query text collection: pdf_enriching_bert_with_knowledge_graph_embeddings_for_document_classification_pdf_1, top_k=3
+2026-02-04 19:30:43 [INFO] fastapi_app.service.query_service: Running OCR2 on retrieved page (direct)
+2026-02-04 19:30:58 [INFO] fastapi_app.service.ocr_service: Running OCR2 vLLM generation
+2026-02-04 19:31:00 [INFO] fastapi_app.service.query_service: Query completed
+2026-02-04 19:31:00 [INFO] fastapi_app.app: POST /api/v1/query/vision 200 21147.3ms
+2026-02-04 19:32:18 [INFO] chromadb.telemetry.product.posthog: Anonymized telemetry enabled. See                     https://docs.trychroma.com/telemetry for more information.
+2026-02-04 19:32:18 [INFO] fastapi_app.dao.chroma_dao: ChromaDAO initialized: /home/xwh/VisRAG/output/chroma_db
+2026-02-04 19:32:20 [INFO] fastapi_app.service.query_service: Enriching BERT with Knowledge Graph Embeddings for Document Classification outperform standard BERT performance comparison, outperform standard BERT performance comparison, outperform standard BERT performance comparison.
+2026-02-04 19:32:20 [INFO] fastapi_app.service.query_service: 22222222222
+2026-02-04 19:32:20 [INFO] fastapi_app.service.query_service: Query image collection: vision_pages, top_k=1
+2026-02-04 19:32:20 [INFO] fastapi_app.service.query_service: Query text collection: pdf_enriching_bert_with_knowledge_graph_embeddings_for_document_classification_pdf_1, top_k=3
+2026-02-04 19:32:20 [INFO] fastapi_app.service.query_service: Running OCR2 on retrieved page (direct)
+2026-02-04 19:32:34 [INFO] fastapi_app.service.ocr_service: Running OCR2 vLLM generation
+2026-02-04 19:32:37 [INFO] fastapi_app.service.query_service: Query completed
+2026-02-04 19:32:37 [INFO] fastapi_app.app: POST /api/v1/query/vision 200 19091.3ms
+2026-02-04 19:34:04 [INFO] chromadb.telemetry.product.posthog: Anonymized telemetry enabled. See                     https://docs.trychroma.com/telemetry for more information.
+2026-02-04 19:34:04 [INFO] fastapi_app.dao.chroma_dao: ChromaDAO initialized: /home/xwh/VisRAG/output/chroma_db
+2026-02-04 19:34:07 [INFO] fastapi_app.service.query_service: how much do they outperform standard BERT standard BERT standard BERT in Enriching BERT with Knowledge Graph Embeddings for Document Classification
+2026-02-04 19:34:07 [INFO] fastapi_app.service.query_service: 22222222222
+2026-02-04 19:34:07 [INFO] fastapi_app.service.query_service: Query image collection: vision_pages, top_k=3
+2026-02-04 19:34:07 [INFO] fastapi_app.service.query_service: Query text collection: pdf_enriching_bert_with_knowledge_graph_embeddings_for_document_classification_pdf_1, top_k=3
+2026-02-04 19:34:07 [INFO] fastapi_app.service.query_service: Running OCR2 on retrieved page (direct)
+2026-02-04 19:34:21 [INFO] fastapi_app.service.ocr_service: Running OCR2 vLLM generation
+2026-02-04 19:34:24 [INFO] fastapi_app.service.query_service: Query completed
+2026-02-04 19:34:24 [INFO] fastapi_app.app: POST /api/v1/query/vision 200 20182.1ms
+2026-02-04 19:46:19 [INFO] chromadb.telemetry.product.posthog: Anonymized telemetry enabled. See                     https://docs.trychroma.com/telemetry for more information.
+2026-02-04 19:46:19 [INFO] fastapi_app.dao.chroma_dao: ChromaDAO initialized: /home/xwh/VisRAG/output/chroma_db
+2026-02-04 19:46:19 [INFO] fastapi_app.service.query_service: By how much do they outperform standard BERT in Enriching BERT with Knowledge Graph Embeddings for Document Classification this paper?
+2026-02-04 19:46:19 [INFO] fastapi_app.service.query_service: 22222222222
+2026-02-04 19:46:20 [INFO] fastapi_app.service.query_service: Query image collection: vision_pages, top_k=3
+2026-02-04 19:46:20 [INFO] fastapi_app.service.query_service: Query text collection: pdf_enriching_bert_with_knowledge_graph_embeddings_for_document_classification_pdf_1, top_k=3
+2026-02-04 19:46:20 [INFO] fastapi_app.service.query_service: Running OCR2 on retrieved page (direct)
+2026-02-04 19:46:34 [INFO] fastapi_app.service.ocr_service: Running OCR2 vLLM generation
+2026-02-04 19:46:36 [INFO] fastapi_app.service.query_service: Query completed
+2026-02-04 19:46:36 [INFO] fastapi_app.app: POST /api/v1/query/vision 200 17174.4ms
+2026-02-04 19:51:13 [INFO] chromadb.telemetry.product.posthog: Anonymized telemetry enabled. See                     https://docs.trychroma.com/telemetry for more information.
+2026-02-04 19:51:13 [INFO] fastapi_app.dao.chroma_dao: ChromaDAO initialized: /home/xwh/VisRAG/output/chroma_db
+2026-02-04 19:51:13 [INFO] fastapi_app.service.query_service: By how much do they outperform standard BERT in Enriching BERT with Knowledge Graph Embeddings for Document Classification this paper?
+2026-02-04 19:51:17 [INFO] fastapi_app.service.query_service: Query image collection: vision_pages, top_k=3
+2026-02-04 19:51:18 [INFO] fastapi_app.service.query_service: Query text collection: pdf_enriching_bert_with_knowledge_graph_embeddings_for_document_classification_pdf_1, top_k=3
+2026-02-04 19:51:18 [INFO] fastapi_app.service.query_service: Running OCR2 on retrieved page (direct)
+2026-02-04 19:51:31 [INFO] fastapi_app.service.ocr_service: Running OCR2 vLLM generation
+2026-02-04 19:51:34 [INFO] fastapi_app.service.query_service: Query completed
+2026-02-04 19:51:34 [INFO] fastapi_app.app: POST /api/v1/query/vision 200 20896.7ms
+2026-02-04 19:53:08 [INFO] chromadb.telemetry.product.posthog: Anonymized telemetry enabled. See                     https://docs.trychroma.com/telemetry for more information.
+2026-02-04 19:53:09 [INFO] fastapi_app.dao.chroma_dao: ChromaDAO initialized: /home/xwh/VisRAG/output/chroma_db
+2026-02-04 19:53:09 [INFO] fastapi_app.service.query_service: By how much do they outperform standard BERT in Enriching BERT with Knowledge Graph Embeddings for Document Classification this paper?
+2026-02-04 19:53:09 [INFO] fastapi_app.service.query_service: 33333333333
+2026-02-04 19:53:09 [INFO] fastapi_app.service.query_service: Query image collection: vision_pages, top_k=3
+2026-02-04 19:53:09 [INFO] fastapi_app.service.query_service: Query text collection: pdf_enriching_bert_with_knowledge_graph_embeddings_for_document_classification_pdf_1, top_k=3
+2026-02-04 19:53:09 [INFO] fastapi_app.service.query_service: Running OCR2 on retrieved page (direct)
+2026-02-04 19:53:23 [INFO] fastapi_app.service.ocr_service: Running OCR2 vLLM generation
+2026-02-04 19:53:26 [INFO] fastapi_app.service.query_service: Query completed
+2026-02-04 19:53:26 [INFO] fastapi_app.app: POST /api/v1/query/vision 200 17204.2ms
+2026-02-04 19:53:54 [INFO] chromadb.telemetry.product.posthog: Anonymized telemetry enabled. See                     https://docs.trychroma.com/telemetry for more information.
+2026-02-04 19:53:54 [INFO] fastapi_app.dao.chroma_dao: ChromaDAO initialized: /home/xwh/VisRAG/output/chroma_db
+2026-02-04 19:54:14 [ERROR] fastapi_app.service.query_service: query_enhance failed; using original query
+Traceback (most recent call last):
+  File "/home/xwh/.conda/envs/deepseek-ocr/lib/python3.12/urllib/request.py", line 1344, in do_open
+    h.request(req.get_method(), req.selector, req.data, headers,
+  File "/home/xwh/.conda/envs/deepseek-ocr/lib/python3.12/http/client.py", line 1338, in request
+    self._send_request(method, url, body, headers, encode_chunked)
+  File "/home/xwh/.conda/envs/deepseek-ocr/lib/python3.12/http/client.py", line 1384, in _send_request
+    self.endheaders(body, encode_chunked=encode_chunked)
+  File "/home/xwh/.conda/envs/deepseek-ocr/lib/python3.12/http/client.py", line 1333, in endheaders
+    self._send_output(message_body, encode_chunked=encode_chunked)
+  File "/home/xwh/.conda/envs/deepseek-ocr/lib/python3.12/http/client.py", line 1093, in _send_output
+    self.send(msg)
+  File "/home/xwh/.conda/envs/deepseek-ocr/lib/python3.12/http/client.py", line 1037, in send
+    self.connect()
+  File "/home/xwh/.conda/envs/deepseek-ocr/lib/python3.12/http/client.py", line 1472, in connect
+    super().connect()
+  File "/home/xwh/.conda/envs/deepseek-ocr/lib/python3.12/http/client.py", line 1003, in connect
+    self.sock = self._create_connection(
+                ^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/xwh/.conda/envs/deepseek-ocr/lib/python3.12/socket.py", line 865, in create_connection
+    raise exceptions[0]
+  File "/home/xwh/.conda/envs/deepseek-ocr/lib/python3.12/socket.py", line 850, in create_connection
+    sock.connect(sa)
+TimeoutError: timed out
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/home/xwh/VisRAG/fastapi_app/service/query_service.py", line 173, in _maybe_enhance_query
+    with urllib.request.urlopen(req, timeout=int(getattr(oai, "timeout", 20))) as resp:
+         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/xwh/.conda/envs/deepseek-ocr/lib/python3.12/urllib/request.py", line 215, in urlopen
+    return opener.open(url, data, timeout)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/xwh/.conda/envs/deepseek-ocr/lib/python3.12/urllib/request.py", line 515, in open
+    response = self._open(req, data)
+               ^^^^^^^^^^^^^^^^^^^^^
+  File "/home/xwh/.conda/envs/deepseek-ocr/lib/python3.12/urllib/request.py", line 532, in _open
+    result = self._call_chain(self.handle_open, protocol, protocol +
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/xwh/.conda/envs/deepseek-ocr/lib/python3.12/urllib/request.py", line 492, in _call_chain
+    result = func(*args)
+             ^^^^^^^^^^^
+  File "/home/xwh/.conda/envs/deepseek-ocr/lib/python3.12/urllib/request.py", line 1392, in https_open
+    return self.do_open(http.client.HTTPSConnection, req,
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/xwh/.conda/envs/deepseek-ocr/lib/python3.12/urllib/request.py", line 1347, in do_open
+    raise URLError(err)
+urllib.error.URLError: <urlopen error timed out>
+2026-02-04 19:54:14 [INFO] fastapi_app.service.query_service: By how much do they outperform standard BERT in Enriching BERT with Knowledge Graph Embeddings for Document Classification this paper?
+2026-02-04 19:54:14 [INFO] fastapi_app.service.query_service: 33333333333
+2026-02-04 19:54:14 [INFO] fastapi_app.service.query_service: Query image collection: vision_pages, top_k=3
+2026-02-04 19:54:14 [INFO] fastapi_app.service.query_service: Query text collection: pdf_enriching_bert_with_knowledge_graph_embeddings_for_document_classification_pdf_1, top_k=3
+2026-02-04 19:54:15 [INFO] fastapi_app.service.query_service: Running OCR2 on retrieved page (direct)
+2026-02-04 19:54:29 [INFO] fastapi_app.service.ocr_service: Running OCR2 vLLM generation
+2026-02-04 19:54:32 [INFO] fastapi_app.service.query_service: Query completed
+2026-02-04 19:54:32 [INFO] fastapi_app.app: POST /api/v1/query/vision 200 38350.9ms
+2026-02-04 20:00:38 [INFO] chromadb.telemetry.product.posthog: Anonymized telemetry enabled. See                     https://docs.trychroma.com/telemetry for more information.
+2026-02-04 20:00:38 [INFO] fastapi_app.dao.chroma_dao: ChromaDAO initialized: /home/xwh/VisRAG/output/chroma_db
+2026-02-04 20:00:58 [ERROR] fastapi_app.service.query_service: query_enhance failed; using original query
+Traceback (most recent call last):
+  File "/home/xwh/.conda/envs/deepseek-ocr/lib/python3.12/urllib/request.py", line 1344, in do_open
+    h.request(req.get_method(), req.selector, req.data, headers,
+  File "/home/xwh/.conda/envs/deepseek-ocr/lib/python3.12/http/client.py", line 1338, in request
+    self._send_request(method, url, body, headers, encode_chunked)
+  File "/home/xwh/.conda/envs/deepseek-ocr/lib/python3.12/http/client.py", line 1384, in _send_request
+    self.endheaders(body, encode_chunked=encode_chunked)
+  File "/home/xwh/.conda/envs/deepseek-ocr/lib/python3.12/http/client.py", line 1333, in endheaders
+    self._send_output(message_body, encode_chunked=encode_chunked)
+  File "/home/xwh/.conda/envs/deepseek-ocr/lib/python3.12/http/client.py", line 1093, in _send_output
+    self.send(msg)
+  File "/home/xwh/.conda/envs/deepseek-ocr/lib/python3.12/http/client.py", line 1037, in send
+    self.connect()
+  File "/home/xwh/.conda/envs/deepseek-ocr/lib/python3.12/http/client.py", line 1472, in connect
+    super().connect()
+  File "/home/xwh/.conda/envs/deepseek-ocr/lib/python3.12/http/client.py", line 1003, in connect
+    self.sock = self._create_connection(
+                ^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/xwh/.conda/envs/deepseek-ocr/lib/python3.12/socket.py", line 865, in create_connection
+    raise exceptions[0]
+  File "/home/xwh/.conda/envs/deepseek-ocr/lib/python3.12/socket.py", line 850, in create_connection
+    sock.connect(sa)
+TimeoutError: timed out
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/home/xwh/VisRAG/fastapi_app/service/query_service.py", line 173, in _maybe_enhance_query
+    with urllib.request.urlopen(req, timeout=int(getattr(oai, "timeout", 20))) as resp:
+         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/xwh/.conda/envs/deepseek-ocr/lib/python3.12/urllib/request.py", line 215, in urlopen
+    return opener.open(url, data, timeout)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/xwh/.conda/envs/deepseek-ocr/lib/python3.12/urllib/request.py", line 515, in open
+    response = self._open(req, data)
+               ^^^^^^^^^^^^^^^^^^^^^
+  File "/home/xwh/.conda/envs/deepseek-ocr/lib/python3.12/urllib/request.py", line 532, in _open
+    result = self._call_chain(self.handle_open, protocol, protocol +
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/xwh/.conda/envs/deepseek-ocr/lib/python3.12/urllib/request.py", line 492, in _call_chain
+    result = func(*args)
+             ^^^^^^^^^^^
+  File "/home/xwh/.conda/envs/deepseek-ocr/lib/python3.12/urllib/request.py", line 1392, in https_open
+    return self.do_open(http.client.HTTPSConnection, req,
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/xwh/.conda/envs/deepseek-ocr/lib/python3.12/urllib/request.py", line 1347, in do_open
+    raise URLError(err)
+urllib.error.URLError: <urlopen error timed out>
+2026-02-04 20:00:58 [INFO] fastapi_app.service.query_service: By how much do they outperform standard BERT in Enriching BERT with Knowledge Graph Embeddings for Document Classification this paper?
+2026-02-04 20:00:58 [INFO] fastapi_app.service.query_service: 33333333333
+2026-02-04 20:00:58 [INFO] fastapi_app.service.query_service: Query image collection: vision_pages, top_k=3
+2026-02-04 20:00:58 [INFO] fastapi_app.service.query_service: Query text collection: pdf_enriching_bert_with_knowledge_graph_embeddings_for_document_classification_pdf_1, top_k=3
+2026-02-04 20:00:58 [INFO] fastapi_app.service.query_service: Running OCR2 on retrieved page (direct)
+2026-02-04 20:01:13 [INFO] fastapi_app.service.ocr_service: Running OCR2 vLLM generation
+2026-02-04 20:01:15 [INFO] fastapi_app.service.query_service: Query completed
+2026-02-04 20:01:15 [INFO] fastapi_app.app: POST /api/v1/query/vision 200 37258.1ms
+2026-02-04 20:03:00 [INFO] chromadb.telemetry.product.posthog: Anonymized telemetry enabled. See                     https://docs.trychroma.com/telemetry for more information.
+2026-02-04 20:03:00 [INFO] fastapi_app.dao.chroma_dao: ChromaDAO initialized: /home/xwh/VisRAG/output/chroma_db
+2026-02-04 20:03:20 [ERROR] fastapi_app.service.query_service: query_enhance failed; using original query
+Traceback (most recent call last):
+  File "/home/xwh/.conda/envs/deepseek-ocr/lib/python3.12/urllib/request.py", line 1344, in do_open
+    h.request(req.get_method(), req.selector, req.data, headers,
+  File "/home/xwh/.conda/envs/deepseek-ocr/lib/python3.12/http/client.py", line 1338, in request
+    self._send_request(method, url, body, headers, encode_chunked)
+  File "/home/xwh/.conda/envs/deepseek-ocr/lib/python3.12/http/client.py", line 1384, in _send_request
+    self.endheaders(body, encode_chunked=encode_chunked)
+  File "/home/xwh/.conda/envs/deepseek-ocr/lib/python3.12/http/client.py", line 1333, in endheaders
+    self._send_output(message_body, encode_chunked=encode_chunked)
+  File "/home/xwh/.conda/envs/deepseek-ocr/lib/python3.12/http/client.py", line 1093, in _send_output
+    self.send(msg)
+  File "/home/xwh/.conda/envs/deepseek-ocr/lib/python3.12/http/client.py", line 1037, in send
+    self.connect()
+  File "/home/xwh/.conda/envs/deepseek-ocr/lib/python3.12/http/client.py", line 1472, in connect
+    super().connect()
+  File "/home/xwh/.conda/envs/deepseek-ocr/lib/python3.12/http/client.py", line 1003, in connect
+    self.sock = self._create_connection(
+                ^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/xwh/.conda/envs/deepseek-ocr/lib/python3.12/socket.py", line 865, in create_connection
+    raise exceptions[0]
+  File "/home/xwh/.conda/envs/deepseek-ocr/lib/python3.12/socket.py", line 850, in create_connection
+    sock.connect(sa)
+TimeoutError: timed out
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/home/xwh/VisRAG/fastapi_app/service/query_service.py", line 173, in _maybe_enhance_query
+    with urllib.request.urlopen(req, timeout=int(getattr(oai, "timeout", 20))) as resp:
+         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/xwh/.conda/envs/deepseek-ocr/lib/python3.12/urllib/request.py", line 215, in urlopen
+    return opener.open(url, data, timeout)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/xwh/.conda/envs/deepseek-ocr/lib/python3.12/urllib/request.py", line 515, in open
+    response = self._open(req, data)
+               ^^^^^^^^^^^^^^^^^^^^^
+  File "/home/xwh/.conda/envs/deepseek-ocr/lib/python3.12/urllib/request.py", line 532, in _open
+    result = self._call_chain(self.handle_open, protocol, protocol +
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/xwh/.conda/envs/deepseek-ocr/lib/python3.12/urllib/request.py", line 492, in _call_chain
+    result = func(*args)
+             ^^^^^^^^^^^
+  File "/home/xwh/.conda/envs/deepseek-ocr/lib/python3.12/urllib/request.py", line 1392, in https_open
+    return self.do_open(http.client.HTTPSConnection, req,
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/xwh/.conda/envs/deepseek-ocr/lib/python3.12/urllib/request.py", line 1347, in do_open
+    raise URLError(err)
+urllib.error.URLError: <urlopen error timed out>
+2026-02-04 20:03:20 [INFO] fastapi_app.service.query_service: By how much do they outperform standard BERT in Enriching BERT with Knowledge Graph Embeddings for Document Classification this paper?
+2026-02-04 20:03:20 [INFO] fastapi_app.service.query_service: Query image collection: vision_pages, top_k=3
+2026-02-04 20:03:20 [INFO] fastapi_app.service.query_service: Query text collection: pdf_enriching_bert_with_knowledge_graph_embeddings_for_document_classification_pdf_1, top_k=3
+2026-02-04 20:03:20 [INFO] fastapi_app.service.query_service: Running OCR2 on retrieved page (direct)
+2026-02-04 20:03:35 [INFO] fastapi_app.service.ocr_service: Running OCR2 vLLM generation
+2026-02-04 20:03:38 [INFO] fastapi_app.service.query_service: Query completed
+2026-02-04 20:03:38 [INFO] fastapi_app.app: POST /api/v1/query/vision 200 38006.1ms
+2026-02-04 20:05:55 [INFO] chromadb.telemetry.product.posthog: Anonymized telemetry enabled. See                     https://docs.trychroma.com/telemetry for more information.
+2026-02-04 20:05:55 [INFO] fastapi_app.dao.chroma_dao: ChromaDAO initialized: /home/xwh/VisRAG/output/chroma_db
+2026-02-04 20:05:58 [INFO] fastapi_app.service.query_service: Improvement over standard BERT in document classification as reported in the paper "Enriching BERT with Knowledge Graph Embeddings," including gains in accuracy, F1 score, or other metrics.
+2026-02-04 20:05:58 [INFO] fastapi_app.service.query_service: Query image collection: vision_pages, top_k=3
+2026-02-04 20:05:58 [INFO] fastapi_app.service.query_service: Query text collection: pdf_enriching_bert_with_knowledge_graph_embeddings_for_document_classification_pdf_1, top_k=3
+2026-02-04 20:05:58 [INFO] fastapi_app.service.query_service: Running OCR2 on retrieved page (direct)
+2026-02-04 20:06:13 [INFO] fastapi_app.service.ocr_service: Running OCR2 vLLM generation
+2026-02-04 20:06:16 [INFO] fastapi_app.service.query_service: Query completed
+2026-02-04 20:06:16 [INFO] fastapi_app.app: POST /api/v1/query/vision 200 20840.2ms
+2026-02-04 20:07:08 [INFO] chromadb.telemetry.product.posthog: Anonymized telemetry enabled. See                     https://docs.trychroma.com/telemetry for more information.
+2026-02-04 20:07:09 [INFO] fastapi_app.dao.chroma_dao: ChromaDAO initialized: /home/xwh/VisRAG/output/chroma_db
+2026-02-04 20:07:09 [INFO] fastapi_app.service.query_service: By how much do they outperform standard BERT in Enriching BERT with Knowledge Graph Embeddings for Document Classification this paper?
+2026-02-04 20:07:09 [INFO] fastapi_app.service.query_service: Query image collection: vision_pages, top_k=3
+2026-02-04 20:07:09 [INFO] fastapi_app.service.query_service: Query text collection: pdf_enriching_bert_with_knowledge_graph_embeddings_for_document_classification_pdf_1, top_k=3
+2026-02-04 20:07:09 [INFO] fastapi_app.service.query_service: Running OCR2 on retrieved page (direct)
+2026-02-04 20:07:23 [INFO] fastapi_app.service.ocr_service: Running OCR2 vLLM generation
+2026-02-04 20:07:26 [INFO] fastapi_app.service.query_service: Query completed
+2026-02-04 20:07:26 [INFO] fastapi_app.app: POST /api/v1/query/vision 200 17084.9ms
+2026-02-04 20:26:10 [INFO] chromadb.telemetry.product.posthog: Anonymized telemetry enabled. See                     https://docs.trychroma.com/telemetry for more information.
+2026-02-04 20:26:10 [INFO] fastapi_app.dao.chroma_dao: ChromaDAO initialized: /home/xwh/VisRAG/output/chroma_db
+2026-02-04 20:26:10 [INFO] fastapi_app.service.query_service: By how much do they outperform standard BERT in Enriching BERT with Knowledge Graph Embeddings for Document Classification this paper?
+2026-02-04 20:26:10 [INFO] fastapi_app.service.query_service: Query image collection: vision_pages, top_k=3
+2026-02-04 20:26:10 [INFO] fastapi_app.service.query_service: Query text collection: pdf_enriching_bert_with_knowledge_graph_embeddings_for_document_classification_pdf_1, top_k=3
+2026-02-04 20:26:10 [INFO] fastapi_app.service.query_service: Running OCR2 on retrieved page (direct)
+2026-02-04 20:26:24 [INFO] fastapi_app.service.ocr_service: Running OCR2 vLLM generation
+2026-02-04 20:26:27 [INFO] fastapi_app.service.query_service: Query completed
+2026-02-04 20:26:27 [INFO] fastapi_app.app: POST /api/v1/query/vision 200 17083.2ms
+2026-02-04 20:30:51 [INFO] chromadb.telemetry.product.posthog: Anonymized telemetry enabled. See                     https://docs.trychroma.com/telemetry for more information.
+2026-02-04 20:30:51 [INFO] fastapi_app.dao.chroma_dao: ChromaDAO initialized: /home/xwh/VisRAG/output/chroma_db
+2026-02-04 20:30:51 [INFO] fastapi_app.service.query_service: By how much do they outperform standard BERT in Enriching BERT with Knowledge Graph Embeddings for Document Classification this paper?
+2026-02-04 20:30:52 [INFO] fastapi_app.service.query_service: Query image collection: vision_pages, top_k=3
+2026-02-04 20:31:22 [ERROR] fastapi_app.service.query_service: Image rerank failed; using original order
+Traceback (most recent call last):
+  File "/home/xwh/VisRAG/fastapi_app/service/query_service.py", line 261, in query
+    scores = reranker.score_images(query_text=retrieval_query_text, images=candidate_imgs)
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/xwh/VisRAG/fastapi_app/service/reranker_service.py", line 88, in score_images
+    return self._score_images_remote(query_text=query_text, images=images)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/xwh/VisRAG/fastapi_app/service/reranker_service.py", line 129, in _score_images_remote
+    with urllib.request.urlopen(req, timeout=timeout) as resp:
+         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/xwh/.conda/envs/deepseek-ocr/lib/python3.12/urllib/request.py", line 215, in urlopen
+    return opener.open(url, data, timeout)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/xwh/.conda/envs/deepseek-ocr/lib/python3.12/urllib/request.py", line 515, in open
+    response = self._open(req, data)
+               ^^^^^^^^^^^^^^^^^^^^^
+  File "/home/xwh/.conda/envs/deepseek-ocr/lib/python3.12/urllib/request.py", line 532, in _open
+    result = self._call_chain(self.handle_open, protocol, protocol +
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/xwh/.conda/envs/deepseek-ocr/lib/python3.12/urllib/request.py", line 492, in _call_chain
+    result = func(*args)
+             ^^^^^^^^^^^
+  File "/home/xwh/.conda/envs/deepseek-ocr/lib/python3.12/urllib/request.py", line 1373, in http_open
+    return self.do_open(http.client.HTTPConnection, req)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/xwh/.conda/envs/deepseek-ocr/lib/python3.12/urllib/request.py", line 1348, in do_open
+    r = h.getresponse()
+        ^^^^^^^^^^^^^^^
+  File "/home/xwh/.conda/envs/deepseek-ocr/lib/python3.12/http/client.py", line 1430, in getresponse
+    response.begin()
+  File "/home/xwh/.conda/envs/deepseek-ocr/lib/python3.12/http/client.py", line 331, in begin
+    version, status, reason = self._read_status()
+                              ^^^^^^^^^^^^^^^^^^^
+  File "/home/xwh/.conda/envs/deepseek-ocr/lib/python3.12/http/client.py", line 292, in _read_status
+    line = str(self.fp.readline(_MAXLINE + 1), "iso-8859-1")
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/xwh/.conda/envs/deepseek-ocr/lib/python3.12/socket.py", line 720, in readinto
+    return self._sock.recv_into(b)
+           ^^^^^^^^^^^^^^^^^^^^^^^
+TimeoutError: timed out
+2026-02-04 20:31:22 [INFO] fastapi_app.service.query_service: Query text collection: pdf_enriching_bert_with_knowledge_graph_embeddings_for_document_classification_pdf_1, top_k=3
+2026-02-04 20:31:22 [INFO] fastapi_app.service.query_service: Running OCR2 on retrieved page (direct)
+2026-02-04 20:31:37 [INFO] fastapi_app.service.ocr_service: Running OCR2 vLLM generation
+2026-02-04 20:31:40 [INFO] fastapi_app.service.query_service: Query completed
+2026-02-04 20:31:40 [INFO] fastapi_app.app: POST /api/v1/query/vision 200 49140.3ms
+2026-02-04 20:43:57 [INFO] fastapi_app.service.query_service: By how much do they outperform standard BERT in Enriching BERT with Knowledge Graph Embeddings for Document Classification this paper?
+2026-02-04 20:43:57 [INFO] fastapi_app.service.query_service: Query image collection: vision_pages, top_k=3
+2026-02-04 20:44:27 [ERROR] fastapi_app.service.query_service: Image rerank failed; using original order
+Traceback (most recent call last):
+  File "/home/xwh/VisRAG/fastapi_app/service/query_service.py", line 261, in query
+    scores = reranker.score_images(query_text=retrieval_query_text, images=candidate_imgs)
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/xwh/VisRAG/fastapi_app/service/reranker_service.py", line 88, in score_images
+    return self._score_images_remote(query_text=query_text, images=images)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/xwh/VisRAG/fastapi_app/service/reranker_service.py", line 129, in _score_images_remote
+    with urllib.request.urlopen(req, timeout=timeout) as resp:
+         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/xwh/.conda/envs/deepseek-ocr/lib/python3.12/urllib/request.py", line 215, in urlopen
+    return opener.open(url, data, timeout)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/xwh/.conda/envs/deepseek-ocr/lib/python3.12/urllib/request.py", line 515, in open
+    response = self._open(req, data)
+               ^^^^^^^^^^^^^^^^^^^^^
+  File "/home/xwh/.conda/envs/deepseek-ocr/lib/python3.12/urllib/request.py", line 532, in _open
+    result = self._call_chain(self.handle_open, protocol, protocol +
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/xwh/.conda/envs/deepseek-ocr/lib/python3.12/urllib/request.py", line 492, in _call_chain
+    result = func(*args)
+             ^^^^^^^^^^^
+  File "/home/xwh/.conda/envs/deepseek-ocr/lib/python3.12/urllib/request.py", line 1373, in http_open
+    return self.do_open(http.client.HTTPConnection, req)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/xwh/.conda/envs/deepseek-ocr/lib/python3.12/urllib/request.py", line 1348, in do_open
+    r = h.getresponse()
+        ^^^^^^^^^^^^^^^
+  File "/home/xwh/.conda/envs/deepseek-ocr/lib/python3.12/http/client.py", line 1430, in getresponse
+    response.begin()
+  File "/home/xwh/.conda/envs/deepseek-ocr/lib/python3.12/http/client.py", line 331, in begin
+    version, status, reason = self._read_status()
+                              ^^^^^^^^^^^^^^^^^^^
+  File "/home/xwh/.conda/envs/deepseek-ocr/lib/python3.12/http/client.py", line 292, in _read_status
+    line = str(self.fp.readline(_MAXLINE + 1), "iso-8859-1")
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/xwh/.conda/envs/deepseek-ocr/lib/python3.12/socket.py", line 720, in readinto
+    return self._sock.recv_into(b)
+           ^^^^^^^^^^^^^^^^^^^^^^^
+TimeoutError: timed out
+2026-02-04 20:44:27 [INFO] fastapi_app.service.query_service: Query text collection: pdf_enriching_bert_with_knowledge_graph_embeddings_for_document_classification_pdf_1, top_k=3
+2026-02-04 20:44:27 [INFO] fastapi_app.service.query_service: Running OCR2 on retrieved page (direct)
+2026-02-04 20:44:27 [INFO] fastapi_app.service.ocr_service: Running OCR2 vLLM generation
+2026-02-04 20:44:28 [INFO] fastapi_app.service.query_service: Query completed
+2026-02-04 20:44:28 [INFO] fastapi_app.app: POST /api/v1/query/vision 200 31643.6ms
+2026-02-04 20:58:43 [INFO] chromadb.telemetry.product.posthog: Anonymized telemetry enabled. See                     https://docs.trychroma.com/telemetry for more information.
+2026-02-04 20:58:44 [INFO] fastapi_app.dao.chroma_dao: ChromaDAO initialized: /home/xwh/VisRAG/output/chroma_db
+2026-02-04 20:58:44 [INFO] fastapi_app.service.query_service: By how much do they outperform standard BERT in Enriching BERT with Knowledge Graph Embeddings for Document Classification this paper?
+2026-02-04 20:58:44 [INFO] fastapi_app.service.query_service: Query image collection: vision_pages, top_k=3
+2026-02-04 21:00:44 [ERROR] fastapi_app.service.query_service: Image rerank failed; using original order
+Traceback (most recent call last):
+  File "/home/xwh/VisRAG/fastapi_app/service/query_service.py", line 261, in query
+    scores = reranker.score_images(query_text=retrieval_query_text, images=candidate_imgs)
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/xwh/VisRAG/fastapi_app/service/reranker_service.py", line 88, in score_images
+    return self._score_images_remote(query_text=query_text, images=images)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/xwh/VisRAG/fastapi_app/service/reranker_service.py", line 129, in _score_images_remote
+    with urllib.request.urlopen(req, timeout=timeout) as resp:
+         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/xwh/.conda/envs/deepseek-ocr/lib/python3.12/urllib/request.py", line 215, in urlopen
+    return opener.open(url, data, timeout)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/xwh/.conda/envs/deepseek-ocr/lib/python3.12/urllib/request.py", line 515, in open
+    response = self._open(req, data)
+               ^^^^^^^^^^^^^^^^^^^^^
+  File "/home/xwh/.conda/envs/deepseek-ocr/lib/python3.12/urllib/request.py", line 532, in _open
+    result = self._call_chain(self.handle_open, protocol, protocol +
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/xwh/.conda/envs/deepseek-ocr/lib/python3.12/urllib/request.py", line 492, in _call_chain
+    result = func(*args)
+             ^^^^^^^^^^^
+  File "/home/xwh/.conda/envs/deepseek-ocr/lib/python3.12/urllib/request.py", line 1373, in http_open
+    return self.do_open(http.client.HTTPConnection, req)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/xwh/.conda/envs/deepseek-ocr/lib/python3.12/urllib/request.py", line 1348, in do_open
+    r = h.getresponse()
+        ^^^^^^^^^^^^^^^
+  File "/home/xwh/.conda/envs/deepseek-ocr/lib/python3.12/http/client.py", line 1430, in getresponse
+    response.begin()
+  File "/home/xwh/.conda/envs/deepseek-ocr/lib/python3.12/http/client.py", line 331, in begin
+    version, status, reason = self._read_status()
+                              ^^^^^^^^^^^^^^^^^^^
+  File "/home/xwh/.conda/envs/deepseek-ocr/lib/python3.12/http/client.py", line 292, in _read_status
+    line = str(self.fp.readline(_MAXLINE + 1), "iso-8859-1")
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/xwh/.conda/envs/deepseek-ocr/lib/python3.12/socket.py", line 720, in readinto
+    return self._sock.recv_into(b)
+           ^^^^^^^^^^^^^^^^^^^^^^^
+TimeoutError: timed out
+2026-02-04 21:00:44 [INFO] fastapi_app.service.query_service: Query text collection: pdf_enriching_bert_with_knowledge_graph_embeddings_for_document_classification_pdf_1, top_k=3
+2026-02-04 21:00:44 [INFO] fastapi_app.service.query_service: Running OCR2 on retrieved page (direct)
+2026-02-04 21:00:59 [INFO] fastapi_app.service.ocr_service: Running OCR2 vLLM generation
+2026-02-04 21:01:02 [INFO] fastapi_app.service.query_service: Query completed
+2026-02-04 21:01:02 [INFO] fastapi_app.app: POST /api/v1/query/vision 200 138387.6ms
+2026-02-04 21:21:47 [INFO] chromadb.telemetry.product.posthog: Anonymized telemetry enabled. See                     https://docs.trychroma.com/telemetry for more information.
+2026-02-04 21:21:48 [INFO] fastapi_app.dao.chroma_dao: ChromaDAO initialized: /home/xwh/VisRAG/output/chroma_db
+2026-02-04 21:21:48 [INFO] fastapi_app.service.query_service: By how much do they outperform standard BERT in Enriching BERT with Knowledge Graph Embeddings for Document Classification this paper?
+2026-02-04 21:21:48 [INFO] fastapi_app.service.query_service: Query image collection: vision_pages, top_k=3
+2026-02-04 21:21:49 [ERROR] fastapi_app.service.query_service: Image rerank failed; using original order
+Traceback (most recent call last):
+  File "/home/xwh/VisRAG/fastapi_app/service/query_service.py", line 261, in query
+    scores = reranker.score_images(query_text=retrieval_query_text, images=candidate_imgs)
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/xwh/VisRAG/fastapi_app/service/reranker_service.py", line 88, in score_images
+    return self._score_images_remote(query_text=query_text, images=images)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/xwh/VisRAG/fastapi_app/service/reranker_service.py", line 129, in _score_images_remote
+    with urllib.request.urlopen(req, timeout=timeout) as resp:
+         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/xwh/.conda/envs/deepseek-ocr/lib/python3.12/urllib/request.py", line 215, in urlopen
+    return opener.open(url, data, timeout)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/xwh/.conda/envs/deepseek-ocr/lib/python3.12/urllib/request.py", line 521, in open
+    response = meth(req, response)
+               ^^^^^^^^^^^^^^^^^^^
+  File "/home/xwh/.conda/envs/deepseek-ocr/lib/python3.12/urllib/request.py", line 630, in http_response
+    response = self.parent.error(
+               ^^^^^^^^^^^^^^^^^^
+  File "/home/xwh/.conda/envs/deepseek-ocr/lib/python3.12/urllib/request.py", line 559, in error
+    return self._call_chain(*args)
+           ^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/xwh/.conda/envs/deepseek-ocr/lib/python3.12/urllib/request.py", line 492, in _call_chain
+    result = func(*args)
+             ^^^^^^^^^^^
+  File "/home/xwh/.conda/envs/deepseek-ocr/lib/python3.12/urllib/request.py", line 639, in http_error_default
+    raise HTTPError(req.full_url, code, msg, hdrs, fp)
+urllib.error.HTTPError: HTTP Error 500: Internal Server Error
+2026-02-04 21:21:49 [INFO] fastapi_app.service.query_service: Query text collection: pdf_enriching_bert_with_knowledge_graph_embeddings_for_document_classification_pdf_1, top_k=3
+2026-02-04 21:21:49 [INFO] fastapi_app.service.query_service: Running OCR2 on retrieved page (direct)
+2026-02-04 21:22:04 [INFO] fastapi_app.service.ocr_service: Running OCR2 vLLM generation
+2026-02-04 21:22:07 [INFO] fastapi_app.service.query_service: Query completed
+2026-02-04 21:22:07 [INFO] fastapi_app.app: POST /api/v1/query/vision 200 19175.2ms
+2026-02-04 21:32:38 [INFO] fastapi_app.service.query_service: By how much do they outperform standard BERT in Enriching BERT with Knowledge Graph Embeddings for Document Classification this paper?
+2026-02-04 21:32:38 [INFO] fastapi_app.service.query_service: Query image collection: vision_pages, top_k=3
+2026-02-04 21:32:43 [ERROR] fastapi_app.service.query_service: Image rerank failed; using original order
+Traceback (most recent call last):
+  File "/home/xwh/VisRAG/fastapi_app/service/query_service.py", line 261, in query
+    scores = reranker.score_images(query_text=retrieval_query_text, images=candidate_imgs)
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/xwh/VisRAG/fastapi_app/service/reranker_service.py", line 88, in score_images
+    return self._score_images_remote(query_text=query_text, images=images)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/xwh/VisRAG/fastapi_app/service/reranker_service.py", line 129, in _score_images_remote
+    with urllib.request.urlopen(req, timeout=timeout) as resp:
+         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/xwh/.conda/envs/deepseek-ocr/lib/python3.12/urllib/request.py", line 215, in urlopen
+    return opener.open(url, data, timeout)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/xwh/.conda/envs/deepseek-ocr/lib/python3.12/urllib/request.py", line 521, in open
+    response = meth(req, response)
+               ^^^^^^^^^^^^^^^^^^^
+  File "/home/xwh/.conda/envs/deepseek-ocr/lib/python3.12/urllib/request.py", line 630, in http_response
+    response = self.parent.error(
+               ^^^^^^^^^^^^^^^^^^
+  File "/home/xwh/.conda/envs/deepseek-ocr/lib/python3.12/urllib/request.py", line 559, in error
+    return self._call_chain(*args)
+           ^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/xwh/.conda/envs/deepseek-ocr/lib/python3.12/urllib/request.py", line 492, in _call_chain
+    result = func(*args)
+             ^^^^^^^^^^^
+  File "/home/xwh/.conda/envs/deepseek-ocr/lib/python3.12/urllib/request.py", line 639, in http_error_default
+    raise HTTPError(req.full_url, code, msg, hdrs, fp)
+urllib.error.HTTPError: HTTP Error 500: Internal Server Error
+2026-02-04 21:32:43 [INFO] fastapi_app.service.query_service: Query text collection: pdf_enriching_bert_with_knowledge_graph_embeddings_for_document_classification_pdf_1, top_k=3
+2026-02-04 21:32:43 [INFO] fastapi_app.service.query_service: Running OCR2 on retrieved page (direct)
+2026-02-04 21:32:43 [INFO] fastapi_app.service.ocr_service: Running OCR2 vLLM generation
+2026-02-04 21:32:44 [INFO] fastapi_app.service.query_service: Query completed
+2026-02-04 21:32:44 [INFO] fastapi_app.app: POST /api/v1/query/vision 200 5974.2ms
+2026-02-04 21:37:29 [INFO] fastapi_app.service.query_service: By how much do they outperform standard BERT in Enriching BERT with Knowledge Graph Embeddings for Document Classification this paper?
+2026-02-04 21:37:29 [INFO] fastapi_app.service.query_service: Query image collection: vision_pages, top_k=3
+2026-02-04 21:37:35 [INFO] fastapi_app.service.query_service: Rerank applied to image candidates
+2026-02-04 21:37:35 [INFO] fastapi_app.service.query_service: Query text collection: pdf_enriching_bert_with_knowledge_graph_embeddings_for_document_classification_pdf_7, top_k=3
+2026-02-04 21:37:35 [INFO] fastapi_app.service.query_service: Running OCR2 on retrieved page (direct)
+2026-02-04 21:37:36 [INFO] fastapi_app.service.ocr_service: Running OCR2 vLLM generation
+2026-02-04 21:37:36 [INFO] fastapi_app.service.query_service: Query completed
+2026-02-04 21:37:36 [INFO] fastapi_app.app: POST /api/v1/query/vision 200 6789.0ms
+2026-02-05 00:16:05 [INFO] fastapi_app.service.query_service: By how much do they outperform standard BERT in Enriching BERT with Knowledge Graph Embeddings for Document Classification this paper?
+2026-02-05 00:16:05 [INFO] fastapi_app.service.query_service: Query image collection: vision_pages, top_k=3
+2026-02-05 00:16:06 [INFO] fastapi_app.service.query_service: Rerank applied to image candidates
+2026-02-05 00:16:06 [INFO] fastapi_app.service.query_service: Query text collection: pdf_enriching_bert_with_knowledge_graph_embeddings_for_document_classification_pdf_7, top_k=3
+2026-02-05 00:16:06 [INFO] fastapi_app.service.query_service: Running OCR2 on retrieved page (direct)
+2026-02-05 00:16:06 [INFO] fastapi_app.service.ocr_service: Running OCR2 vLLM generation
+2026-02-05 00:16:06 [INFO] fastapi_app.service.query_service: Query completed
+2026-02-05 00:16:06 [INFO] fastapi_app.app: POST /api/v1/query/vision 200 1951.7ms
+2026-02-05 00:18:12 [INFO] fastapi_app.service.query_service: By how much do they outperform standard BERT in the paper which named Enriching BERT with Knowledge Graph Embeddings for Document Classification?
+2026-02-05 00:18:12 [INFO] fastapi_app.service.query_service: Query image collection: vision_pages, top_k=3
+2026-02-05 00:18:13 [INFO] fastapi_app.service.query_service: Rerank applied to image candidates
+2026-02-05 00:18:13 [INFO] fastapi_app.service.query_service: Query text collection: pdf_enriching_bert_with_knowledge_graph_embeddings_for_document_classification_pdf_7, top_k=3
+2026-02-05 00:18:13 [INFO] fastapi_app.service.query_service: Running OCR2 on retrieved page (direct)
+2026-02-05 00:18:13 [INFO] fastapi_app.service.ocr_service: Running OCR2 vLLM generation
+2026-02-05 00:18:21 [INFO] fastapi_app.service.query_service: Query completed
+2026-02-05 00:18:21 [INFO] fastapi_app.app: POST /api/v1/query/vision 200 9131.9ms
+2026-02-05 00:18:59 [INFO] fastapi_app.service.query_service: By how much do they outperform standard BER
+2026-02-05 00:19:00 [INFO] fastapi_app.service.query_service: Query image collection: vision_pages, top_k=3
+2026-02-05 00:19:01 [INFO] fastapi_app.service.query_service: Rerank applied to image candidates
+2026-02-05 00:19:01 [INFO] fastapi_app.service.query_service: Query text collection: pdf_bertram-_improved_word_embeddings_have_big_impact_on_contextualized_model_performance_pdf_7, top_k=3
+2026-02-05 00:19:01 [INFO] fastapi_app.service.query_service: Running OCR2 on retrieved page (direct)
+2026-02-05 00:19:02 [INFO] fastapi_app.service.ocr_service: Running OCR2 vLLM generation
+2026-02-05 00:19:03 [INFO] fastapi_app.service.query_service: Query completed
+2026-02-05 00:19:03 [INFO] fastapi_app.app: POST /api/v1/query/vision 200 3249.7ms
+2026-02-05 00:19:08 [INFO] fastapi_app.service.query_service: By how much do they outperform standard BERT
+2026-02-05 00:19:08 [INFO] fastapi_app.service.query_service: Query image collection: vision_pages, top_k=3
+2026-02-05 00:19:10 [INFO] fastapi_app.service.query_service: Rerank applied to image candidates
+2026-02-05 00:19:10 [INFO] fastapi_app.service.query_service: Query text collection: pdf_bertram-_improved_word_embeddings_have_big_impact_on_contextualized_model_performance_pdf_6, top_k=3
+2026-02-05 00:19:10 [INFO] fastapi_app.service.query_service: Running OCR2 on retrieved page (direct)
+2026-02-05 00:19:10 [INFO] fastapi_app.service.ocr_service: Running OCR2 vLLM generation
+2026-02-05 00:19:17 [INFO] fastapi_app.service.query_service: Query completed
+2026-02-05 00:19:17 [INFO] fastapi_app.app: POST /api/v1/query/vision 200 8724.2ms
+2026-02-05 00:20:05 [INFO] fastapi_app.service.query_service: By how much do they outperform standard BERT in the paper which named <Enriching BERT with Knowledge Graph Embeddings for Document Classification>?
+2026-02-05 00:20:06 [INFO] fastapi_app.service.query_service: Query image collection: vision_pages, top_k=3
+2026-02-05 00:20:07 [INFO] fastapi_app.service.query_service: Rerank applied to image candidates
+2026-02-05 00:20:07 [INFO] fastapi_app.service.query_service: Query text collection: pdf_enriching_bert_with_knowledge_graph_embeddings_for_document_classification_pdf_7, top_k=3
+2026-02-05 00:20:07 [INFO] fastapi_app.service.query_service: Running OCR2 on retrieved page (direct)
+2026-02-05 00:20:07 [INFO] fastapi_app.service.ocr_service: Running OCR2 vLLM generation
+2026-02-05 00:20:09 [INFO] fastapi_app.service.query_service: Query completed
+2026-02-05 00:20:09 [INFO] fastapi_app.app: POST /api/v1/query/vision 200 3375.4ms
+2026-02-05 00:21:07 [INFO] fastapi_app.service.query_service: By how much do they outperform standard BERT in the paper which named <Enriching BERT with Knowledge Graph Embeddings for Document Classification>?
+2026-02-05 00:21:07 [INFO] fastapi_app.service.query_service: Query image collection: vision_pages, top_k=3
+2026-02-05 00:21:08 [INFO] fastapi_app.service.query_service: Rerank applied to image candidates
+2026-02-05 00:21:08 [INFO] fastapi_app.service.query_service: Query text collection: pdf_enriching_bert_with_knowledge_graph_embeddings_for_document_classification_pdf_7, top_k=3
+2026-02-05 00:21:08 [INFO] fastapi_app.service.query_service: Running OCR2 on retrieved page (direct)
+2026-02-05 00:21:08 [INFO] fastapi_app.service.ocr_service: Running OCR2 vLLM generation
+2026-02-05 00:21:10 [INFO] fastapi_app.service.query_service: Query completed
+2026-02-05 00:21:10 [INFO] fastapi_app.app: POST /api/v1/query/vision 200 3160.4ms

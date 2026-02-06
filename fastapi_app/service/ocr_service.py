@@ -4,6 +4,7 @@ from typing import Optional
 from PIL import Image
 
 from ..config import get_app_config
+from ..prompts import get_prompts
 from ..utils import get_logger
 
 logger = get_logger(__name__)
@@ -63,7 +64,15 @@ class OCRService:
             if context_text:
                 prompt = prompt.replace("{context}", context_text)
             return prompt
-        
+
+        prompts = get_prompts()
+        prompt = (prompts.get("ocr", {}) or {}).get("prompt_template")
+        if prompt:
+            prompt = str(prompt)
+            prompt = prompt.replace("{question}", question or "")
+            prompt = prompt.replace("{context}", context_text or "")
+            return prompt
+
         # Default QA template (HF infer() prefers <|grounding|>)
         base = (
             "<image>\n"

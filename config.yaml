@@ -5,7 +5,7 @@
 generator:
   # 可选: "local" | "openai" | "deepseek_ocr2"
   # - deepseek_ocr2: 使用 DeepSeek-OCR-2 的 decoder，支持 text-only vs (vision_tokens+text) A/B
-  backend: "decoder_only"
+  backend: "openai"
   
   # ------------------ 本地模型配置 ------------------
   local:
@@ -16,7 +16,7 @@ generator:
     # 是否使用 4-bit 量化（节省显存）
     load_in_4bit: false
     # 推理参数
-    temperature: 0.0
+    temperature: 0.8
     top_p: 1.0
     # 设备选择: "auto", "cuda", "cpu"
     device: "auto"
@@ -24,17 +24,19 @@ generator:
   # ------------------ OpenAI API 配置 ------------------
   openai:
     # （当前 pipeline 不使用 OpenAI；如需启用请改 backend=openai 并用环境变量配置密钥）
-    api_key: null
-    base_url: null
+    # Local vLLM usually ignores auth, but OpenAI SDK requires a non-empty key.
+    api_key: "EMPTY"
+    base_url: "http://127.0.0.1:8001/v1"
     # 模型名称
-    model: "gpt-4o-mini"
+    model: "/home/xwh/models/Qwen3-VL-2B-Instruct"
     # 最大生成 token 数
-    max_tokens: 768
+    # IMPORTANT: must leave room for prompt tokens; vLLM will 400 if too large.
+    max_tokens: 1024
     # 推理参数
     temperature: 0.0
     top_p: 1.0
     # 请求超时（秒）
-    timeout: 60
+    timeout: 300
     # 重试次数
     max_retries: 3
 
@@ -44,7 +46,7 @@ embedding:
   # - hash: 使用 MD5 hash（轻量级，无额外依赖）
   # - local: 使用本地 HuggingFace embedding 模型
   # - openai: 使用 OpenAI embedding API
-  backend: "openai"
+  backend: "local"
   
   # 输出维度（hash 模式会忽略此配置，使用内部固定值）
   dim: 1024
@@ -58,18 +60,18 @@ embedding:
     # 批处理大小
     batch_size: 32
     # 最大序列长度
-    max_length: 512
+    max_length: 1024
     # 是否使用 fp16（节省显存）
     use_fp16: true
   
   # ------------------ OpenAI API 配置 ------------------
   openai:
     # （当前 pipeline 不使用 OpenAI；如需启用请改 embedding.backend=openai 并用环境变量配置密钥）
-    api_key: "sk-zk29b3dee55ac5b9f4c62a542c15cd33408697c5911a1a69"
+    api_key: "sk-zk2a1c71733dc814a7744466a597d18f283698427f4bc649"
     # 也可用环境变量覆盖：OPENAI_BASE_URL
     base_url: "https://api.zhizengzeng.com/v1"
     # 模型名称: text-embedding-3-small, text-embedding-3-large, text-embedding-ada-002
-    model: "text-embedding-3-small"
+    model: "text-embedding-ada-002"
     # 输出维度（仅对 text-embedding-3 系列有效，可选: 256, 512, 1024, 3072）
     dimensions: null  # null 表示使用模型默认维度
     # 请求超时（秒）
@@ -110,25 +112,45 @@ api:
 
 # ==================== 检索配置 ====================
 retrieval:
-  image_top_k: 1
+  image_top_k: 3
   text_top_k: 3
+  # 是否将纯文本问题转成图片再做检索（开则用图片向量检索，关则用文本向量）
+  query_render_to_image: false
+
+# ==================== Reranker（可选）====================
+# 二阶段检索：先 embedding 召回 topK 页，再用 VL reranker 对 (query, page_image) 打分重排。
+reranker:
+  enabled: false
+  model_path: "/home/xwh/models/Qwen3-VL-Reranker-2B"
+  # 用英文 instruction 通常更稳定
+  instruction: "Retrieve the most relevant document page image that contains the answer to the query."
+  # 如果你想把 reranker 单独跑在另一张 GPU（例如 GPU1），起一个独立服务并填这里：
+  # 例如: "http://127.0.0.1:8001"
+  service_url: "http://127.0.0.1:8001"
+  service_timeout: 120
+  # 设备/精度相关（可选）
+  torch_dtype: "bfloat16"     # "bfloat16" | "float16" | "float32"
+  attn_implementation: null   # 例如: "flash_attention_2"
 
 # ==================== Query 强化（可选）====================
 # 用 OpenAI 兼容接口（如智增增）把 query 关键字抽取/重复，提升检索召回。
 query_enhance:
-  enabled: true
-  max_tokens: 80
-  temperature: 0.0
+  enabled: false
+  max_tokens: 16384
+  temperature: 0.8
   openai:
-    api_key: null              # 或用环境变量 OPENAI_API_KEY
-    base_url: "https://api.zhizengzeng.com/v1"   # 或用环境变量 OPENAI_BASE_URL
-    model: "gpt-4o-mini"
-    timeout: 20
+    api_key: "sk-zk2a1c71733dc814a7744466a597d18f283698427f4bc649"              # 或用环境变量 OPENAI_API_KEY
+    base_url: "https://api.zzz-api.top"   # 或用环境变量 OPENAI_BASE_URL
+    model: "gpt-4o"
+    timeout: 60   # 请求超时（秒），接口慢时可调大
 
 # ==================== 索引配置 ====================
 indexing:
   default_image_collection: "vision_pages"
   default_text_collection: "default_texts"
+  # 全量文本 chunk collection（用于 A: text-only baseline）
+  global_text_collection: "global_text_chunks"
+  enable_global_text_collection: true
   text_collection_prefix: "pdf"
   chunk_size: 400
   chunk_overlap: 50
@@ -137,7 +159,7 @@ indexing:
 
 # ==================== Qwen VL Embedding 配置 ====================
 vl_embedding:
-  model_path: "/home/xwh/models/Qwen3-VL-Embedding-2B"
+  model_path: "/home/xwh/models/Qwen3-VL-Embedding-8B"
   device: "auto"
   dtype: "bfloat16"
   batch_size: 8
@@ -160,3 +182,35 @@ ocr:
   # Optional: Custom prompt template. Use {question} and {context} as placeholders.
   # If not set, uses default English QA template.
   # prompt_template: "<image>\n<|grounding|>Convert the document to markdown.\n\nQuestion: {question}\nContext: {context}"
+
+# ==================== 最终回答生成（可扩展）====================
+# 目前默认走 OCR2（与现有一致），后续可替换为其他生成器
+answer_generator:
+  backend: "openai_compat"  # 可选: "ocr2" | "openai_compat" | "local_vl" | "none" | "custom"
+  # OpenAI 兼容多模态接口（如 gpt-4o / gpt-4o-mini）
+  openai:
+    api_key: "sk-zk2a1c71733dc814a7744466a597d18f283698427f4bc649"          # 或用环境变量 OPENAI_API_KEY
+    base_url: "https://api.zzz-api.top"         # 或用环境变量 OPENAI_BASE_URL
+    model: "gpt-5.2"
+    max_tokens: 16384
+    temperature: 0.0
+    timeout: 300
+  # 本地多模态模型（预留配置）
+  local_vl:
+    model_path: "/home/xwh/models/Qwen3-VL-2B-Instruct"
+    device: "auto"
+    max_new_tokens: 16384
+    # Use local vLLM OpenAI-compatible server:
+    base_url: "http://127.0.0.1:8001/v1"
+    model: "/home/xwh/models/Qwen3-VL-2B-Instruct"
+    api_key: ""   # local vLLM usually doesn't require a key
+    # IMPORTANT: must leave room for prompt+image tokens, otherwise vLLM returns 400.
+    # Recommend 512~2048 depending on desired answer length.
+    max_tokens: 1024
+    temperature: 0.0
+    timeout: 300
+
+# ==================== Prompt Templates ====================
+# Centralized prompt templates path (optional).
+# If omitted, defaults to ./prompts.yaml.
+prompts_path: "./prompts.yaml"
